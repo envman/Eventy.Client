@@ -12,6 +12,7 @@
 		4ABA55BE1B979437003B6D48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ABA55BC1B979437003B6D48 /* Main.storyboard */; };
 		4ABA55C01B979437003B6D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ABA55BF1B979437003B6D48 /* Assets.xcassets */; };
 		4ABA55C31B979437003B6D48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ABA55C11B979437003B6D48 /* LaunchScreen.storyboard */; };
+		4ABA55D31B9B43D8003B6D48 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABA55D21B9B43D8003B6D48 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		4ABA55BF1B979437003B6D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4ABA55C21B979437003B6D48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4ABA55C41B979437003B6D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4ABA55D21B9B43D8003B6D48 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				4ABA55B81B979437003B6D48 /* AppDelegate.swift */,
 				4ABA55BA1B979437003B6D48 /* LoginViewController.swift */,
+				4ABA55D21B9B43D8003B6D48 /* NetworkManager.swift */,
 				4ABA55BC1B979437003B6D48 /* Main.storyboard */,
 				4ABA55BF1B979437003B6D48 /* Assets.xcassets */,
 				4ABA55C11B979437003B6D48 /* LaunchScreen.storyboard */,
@@ -135,6 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ABA55BB1B979437003B6D48 /* LoginViewController.swift in Sources */,
+				4ABA55D31B9B43D8003B6D48 /* NetworkManager.swift in Sources */,
 				4ABA55B91B979437003B6D48 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +289,7 @@
 				4ABA55C91B979437003B6D48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
