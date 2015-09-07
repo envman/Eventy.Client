@@ -13,6 +13,7 @@
 		4ABA55C01B979437003B6D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ABA55BF1B979437003B6D48 /* Assets.xcassets */; };
 		4ABA55C31B979437003B6D48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ABA55C11B979437003B6D48 /* LaunchScreen.storyboard */; };
 		4ABA55D31B9B43D8003B6D48 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABA55D21B9B43D8003B6D48 /* NetworkManager.swift */; };
+		4AF3029D1B9DEB04003CAC77 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF3029C1B9DEB04003CAC77 /* AccessToken.swift */; settings = {ASSET_TAGS = (); }; };
 		A5F8CBE6C0CE9DB90C33124F /* Pods_Eventy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB90BECDCF2A8CBB7E2FAB19 /* Pods_Eventy.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		4ABA55C21B979437003B6D48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4ABA55C41B979437003B6D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ABA55D21B9B43D8003B6D48 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4AF3029C1B9DEB04003CAC77 /* AccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		AE41DD8C61E71D00091244FF /* Pods-Eventy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eventy/Pods-Eventy.debug.xcconfig"; sourceTree = "<group>"; };
 		BB90BECDCF2A8CBB7E2FAB19 /* Pods_Eventy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eventy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEAC0C00D45F0EDCDC365472 /* Pods-Eventy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eventy/Pods-Eventy.release.xcconfig"; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				4ABA55B81B979437003B6D48 /* AppDelegate.swift */,
 				4ABA55BA1B979437003B6D48 /* LoginViewController.swift */,
 				4ABA55D21B9B43D8003B6D48 /* NetworkManager.swift */,
+				4AF3029C1B9DEB04003CAC77 /* AccessToken.swift */,
 				4ABA55BC1B979437003B6D48 /* Main.storyboard */,
 				4ABA55BF1B979437003B6D48 /* Assets.xcassets */,
 				4ABA55C11B979437003B6D48 /* LaunchScreen.storyboard */,
@@ -215,6 +218,7 @@
 				4ABA55BB1B979437003B6D48 /* LoginViewController.swift in Sources */,
 				4ABA55D31B9B43D8003B6D48 /* NetworkManager.swift in Sources */,
 				4ABA55B91B979437003B6D48 /* AppDelegate.swift in Sources */,
+				4AF3029D1B9DEB04003CAC77 /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +333,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Eventy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.GG.Eventy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -341,6 +346,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Eventy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.GG.Eventy;
 				PRODUCT_NAME = "$(TARGET_NAME)";

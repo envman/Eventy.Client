@@ -9,16 +9,14 @@
 import Foundation
 import Alamofire
 
-
 class NetworkManager
 {
-	let registerUrl: String = "http://joinin.azurewebsites.net/Api/Account/Register"
-	let loginUrl: String = "http://joinin.azurewebsites.net/Token"
+	let url: String = "http://joinin.azurewebsites.net"
 	
 	func register(userName: String, email: String, password: String)
 	{
 		let registerParameters = ["UserName": userName, "Email":email, "Password":password]
-		Alamofire.request(.POST, registerUrl, parameters: registerParameters).responseJSON
+		Alamofire.request(.POST, url+"/Api/Account/Register", parameters: registerParameters, encoding: .JSON).responseJSON
 		{
 			_, _, json in
 			if (json.value != nil)
@@ -28,16 +26,31 @@ class NetworkManager
 		}
 	}
 	
-	func login(email: String, password: String)
+	func login(username: String, password: String)
 	{
-		let loginParameters = ["grant_type": "password", "UserName": email, "Password":password]
-		Alamofire.request(.POST, loginUrl, parameters: loginParameters).responseJSON
+		let loginParameters = ["grant_type": "password", "UserName": username, "Password":password]	
+		Alamofire.request(.POST, url+"/Token", parameters: loginParameters, encoding: .URL).responseJSON
 			{
-				_, _, json in
-				if (json.value != nil)
-				{
-					print(json.value)
-				}
+			_, _, json in
+			if (json.value != nil)
+			{
+				print(json.value)				
+				AccessToken.saveTokenData(json.value!)
+			}
+		}
+	}
+	
+	func tokenTest()
+	{
+		let headers = [
+			"Authorization": "Bearer " + AccessToken.loadTokenData(),
+			"Content-Type": "application/x-www-form-urlencoded"
+		]
+		Alamofire.request(.GET, url+"/api/Values", headers: headers)
+			.responseString
+			{ _, _, result in
+				print("Success: \(result.isSuccess)")
+				print("Response String: \(result.value)")
 		}
 	}
 }

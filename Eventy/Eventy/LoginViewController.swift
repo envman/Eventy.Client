@@ -39,13 +39,13 @@ class LoginViewController : UIViewController
 	func setViewForLogin()
 	{
 		appearAnimationForView(titleLabel)
-		appearAnimationForView(emailTextField)
+		appearAnimationForView(usernameTextField)
 		appearAnimationForView(passwordTextField)
 		
 		appearAnimationForButton(loginButton)
 		appearAnimationForButton(registerButton)
 		
-		usernameTextField.hidden = true;
+		emailTextField.hidden = true;
 		cancelButton.hidden = true
 		registerButton.hidden = false
 		
@@ -82,15 +82,15 @@ class LoginViewController : UIViewController
 		
 		cancelButton.hidden = false
 		registerButton.hidden = true
-		usernameTextField.hidden = false
-		usernameTextField.alpha = 0
+		emailTextField.hidden = false
+		emailTextField.alpha = 0
 		
-		let originalButtonPosition = usernameTextField.center
-		usernameTextField.center = emailTextField.center
+		let originalButtonPosition = emailTextField.center
+		emailTextField.center = usernameTextField.center
 		
 		UIView.animateWithDuration(0.4, animations: {
-			self.usernameTextField.center = originalButtonPosition
-			self.usernameTextField.alpha = 1
+			self.emailTextField.center = originalButtonPosition
+			self.emailTextField.alpha = 1
 		})
 	}
 
@@ -102,14 +102,20 @@ class LoginViewController : UIViewController
 	@IBAction func registerDetailsPressed(sender: AnyObject)
 	{
 		let networkManager: NetworkManager = NetworkManager()
-		if usernameTextField.hidden == false
+		if emailTextField.hidden == false
 		{
 			networkManager.register(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!)
 		}
 		else
 		{
-			networkManager.login(emailTextField.text!, password: passwordTextField.text!)
+			networkManager.login(usernameTextField.text!, password: passwordTextField.text!)
 		}
+	}
+	
+	@IBAction func tokenTestPressed(sender: AnyObject)
+	{
+		let networkManager: NetworkManager = NetworkManager()
+		networkManager.tokenTest()
 	}
 }
 

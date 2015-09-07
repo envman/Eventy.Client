@@ -1,10 +1,12 @@
 PODS:
   - Alamofire (2.0.0-beta.3)
   - Locksmith (2.0)
+  - SwiftyJSON (2.2.1)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift-2.0`)
   - Locksmith (from `https://github.com/matthewpalmer/Locksmith.git`, branch `2.0`)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
 
 EXTERNAL SOURCES:
   Alamofire:
@@ -13,6 +15,9 @@ EXTERNAL SOURCES:
   Locksmith:
     :branch: '2.0'
     :git: https://github.com/matthewpalmer/Locksmith.git
+  SwiftyJSON:
+    :branch: xcode7
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   Alamofire:
@@ -21,9 +26,13 @@ CHECKOUT OPTIONS:
   Locksmith:
     :commit: ec6d2f4ee78dbaee130213dd6d44a7b09ea07a4d
     :git: https://github.com/matthewpalmer/Locksmith.git
+  SwiftyJSON:
+    :commit: f269523ac572979245baa99c8475eab73caf1e9b
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   Alamofire: 39dddb7d3725d1771b1d2f7099c8bd45bd83ffbb
   Locksmith: fdcfcb7deb8336f0b6a05b61cbd81de3a586d501
+  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
 
 COCOAPODS: 0.38.2
