@@ -1,0 +1,29 @@
+PODS:
+  - Alamofire (2.0.0-beta.3)
+  - Locksmith (2.0)
+
+DEPENDENCIES:
+  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift-2.0`)
+  - Locksmith (from `https://github.com/matthewpalmer/Locksmith.git`, branch `2.0`)
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :branch: swift-2.0
+    :git: https://github.com/Alamofire/Alamofire.git
+  Locksmith:
+    :branch: '2.0'
+    :git: https://github.com/matthewpalmer/Locksmith.git
+
+CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: e5505bad9eeea7be421681a534ef6d082ad4eb1d
+    :git: https://github.com/Alamofire/Alamofire.git
+  Locksmith:
+    :commit: ec6d2f4ee78dbaee130213dd6d44a7b09ea07a4d
+    :git: https://github.com/matthewpalmer/Locksmith.git
+
+SPEC CHECKSUMS:
+  Alamofire: 39dddb7d3725d1771b1d2f7099c8bd45bd83ffbb
+  Locksmith: fdcfcb7deb8336f0b6a05b61cbd81de3a586d501
+
+COCOAPODS: 0.38.2

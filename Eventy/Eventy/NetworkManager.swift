@@ -7,45 +7,38 @@
 //
 
 import Foundation
+import Alamofire
+
 
 class NetworkManager
 {
-	func login(userName: String, email: String, password: String)
+	let registerUrl: String = "http://joinin.azurewebsites.net/Api/Account/Register"
+	let loginUrl: String = "http://joinin.azurewebsites.net/Token"
+	
+	func register(userName: String, email: String, password: String)
 	{
-		let parameters = ["UserName": userName, "Email":email, "Password":password] as Dictionary<String, String>
-
-		let url = NSURL(string: "http://joinin.azurewebsites.net/Api/Account/Register")
-		let session = NSURLSession.sharedSession()
-		let request = NSMutableURLRequest(URL: url!)
-		
-		request.HTTPMethod = "POST"
-
-		do
+		let registerParameters = ["UserName": userName, "Email":email, "Password":password]
+		Alamofire.request(.POST, registerUrl, parameters: registerParameters).responseJSON
 		{
-			request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parameters, options: [])
-		} catch let parseError {
-			print(parseError)
-		}
-		
-		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-		request.addValue("application/json", forHTTPHeaderField: "Accept")
-		
-
-		let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-			print("Response: \(response)")
-			let strData = NSString(data: data!, encoding: NSUTF8StringEncoding)
-			print("Body: \(strData)")
-			
-			var json: NSDictionary
-			
-			do
+			_, _, json in
+			if (json.value != nil)
 			{
-				json =  try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves) as! NSDictionary
-			}catch let parseError {
-				print(parseError)
+				print(json.value)
 			}
-		})
-		task.resume()
+		}
+	}
+	
+	func login(email: String, password: String)
+	{
+		let loginParameters = ["grant_type": "password", "UserName": email, "Password":password]
+		Alamofire.request(.POST, loginUrl, parameters: loginParameters).responseJSON
+			{
+				_, _, json in
+				if (json.value != nil)
+				{
+					print(json.value)
+				}
+		}
 	}
 }
 

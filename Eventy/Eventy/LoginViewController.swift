@@ -102,7 +102,14 @@ class LoginViewController : UIViewController
 	@IBAction func registerDetailsPressed(sender: AnyObject)
 	{
 		let networkManager: NetworkManager = NetworkManager()
-		networkManager.login(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!)
+		if usernameTextField.hidden == false
+		{
+			networkManager.register(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!)
+		}
+		else
+		{
+			networkManager.login(emailTextField.text!, password: passwordTextField.text!)
+		}
 	}
 }
 

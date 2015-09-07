@@ -1,0 +1,10 @@
+platform :ios, "8.0"
+use_frameworks!
+
+target 'Eventy' do
+
+pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'swift-2.0'
+pod 'Locksmith', :git => 'https://github.com/matthewpalmer/Locksmith.git', :branch => '2.0'
+
+end
+
