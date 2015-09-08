@@ -1,21 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <imageView key="view" userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backGroundImageBW" id="A3S-NX-GUw" userLabel="Background">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cpr-vY-DMC"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZuM-mN-dN0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kbQ-x9-b3K">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.94999998807907104" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backGroundImageBW" translatesAutoresizingMaskIntoConstraints="NO" id="FzQ-dE-WMM" userLabel="Background">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="SKm-KH-7rM"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JoinIn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X27-Xt-Va6">
+                                <rect key="frame" x="185" y="84" width="231" height="111"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="93"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FzQ-dE-WMM" firstAttribute="top" secondItem="kbQ-x9-b3K" secondAttribute="top" id="Dod-xM-paj"/>
+                            <constraint firstItem="ZuM-mN-dN0" firstAttribute="top" secondItem="FzQ-dE-WMM" secondAttribute="bottom" id="Mvd-0C-maF"/>
+                            <constraint firstItem="FzQ-dE-WMM" firstAttribute="leading" secondItem="kbQ-x9-b3K" secondAttribute="leadingMargin" constant="-20" id="QZb-V2-qUD"/>
+                            <constraint firstItem="X27-Xt-Va6" firstAttribute="centerX" secondItem="kbQ-x9-b3K" secondAttribute="centerX" id="daf-GH-zvU"/>
+                            <constraint firstItem="FzQ-dE-WMM" firstAttribute="leading" secondItem="kbQ-x9-b3K" secondAttribute="leading" id="gVZ-8G-QTB"/>
+                            <constraint firstItem="X27-Xt-Va6" firstAttribute="centerY" secondItem="kbQ-x9-b3K" secondAttribute="centerY" constant="-160.5" id="hq4-Em-a5A"/>
+                        </constraints>
+                    </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="165" y="299"/>
+            <point key="canvasLocation" x="138" y="45"/>
         </scene>
     </scenes>
     <resources>

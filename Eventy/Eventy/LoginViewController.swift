@@ -24,6 +24,7 @@ class LoginViewController : UIViewController
 
 		let tapToResignKeyboard: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
 		view.addGestureRecognizer(tapToResignKeyboard)
+		
 	}
 	
 	func DismissKeyboard()
