@@ -11,6 +11,7 @@
 		4A44591D1B9F62B10041A45C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44591C1B9F62B10041A45C /* Event.swift */; settings = {ASSET_TAGS = (); }; };
 		4A44591F1B9F81230041A45C /* EventMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44591E1B9F81230041A45C /* EventMainViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		4A4459211B9F85280041A45C /* AppColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4459201B9F85280041A45C /* AppColours.swift */; settings = {ASSET_TAGS = (); }; };
+		4A4459251BA0AD580041A45C /* DateSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4459241BA0AD580041A45C /* DateSelectViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		4ABA55B91B979437003B6D48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABA55B81B979437003B6D48 /* AppDelegate.swift */; };
 		4ABA55BB1B979437003B6D48 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABA55BA1B979437003B6D48 /* LoginViewController.swift */; };
 		4ABA55BE1B979437003B6D48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ABA55BC1B979437003B6D48 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 		4A44591C1B9F62B10041A45C /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		4A44591E1B9F81230041A45C /* EventMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMainViewController.swift; sourceTree = "<group>"; };
 		4A4459201B9F85280041A45C /* AppColours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColours.swift; sourceTree = "<group>"; };
+		4A4459241BA0AD580041A45C /* DateSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectViewController.swift; sourceTree = "<group>"; };
 		4ABA55B51B979437003B6D48 /* Eventy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ABA55B81B979437003B6D48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4ABA55BA1B979437003B6D48 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				4AF3029C1B9DEB04003CAC77 /* AccessToken.swift */,
 				4A44591C1B9F62B10041A45C /* Event.swift */,
 				4A4459201B9F85280041A45C /* AppColours.swift */,
+				4A4459241BA0AD580041A45C /* DateSelectViewController.swift */,
 				4ABA55BC1B979437003B6D48 /* Main.storyboard */,
 				4ABA55BF1B979437003B6D48 /* Assets.xcassets */,
 				4ABA55C11B979437003B6D48 /* LaunchScreen.storyboard */,
@@ -229,6 +232,7 @@
 			files = (
 				4A44591F1B9F81230041A45C /* EventMainViewController.swift in Sources */,
 				4ABA55BB1B979437003B6D48 /* LoginViewController.swift in Sources */,
+				4A4459251BA0AD580041A45C /* DateSelectViewController.swift in Sources */,
 				4ABA55D31B9B43D8003B6D48 /* NetworkManager.swift in Sources */,
 				4A4459211B9F85280041A45C /* AppColours.swift in Sources */,
 				4ABA55B91B979437003B6D48 /* AppDelegate.swift in Sources */,
