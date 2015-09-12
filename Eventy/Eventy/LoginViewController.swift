@@ -8,14 +8,17 @@
 
 import UIKit
 
-class LoginViewController : UIViewController
+protocol LoginDelegate
 {
-	@IBOutlet weak var titleLabel: UILabel!
+	func loginSuccessful()
+}
+
+class LoginViewController : UIViewController, NetworkDelegate
+{
+	var delegate: LoginDelegate?
 	@IBOutlet weak var usernameTextField: UITextField!
-	@IBOutlet weak var emailTextField: UITextField!
 	@IBOutlet weak var passwordTextField: UITextField!
 	@IBOutlet weak var loginButton: UIButton!
-	@IBOutlet weak var registerButton: UIButton!
 	@IBOutlet weak var cancelButton: UIButton!
 	
 	override func viewDidLoad()
@@ -32,91 +35,22 @@ class LoginViewController : UIViewController
 		view.endEditing(true)
 	}
 	
-	override func viewDidAppear(animated: Bool)
+	@IBAction func cancelPressed(sender: AnyObject)
 	{
-		setViewForLogin()
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
-	
-	func setViewForLogin()
-	{
-		appearAnimationForView(titleLabel)
-		appearAnimationForView(usernameTextField)
-		appearAnimationForView(passwordTextField)
-		
-		appearAnimationForButton(loginButton)
-		appearAnimationForButton(registerButton)
-		
-		emailTextField.hidden = true;
-		cancelButton.hidden = true
-		registerButton.hidden = false
-		
-		loginButton.setTitle("Login", forState:UIControlState.Normal)
-	}
-	
-	func appearAnimationForView(view: UIView)
-	{
-		let originalViewHeight = view.frame.size.height
-		view.frame.size.height = 0
-
-		UIView.animateKeyframesWithDuration(0.5, delay: 0.3, options: [], animations: {
-			view.frame.size.height = originalViewHeight
-			}, completion: nil)
-	}
-	
-	func appearAnimationForButton(view: UIView)
-	{
-		let originalButtonPosition = view.center
-		view.center = CGPointMake(originalButtonPosition.x, 1000)
-		
-		UIView.animateKeyframesWithDuration(0.5, delay: 0.3, options: [], animations: {
-			view.center = originalButtonPosition
-		}, completion: nil)
-	}
-	@IBAction func registerButtonPressed(sender: AnyObject)
-	{
-		setViewForRegister()
-	}
-	
-	func setViewForRegister()
-	{
-		loginButton.setTitle("Register", forState:UIControlState.Normal)
-		
-		cancelButton.hidden = false
-		registerButton.hidden = true
-		emailTextField.hidden = false
-		emailTextField.alpha = 0
-		
-		let originalButtonPosition = emailTextField.center
-		emailTextField.center = usernameTextField.center
-		
-		UIView.animateWithDuration(0.4, animations: {
-			self.emailTextField.center = originalButtonPosition
-			self.emailTextField.alpha = 1
-		})
-	}
-
-	@IBAction func cancelButtonPressed(sender: AnyObject)
-	{
-		setViewForLogin()
-	}
-	
-	@IBAction func registerDetailsPressed(sender: AnyObject)
+	@IBAction func loginPressed(sender: AnyObject)
 	{
 		let networkManager: NetworkManager = NetworkManager()
-		if emailTextField.hidden == false
-		{
-			networkManager.register(usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!)
-		}
-		else
-		{
-			networkManager.login(usernameTextField.text!, password: passwordTextField.text!)
-		}
+		networkManager.delegate = self
+
+		networkManager.login(usernameTextField.text!, password: passwordTextField.text!)
 	}
-	
-	@IBAction func tokenTestPressed(sender: AnyObject)
+
+	func loginSuccessful()
 	{
-		let networkManager: NetworkManager = NetworkManager()
-		networkManager.tokenTest()
+		dismissViewControllerAnimated(true, completion: nil)
+		self.delegate?.loginSuccessful()
 	}
 }
 

@@ -8,12 +8,25 @@
 
 import UIKit
 
-class EventMainViewController: UIViewController
+class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelegate
 {
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
-		
+	
+		performTokenTest()
+		setupNavBar()
+	}
+	
+	func performTokenTest()
+	{
+		let networkManager = NetworkManager()
+		networkManager.delegate = self
+		networkManager.tokenTest()
+	}
+	
+	func setupNavBar()
+	{
 		navigationController!.navigationBar.barTintColor = AppColours.mainColour()
 		navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 		
@@ -24,5 +37,28 @@ class EventMainViewController: UIViewController
 	{
 		let networkManager = NetworkManager()
 		networkManager.getEvents()
+	}
+	
+	func userLoggedOut()
+	{
+		presentLoggedOutView()
+	}
+	
+	@IBAction func settingsPressed(sender: AnyObject)
+	{
+		let settingsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsView") as! SettingsViewController
+		settingsViewController.delegate = self
+		self.navigationController?.pushViewController(settingsViewController, animated: true)
+	}
+	
+	func loginDenied()
+	{
+		presentLoggedOutView()
+	}
+	
+	func presentLoggedOutView()
+	{
+		let loggedOutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LoggedOutView")
+		self.presentViewController(loggedOutViewController!, animated: true, completion: nil)
 	}
 }

@@ -27,6 +27,14 @@ class EventCreationViewController: UIViewController, DateSelectDelegate
 		navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 		
 		navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+		
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+		view.addGestureRecognizer(tap)
+	}
+	
+	func DismissKeyboard()
+	{
+		view.endEditing(true)
 	}
 	
 	@IBAction func publishEventButtonPressed(sender: AnyObject)

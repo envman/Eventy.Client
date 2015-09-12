@@ -10,8 +10,15 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+@objc protocol NetworkDelegate
+{
+	optional func loginSuccessful()
+	optional func loginDenied()
+}
+
 class NetworkManager
 {
+	var delegate: NetworkDelegate?
 	let url: String = "http://joinin.azurewebsites.net"
 	
 	func register(userName: String, email: String, password: String)
@@ -22,7 +29,11 @@ class NetworkManager
 			_, _, json in
 			if (json.value != nil)
 			{
-				print(json.value)
+				QuickAlert.showAlert("Error", message: (json.value?.string)!)
+			}
+			else
+			{
+				self.login(userName, password: password)
 			}
 		}
 	}
@@ -35,8 +46,18 @@ class NetworkManager
 			_, _, json in
 			if (json.value != nil)
 			{
-				print(json.value)				
-				AccessToken.saveTokenData(json.value!)
+				let responseJson = JSON(json.value!)
+				let errorMessage = responseJson["error"].stringValue
+				
+				if (errorMessage == "")
+				{
+					AccessToken.saveTokenData(json.value!)
+					self.delegate?.loginSuccessful!()
+				}
+				else
+				{
+					QuickAlert.showAlert("Failure", message: "Response: \(errorMessage)")
+				}
 			}
 		}
 	}
@@ -55,12 +76,12 @@ class NetworkManager
 				{
 					let responseJson = JSON(json.value!)
 					let responseMessage = responseJson["Message"].stringValue
+					print(responseMessage)
 					
-					let alert = UIAlertView()
-					alert.title = "Response:"
-					alert.message = "\(responseMessage)"
-					alert.addButtonWithTitle("OK")
-					alert.show()
+					if (responseMessage.containsString("denied"))
+					{
+						self.delegate?.loginDenied!()
+					}
 				}
 			}
 	}
@@ -74,10 +95,19 @@ class NetworkManager
 			"Content-Type": "application/x-www-form-urlencoded"
 		]
 		Alamofire.request(.PUT, url+"/api/Event/"+event.id, parameters: eventParameters, headers: headers)
-			.responseString
-			{ _, _, result in
-				print("Success: \(result.isSuccess)")
-				print("Response String: \(result.value)")
+			.responseJSON
+			{
+				_, _, json in
+				if (json.value != nil)
+				{
+					let responseJson = JSON(json.value!)
+					let responseMessage = responseJson["Message"].stringValue
+					
+					if (responseMessage.containsString("denied"))
+					{
+						QuickAlert.showAlert("Fail to create event:", message: "Respons: \(responseMessage)")
+					}
+				}
 		}
 	}
 	

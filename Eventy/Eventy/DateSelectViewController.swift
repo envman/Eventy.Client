@@ -23,10 +23,7 @@ class DateSelectViewController: UIViewController
 	
 	@IBAction func setDateButtonPressed(sender: AnyObject)
 	{
-		if ((self.delegate) != nil)
-		{
-			delegate?.datesSelected(startDatePicker.date, endDate: endDatePicker.date)
-			self.navigationController?.popViewControllerAnimated(true)
-		}
+		self.delegate?.datesSelected(startDatePicker.date, endDate: endDatePicker.date)
+		self.navigationController?.popViewControllerAnimated(true)
 	}
 }

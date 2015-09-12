@@ -36,15 +36,30 @@ class AccessToken
 		}
 		catch
 		{
-			print("saving item to keychain failed")
+			print("Saving item to keychain failed")
 		}
 	}
 	
 	class func loadTokenData() ->String
 	{
-		let tokenDictionary = Locksmith.loadDataForUserAccount("JoinInUserAccount")
-		let responseJson = JSON(tokenDictionary!)
+		if let tokenDictionary = Locksmith.loadDataForUserAccount("JoinInUserAccount")
+		{
+			let responseJson = JSON(tokenDictionary)
+			return responseJson["token"].stringValue
+		}
 		
-		return responseJson["token"].stringValue
+		return ""
+	}
+	
+	class func deleteToken()
+	{
+		do
+		{
+			try Locksmith.deleteDataForUserAccount("JoinInUserAccount")
+		}
+		catch
+		{
+			print("Deleting keychain item failed")
+		}
 	}
 }
