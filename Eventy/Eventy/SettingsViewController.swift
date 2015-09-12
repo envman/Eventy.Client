@@ -24,6 +24,8 @@ class SettingsViewController: UIViewController
 	
 	@IBAction func logOutPressed(sender: AnyObject)
 	{
+		let networkManager = NetworkManager()
+		networkManager.logout()
 		AccessToken.deleteToken()
 		self.navigationController?.popViewControllerAnimated(true)
 		self.delegate?.userLoggedOut()

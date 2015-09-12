@@ -21,6 +21,10 @@ class NetworkManager
 	var delegate: NetworkDelegate?
 	let url: String = "http://joinin.azurewebsites.net"
 	
+	let authenticationHeaders = [
+		"Authorization": "Bearer " + AccessToken.loadTokenData(),
+		"Content-Type": "application/x-www-form-urlencoded"]
+	
 	func register(userName: String, email: String, password: String)
 	{
 		let registerParameters = ["UserName": userName, "Email":email, "Password":password]
@@ -29,7 +33,9 @@ class NetworkManager
 			_, _, json in
 			if (json.value != nil)
 			{
-				QuickAlert.showAlert("Error", message: (json.value?.string)!)
+				let responseJson = JSON(json.value!)
+				let responseMessage = responseJson["Message"].stringValue
+				QuickAlert.showAlert("Error", message:responseMessage)
 			}
 			else
 			{
@@ -47,7 +53,7 @@ class NetworkManager
 			if (json.value != nil)
 			{
 				let responseJson = JSON(json.value!)
-				let errorMessage = responseJson["error"].stringValue
+				let errorMessage = responseJson["error_description"].stringValue
 				
 				if (errorMessage == "")
 				{
@@ -62,13 +68,27 @@ class NetworkManager
 		}
 	}
 	
+	func logout()
+	{
+		Alamofire.request(.POST, url+"/api/Account/Logout", headers: authenticationHeaders).responseJSON
+			{
+				_, _, json in
+				if (json.value != nil)
+				{
+					let responseJson = JSON(json.value!)
+					let responseMessage = responseJson["Message"].stringValue
+					
+					if (responseMessage != "")
+					{
+						QuickAlert.showAlert("Failure", message: "Response: \(responseMessage)")
+					}
+				}
+		}
+	}
+	
 	func tokenTest()
 	{
-		let headers = [
-			"Authorization": "Bearer " + AccessToken.loadTokenData(),
-			"Content-Type": "application/x-www-form-urlencoded"
-		]
-		Alamofire.request(.GET, url+"/api/Values", headers: headers)
+		Alamofire.request(.GET, url+"/api/Values", headers: authenticationHeaders)
 		.responseJSON
 			{
 				_, _, json in
@@ -90,11 +110,8 @@ class NetworkManager
 	{
 		let eventParameters = ["Id": event.id, "Name": event.name, "Description": event.description,
 								"StartDateTime":event.startTime, "EndDateTime":event.endTime]
-		let headers = [
-			"Authorization": "Bearer " + AccessToken.loadTokenData(),
-			"Content-Type": "application/x-www-form-urlencoded"
-		]
-		Alamofire.request(.PUT, url+"/api/Event/"+event.id, parameters: eventParameters, headers: headers)
+
+		Alamofire.request(.PUT, url+"/api/Event/"+event.id, parameters: eventParameters, headers: authenticationHeaders)
 			.responseJSON
 			{
 				_, _, json in
@@ -113,11 +130,7 @@ class NetworkManager
 	
 	func getEvents()
 	{
-		let headers = [
-			"Authorization": "Bearer " + AccessToken.loadTokenData(),
-			"Content-Type": "application/x-www-form-urlencoded"
-		]
-		Alamofire.request(.GET, url+"/api/Event", headers: headers)
+		Alamofire.request(.GET, url+"/api/Event", headers: authenticationHeaders)
 		.responseJSON
 			{
 				_, _, json in

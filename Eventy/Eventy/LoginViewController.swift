@@ -13,7 +13,7 @@ protocol LoginDelegate
 	func loginSuccessful()
 }
 
-class LoginViewController : UIViewController, NetworkDelegate
+class LoginViewController : UIViewController, NetworkDelegate, UITextFieldDelegate
 {
 	var delegate: LoginDelegate?
 	@IBOutlet weak var usernameTextField: UITextField!
@@ -51,6 +51,21 @@ class LoginViewController : UIViewController, NetworkDelegate
 	{
 		dismissViewControllerAnimated(true, completion: nil)
 		self.delegate?.loginSuccessful()
+	}
+	
+	func textFieldShouldReturn(textField: UITextField) -> Bool
+	{
+		if textField == passwordTextField
+		{
+			resignFirstResponder()
+			loginPressed(textField)
+		}
+		else
+		{
+			passwordTextField.becomeFirstResponder()
+		}
+		
+		return true
 	}
 }
 

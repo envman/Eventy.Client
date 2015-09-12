@@ -19,4 +19,24 @@ class RegisterViewController: LoginViewController
 		
 		networkManager.register(self.usernameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!)
 	}
+	
+	override func textFieldShouldReturn(textField: UITextField) -> Bool
+	{
+		if textField == passwordTextField
+		{
+			resignFirstResponder()
+			loginPressed(textField)
+		}
+			
+		else if textField == emailTextField
+		{
+			usernameTextField.becomeFirstResponder()
+		}
+		else
+		{
+			passwordTextField.becomeFirstResponder()
+		}
+		
+		return true
+	}
 }

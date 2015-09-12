@@ -31,22 +31,6 @@
                                     <constraint firstAttribute="width" constant="600" id="lIS-A9-hHH"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1IJ-8d-T7O">
-                                <rect key="frame" x="20" y="110" width="560" height="30"/>
-                                <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="229" id="838-xB-MLm"/>
-                                    <constraint firstAttribute="width" constant="229" id="CgN-LN-EUd"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="done" secureTextEntry="YES"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="838-xB-MLm"/>
-                                        <exclude reference="CgN-LN-EUd"/>
-                                    </mask>
-                                </variation>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FVH-Ik-5nd">
                                 <rect key="frame" x="20" y="72" width="560" height="30"/>
                                 <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
@@ -62,15 +46,19 @@
                                         <exclude reference="Bvp-wW-ZNU"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="K0K-Jg-V5H"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScK-V6-oha">
                                 <rect key="frame" x="20" y="159" width="560" height="44"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="229" id="3wc-ZW-4Ki"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="229" id="erT-KE-4hf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="26"/>
+                                <color key="tintColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.95686274509803926" green="0.0" blue="0.42745098039215684" alpha="1" colorSpace="calibratedRGB"/>
@@ -99,6 +87,25 @@
                                     <action selector="cancelPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f91-7T-Ba2"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1IJ-8d-T7O">
+                                <rect key="frame" x="20" y="110" width="560" height="30"/>
+                                <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="229" id="838-xB-MLm"/>
+                                    <constraint firstAttribute="width" constant="229" id="CgN-LN-EUd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="go" secureTextEntry="YES"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="838-xB-MLm"/>
+                                        <exclude reference="CgN-LN-EUd"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="461-GK-3Dh"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -176,13 +183,16 @@
                                     <constraint firstAttribute="width" constant="229" id="eKB-LF-XMX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="done" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="go" secureTextEntry="YES"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="2aM-Ud-qNr"/>
                                         <exclude reference="eKB-LF-XMX"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="iQb-NI-1Mq" id="VKp-RZ-21B"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9UQ-ia-aic">
                                 <rect key="frame" x="20" y="111" width="560" height="30"/>
@@ -199,6 +209,9 @@
                                         <exclude reference="nm8-kg-Lp5"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="iQb-NI-1Mq" id="zsQ-6w-AVa"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0FS-K7-n5c">
                                 <rect key="frame" x="20" y="198" width="560" height="44"/>
@@ -251,6 +264,9 @@
                                         <exclude reference="JzA-Cg-dBA"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="iQb-NI-1Mq" id="3ME-Qw-uuR"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -465,7 +481,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JoinIn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9i-hg-EBM">
-                                <rect key="frame" x="185" y="137" width="231" height="111"/>
+                                <rect key="frame" x="185" y="85" width="231" height="111"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="93"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -494,11 +510,14 @@
                             <constraint firstItem="qbA-QG-K3n" firstAttribute="leading" secondItem="qfU-oE-uEX" secondAttribute="leading" id="b5c-RB-Ifm"/>
                             <constraint firstItem="dCL-aK-T4c" firstAttribute="top" secondItem="83C-Bc-UY5" secondAttribute="bottom" constant="15" id="cUx-DY-qdx"/>
                             <constraint firstItem="qbA-QG-K3n" firstAttribute="top" secondItem="TNZ-J9-Hop" secondAttribute="bottom" constant="-20" id="dFD-9M-Ptv"/>
-                            <constraint firstItem="C9i-hg-EBM" firstAttribute="centerY" secondItem="qfU-oE-uEX" secondAttribute="centerY" constant="-107.5" id="oi2-yV-oZp"/>
+                            <constraint firstItem="C9i-hg-EBM" firstAttribute="centerY" secondItem="qfU-oE-uEX" secondAttribute="centerY" constant="-160" id="oi2-yV-oZp"/>
                             <constraint firstItem="83C-Bc-UY5" firstAttribute="top" secondItem="2NY-oh-m5H" secondAttribute="bottom" constant="15" id="tba-EX-EXh"/>
                             <constraint firstAttribute="trailing" secondItem="83C-Bc-UY5" secondAttribute="trailing" constant="20" id="ymM-f9-Ahr"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backgroundImage" destination="qbA-QG-K3n" id="yHL-DH-97u"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCg-H5-9xr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -521,14 +540,13 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqQ-fF-tAU">
                                         <rect key="frame" x="20" y="491" width="560" height="50"/>
-                                        <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.95686274510000002" green="0.0" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="hr7-oa-ClV"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="qKh-AD-bzF"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Publish Event">
-                                            <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="publishEventButtonPressed:" destination="Ej8-MM-JK3" eventType="touchUpInside" id="AbZ-5c-gY5"/>
@@ -541,7 +559,10 @@
                                             <constraint firstAttribute="width" constant="217" id="0EO-wG-AaP"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" keyboardAppearance="alert"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Ej8-MM-JK3" id="JIC-A4-yCc"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event Description" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="33n-np-Hnb">
                                         <rect key="frame" x="191" y="127" width="217" height="30"/>
@@ -550,7 +571,10 @@
                                             <constraint firstAttribute="width" constant="217" id="qcT-mi-xWK"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Ej8-MM-JK3" id="8gK-7a-Ch5"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zh0-UY-Q7U">
                                         <rect key="frame" x="192" y="304" width="217" height="30"/>

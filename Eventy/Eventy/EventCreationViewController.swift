@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventCreationViewController: UIViewController, DateSelectDelegate
+class EventCreationViewController: UIViewController, DateSelectDelegate, UITextFieldDelegate
 {
 	var startDate: NSDate?
 	var endDate: NSDate?
@@ -37,11 +37,34 @@ class EventCreationViewController: UIViewController, DateSelectDelegate
 		view.endEditing(true)
 	}
 	
+	func textFieldShouldReturn(textField: UITextField) -> Bool
+	{
+		if textField != eventDescriptionTextField
+		{
+			eventDescriptionTextField.becomeFirstResponder()
+		}
+		else
+		{
+			textField.resignFirstResponder()
+		}
+		
+		return true
+	}
+	
 	@IBAction func publishEventButtonPressed(sender: AnyObject)
 	{
-		let event = Event(name: eventNameTextField.text!, description: eventDescriptionTextField.text!, startTime: startDate!, endTime: endDate!)
-		let networkManager = NetworkManager()
-		networkManager.createEvent(event)
+		if ((eventDescriptionTextField.text == "") && (eventDescriptionTextField.text == "") &&
+		(startDate == nil) && (endDate == nil))
+		{
+			QuickAlert.showAlert("Warnimg", message: "Please enter all evet details")
+		}
+		else
+		{
+			
+			let event = Event(name: eventNameTextField.text!, description: eventDescriptionTextField.text!, startTime: startDate!, endTime: endDate!)
+			let networkManager = NetworkManager()
+			networkManager.createEvent(event)
+		}
 	}
 	
 	@IBAction func startDateSetPressed(sender: AnyObject)
@@ -56,20 +79,9 @@ class EventCreationViewController: UIViewController, DateSelectDelegate
 	
 	func presentDateSelectView()
 	{
-		if ((eventNameTextField.text == "") || (eventDescriptionTextField.text == ""))
-		{
-			let alert = UIAlertView()
-			alert.title = "Warning"
-			alert.message = "Please fill out event name and description"
-			alert.addButtonWithTitle("OK")
-			alert.show()
-		}
-		else
-		{
-			let vc = self.storyboard!.instantiateViewControllerWithIdentifier("DateSelectViewController") as! DateSelectViewController
-			vc.delegate = self
-			self.navigationController?.pushViewController(vc, animated: true)
-		}
+		let dateSelectViewController = self.storyboard!.instantiateViewControllerWithIdentifier("DateSelectViewController") as! DateSelectViewController
+		dateSelectViewController.delegate = self
+		self.navigationController?.pushViewController(dateSelectViewController, animated: true)
 	}
 	
 	func datesSelected(startDate: NSDate, endDate: NSDate)

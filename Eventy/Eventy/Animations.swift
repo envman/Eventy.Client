@@ -10,7 +10,7 @@ import UIKit
 
 class Animations
 {
-	func appearAnimationForView(view: UIView)
+	class func appearAnimationForView(view: UIView)
 	{
 		let originalViewHeight = view.frame.size.height
 		view.frame.size.height = 0
@@ -20,7 +20,7 @@ class Animations
 			}, completion: nil)
 	}
 	
-	func appearAnimationForButton(view: UIView)
+	class func appearAnimationForButton(view: UIView)
 	{
 		let originalButtonPosition = view.center
 		view.center = CGPointMake(originalButtonPosition.x, 1000)
@@ -28,5 +28,12 @@ class Animations
 		UIView.animateKeyframesWithDuration(0.5, delay: 0.3, options: [], animations: {
 			view.center = originalButtonPosition
 			}, completion: nil)
+	}
+	
+	class func moveImageAnimation(image: UIImageView)
+	{
+		UIView.animateWithDuration(10.0, animations: {
+			
+		})
 	}
 }

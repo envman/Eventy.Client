@@ -10,6 +10,13 @@ import UIKit
 
 class LoggedOutViewController: UIViewController, LoginDelegate
 {
+	@IBOutlet weak var backgroundImage: UIImageView!
+	
+	override func viewDidAppear(animated: Bool)
+	{
+		Animations.moveImageAnimation(backgroundImage)
+	}
+	
 	func loginSuccessful()
 	{
 		self.dismissViewControllerAnimated(true, completion: nil)

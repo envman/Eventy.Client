@@ -13,6 +13,6 @@ class AppColours
 {
 	class func mainColour() -> UIColor
 	{
-		return UIColor(red: 244.0/255.0, green: 0.0, blue: 109.0/255.0, alpha:1)
+		return UIColor(red: 255.0/255.0, green: 0.0, blue: 128.0/255.0, alpha:1)
 	}
 }
