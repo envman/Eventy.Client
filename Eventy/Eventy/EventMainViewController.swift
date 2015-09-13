@@ -8,8 +8,10 @@
 
 import UIKit
 
-class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelegate
+class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelegate, UICollectionViewDelegate, UICollectionViewDataSource
 {
+	@IBOutlet weak var eventCollectionView: UICollectionView!
+	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
@@ -60,5 +62,25 @@ class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelega
 	{
 		let loggedOutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LoggedOutView")
 		self.presentViewController(loggedOutViewController!, animated: true, completion: nil)
+	}
+	
+	func numberOfSectionsInCollectionView(collectionView:
+		UICollectionView) -> Int
+	{
+			return 1
+	}
+	
+	func collectionView(collectionView: UICollectionView,
+		numberOfItemsInSection section: Int) -> Int
+	{
+			return 14
+	}
+	
+	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+	{
+		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("EventCell",
+			forIndexPath: indexPath)
+		
+		return cell
 	}
 }

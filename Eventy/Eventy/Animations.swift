@@ -32,8 +32,8 @@ class Animations
 	
 	class func moveImageAnimation(image: UIImageView)
 	{
-		UIView.animateWithDuration(10.0, animations: {
-			
+		UIView.animateWithDuration(40, animations: {
+			image.center.x += 170
 		})
 	}
 }
