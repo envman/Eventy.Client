@@ -28,8 +28,7 @@ class NetworkManager
 	func register(userName: String, email: String, password: String)
 	{
 		let registerParameters = ["UserName": userName, "Email":email, "Password":password]
-		Alamofire.request(.POST, url+"/Api/Account/Register", parameters: registerParameters, encoding: .JSON).responseJSON
-		{
+		Alamofire.request(.POST, url+"/Api/Account/Register", parameters: registerParameters, encoding: .JSON).responseJSON{
 			_, _, json in
 			if (json.value != nil)
 			{
@@ -47,8 +46,7 @@ class NetworkManager
 	func login(username: String, password: String)
 	{
 		let loginParameters = ["grant_type": "password", "UserName": username, "Password":password]	
-		Alamofire.request(.POST, url+"/Token", parameters: loginParameters, encoding: .URL).responseJSON
-			{
+		Alamofire.request(.POST, url+"/Token", parameters: loginParameters, encoding: .URL).responseJSON{
 			_, _, json in
 			if (json.value != nil)
 			{
@@ -70,40 +68,38 @@ class NetworkManager
 	
 	func logout()
 	{
-		Alamofire.request(.POST, url+"/api/Account/Logout", headers: authenticationHeaders).responseJSON
+		Alamofire.request(.POST, url+"/api/Account/Logout", headers: authenticationHeaders).responseJSON{
+			_, _, json in
+			if (json.value != nil)
 			{
-				_, _, json in
-				if (json.value != nil)
-				{
-					let responseJson = JSON(json.value!)
-					let responseMessage = responseJson["Message"].stringValue
+				let responseJson = JSON(json.value!)
+				let responseMessage = responseJson["Message"].stringValue
 					
-					if (responseMessage != "")
-					{
-						QuickAlert.showAlert("Failure", message: "Response: \(responseMessage)")
-					}
+				if (responseMessage != "")
+				{
+					QuickAlert.showAlert("Failure", message: "Response: \(responseMessage)")
 				}
+			}
 		}
 	}
 	
 	func tokenTest()
 	{
 		Alamofire.request(.GET, url+"/api/Values", headers: authenticationHeaders)
-		.responseJSON
+		.responseJSON{
+			_, _, json in
+			if (json.value != nil)
 			{
-				_, _, json in
-				if (json.value != nil)
-				{
-					let responseJson = JSON(json.value!)
-					let responseMessage = responseJson["Message"].stringValue
-					print(responseMessage)
+				let responseJson = JSON(json.value!)
+				let responseMessage = responseJson["Message"].stringValue
+				print(responseMessage)
 					
-					if (responseMessage.containsString("denied"))
-					{
-						self.delegate?.loginDenied!()
-					}
+				if (responseMessage.containsString("denied"))
+				{
+					self.delegate?.loginDenied!()
 				}
 			}
+		}
 	}
 	
 	func createEvent(event: Event)
@@ -112,38 +108,36 @@ class NetworkManager
 								"StartDateTime":event.startTime, "EndDateTime":event.endTime]
 
 		Alamofire.request(.PUT, url+"/api/Event/"+event.id, parameters: eventParameters, headers: authenticationHeaders)
-			.responseJSON
+			.responseJSON{
+			_, _, json in
+			if (json.value != nil)
 			{
-				_, _, json in
-				if (json.value != nil)
-				{
-					let responseJson = JSON(json.value!)
-					let responseMessage = responseJson["Message"].stringValue
+				let responseJson = JSON(json.value!)
+				let responseMessage = responseJson["Message"].stringValue
 					
-					if (responseMessage.containsString("denied"))
-					{
-						QuickAlert.showAlert("Fail to create event:", message: "Respons: \(responseMessage)")
-					}
+				if (responseMessage.containsString("denied"))
+				{
+					QuickAlert.showAlert("Fail to create event:", message: "Respons: \(responseMessage)")
 				}
+			}
 		}
 	}
 	
 	func getEvents()
 	{
 		Alamofire.request(.GET, url+"/api/Event", headers: authenticationHeaders)
-			.responseJSON
+			.responseJSON{
+			_, _, json in
+			if (json.value != nil)
 			{
-				_, _, json in
-				if (json.value != nil)
+				let responseJson = JSON(json.value!)
+				let responseMessage = responseJson["Message"].stringValue
+				
+				if (responseMessage != "")
 				{
-					let responseJson = JSON(json.value!)
-					let responseMessage = responseJson["Message"].stringValue
-					
-					if (responseMessage != "")
-					{
-						QuickAlert.showAlert("Failure", message: "Response: \(responseMessage)")
-					}
+					QuickAlert.showAlert("Failure", message: "Response: \(responseMessage)")
 				}
+			}
 		}
 	}
 }
