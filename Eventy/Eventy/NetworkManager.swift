@@ -131,12 +131,18 @@ class NetworkManager
 	func getEvents()
 	{
 		Alamofire.request(.GET, url+"/api/Event", headers: authenticationHeaders)
-		.responseJSON
+			.responseJSON
 			{
 				_, _, json in
 				if (json.value != nil)
 				{
-					print(json.value)
+					let responseJson = JSON(json.value!)
+					let responseMessage = responseJson["Message"].stringValue
+					
+					if (responseMessage != "")
+					{
+						QuickAlert.showAlert("Failure", message: "Response: \(responseMessage)")
+					}
 				}
 		}
 	}
