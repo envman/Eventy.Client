@@ -22,12 +22,17 @@ class SettingsViewController: UIViewController
 		QuickAlert.showAlert("OH NO!!", message: "Not implmemeted yet")
 	}
 	
+	@IBAction func cancelPressed(sender: AnyObject)
+	{
+		dismissViewControllerAnimated(true, completion: nil)
+	}
+	
 	@IBAction func logOutPressed(sender: AnyObject)
 	{
 		let networkManager = NetworkManager()
 		networkManager.logout()
 		AccessToken.deleteToken()
-		self.navigationController?.popViewControllerAnimated(true)
+		dismissViewControllerAnimated(true, completion: nil)
 		self.delegate?.userLoggedOut()
 	}
 }

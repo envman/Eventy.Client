@@ -11,13 +11,14 @@ import UIKit
 class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelegate, UICollectionViewDelegate, UICollectionViewDataSource
 {
 	@IBOutlet weak var eventCollectionView: UICollectionView!
+	var transitionOperator = TransitionOperator()
 	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
 	
 		performTokenTest()
-		setupNavBar()
+		//setupNavBar()
 	}
 	
 	func performTokenTest()
@@ -46,11 +47,20 @@ class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelega
 		presentLoggedOutView()
 	}
 	
-	@IBAction func settingsPressed(sender: AnyObject)
+	@IBAction func presentNavigation(sender: AnyObject?)
 	{
-		let settingsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsView") as! SettingsViewController
-		settingsViewController.delegate = self
-		self.navigationController?.pushViewController(settingsViewController, animated: true)
+		performSegueWithIdentifier("presentSettings", sender: self)
+	}
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+	{
+		if segue.identifier == "presentSettings"
+		{
+			let settingsViewController = segue.destinationViewController as! SettingsViewController
+			settingsViewController.delegate = self
+			self.modalPresentationStyle = UIModalPresentationStyle.Custom
+			settingsViewController.transitioningDelegate = self.transitionOperator
+		}
 	}
 	
 	func loginDenied()

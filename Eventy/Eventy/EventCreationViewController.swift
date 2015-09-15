@@ -24,11 +24,11 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 	{
 		super.viewDidLoad()
 		
-		navigationController!.navigationBar.barTintColor = AppColours.mainColour()
-		navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-		
-		navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-		
+//		navigationController!.navigationBar.barTintColor = AppColours.mainColour()
+//		navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+//		
+//		navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+//		
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
 		view.addGestureRecognizer(tap)
 	}
@@ -82,7 +82,7 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 	{
 		let dateSelectViewController = self.storyboard!.instantiateViewControllerWithIdentifier("DateSelectViewController") as! DateSelectViewController
 		dateSelectViewController.delegate = self
-		self.navigationController?.pushViewController(dateSelectViewController, animated: true)
+		presentViewController(dateSelectViewController, animated: true, completion: nil)
 	}
 	
 	func datesSelected(startDate: NSDate, endDate: NSDate)
@@ -115,5 +115,10 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 		datePicker.maximumDate = NSDate(timeInterval: secondsInWeek, sinceDate: NSDate())
 		
 		datePicker.showActionSheetPicker()
+	}
+	
+	@IBAction func backButtonPressed(Sender: UIButton)
+	{
+		dismissViewControllerAnimated(true, completion: nil)
 	}
 }
