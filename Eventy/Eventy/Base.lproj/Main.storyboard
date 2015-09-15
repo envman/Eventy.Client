@@ -471,7 +471,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDw-Lr-sd9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1955" y="-1127"/>
+            <point key="canvasLocation" x="1955" y="-1121"/>
         </scene>
         <!--Events-->
         <scene sceneID="jod-Dk-bQo">
@@ -532,7 +532,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                         <color key="sectionIndexBackgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="180" id="aCE-L3-H73" userLabel="EventCell">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="180" id="aCE-L3-H73" userLabel="EventCell" customClass="EventCell" customModule="Eventy" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="584" height="180"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aCE-L3-H73" id="Ab3-UW-QPo">
@@ -580,6 +580,10 @@
                                                         <constraint firstItem="5z6-tM-eW8" firstAttribute="leading" secondItem="Ab3-UW-QPo" secondAttribute="leading" id="qvZ-6o-Bfm"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="descriptionLabel" destination="r0n-3K-AgI" id="sTe-qd-2Zf"/>
+                                                    <outlet property="nameLabel" destination="Psn-HD-d9N" id="n5c-CO-3sI"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>

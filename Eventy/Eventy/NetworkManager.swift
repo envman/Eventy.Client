@@ -16,9 +16,15 @@ import SwiftyJSON
 	optional func loginDenied()
 }
 
+protocol EventDelegate
+{
+	func receievedEvents(events: Array<DisplayEvent>)
+}
+
 class NetworkManager
 {
 	var delegate: NetworkDelegate?
+	var eventDelegate: EventDelegate?
 	let url: String = "http://joinin.azurewebsites.net"
 	
 	let authenticationHeaders = [
@@ -125,6 +131,8 @@ class NetworkManager
 	
 	func getEvents()
 	{
+		var events: Array<DisplayEvent> = []
+		
 		Alamofire.request(.GET, url+"/api/Event", headers: authenticationHeaders)
 			.responseJSON{
 			_, _, json in
@@ -133,6 +141,20 @@ class NetworkManager
 				let responseJson = JSON(json.value!)
 				let responseMessage = responseJson["Message"].stringValue
 				
+				
+				for (_, subJson) in responseJson
+				{
+					
+					let event: DisplayEvent = DisplayEvent()
+					event.description = subJson["Description"].string
+					event.name = subJson["Name"].string
+					event.imageId = subJson["ImageId"].string
+					event.id = subJson["Id"].string
+					
+					events.append(event)
+				}
+				
+				self.eventDelegate?.receievedEvents(events)				
 				if (responseMessage != "")
 				{
 					QuickAlert.showAlert("Failure", message: "Response: \(responseMessage)")
@@ -141,4 +163,3 @@ class NetworkManager
 		}
 	}
 }
-

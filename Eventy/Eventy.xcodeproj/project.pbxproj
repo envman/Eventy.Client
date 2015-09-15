@@ -19,6 +19,8 @@
 		4A44592F1BA42C350041A45C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44592E1BA42C350041A45C /* RegisterViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		4A4459311BA431C90041A45C /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4459301BA431C90041A45C /* QuickAlert.swift */; settings = {ASSET_TAGS = (); }; };
 		4AB5CEA41BA8867E00B3ED6F /* TransitionOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5CEA31BA8867E00B3ED6F /* TransitionOperator.swift */; settings = {ASSET_TAGS = (); }; };
+		4AB5CEA61BA8C3DF00B3ED6F /* DisplayEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5CEA51BA8C3DF00B3ED6F /* DisplayEvent.swift */; settings = {ASSET_TAGS = (); }; };
+		4AB5CEA81BA8C6B900B3ED6F /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5CEA71BA8C6B900B3ED6F /* EventCell.swift */; settings = {ASSET_TAGS = (); }; };
 		4ABA55B91B979437003B6D48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABA55B81B979437003B6D48 /* AppDelegate.swift */; };
 		4ABA55BB1B979437003B6D48 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABA55BA1B979437003B6D48 /* LoginViewController.swift */; };
 		4ABA55BE1B979437003B6D48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ABA55BC1B979437003B6D48 /* Main.storyboard */; };
@@ -42,6 +44,8 @@
 		4A44592E1BA42C350041A45C /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4A4459301BA431C90041A45C /* QuickAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
 		4AB5CEA31BA8867E00B3ED6F /* TransitionOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionOperator.swift; sourceTree = "<group>"; };
+		4AB5CEA51BA8C3DF00B3ED6F /* DisplayEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayEvent.swift; sourceTree = "<group>"; };
+		4AB5CEA71BA8C6B900B3ED6F /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		4ABA55B51B979437003B6D48 /* Eventy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ABA55B81B979437003B6D48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4ABA55BA1B979437003B6D48 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 				4A44591A1B9F62740041A45C /* EventCreationViewController.swift */,
 				4AF3029C1B9DEB04003CAC77 /* AccessToken.swift */,
 				4A44591C1B9F62B10041A45C /* Event.swift */,
+				4AB5CEA51BA8C3DF00B3ED6F /* DisplayEvent.swift */,
 				4AB5CEA31BA8867E00B3ED6F /* TransitionOperator.swift */,
 				4A2DD2AC1BA75DC300B27489 /* EventViewController.swift */,
 				4A4459201B9F85280041A45C /* AppColours.swift */,
@@ -113,6 +118,7 @@
 				4A44592A1BA41B4E0041A45C /* SettingsViewController.swift */,
 				4A44592E1BA42C350041A45C /* RegisterViewController.swift */,
 				4A4459301BA431C90041A45C /* QuickAlert.swift */,
+				4AB5CEA71BA8C6B900B3ED6F /* EventCell.swift */,
 				4ABA55BC1B979437003B6D48 /* Main.storyboard */,
 				4ABA55BF1B979437003B6D48 /* Assets.xcassets */,
 				4ABA55C11B979437003B6D48 /* LaunchScreen.storyboard */,
@@ -254,12 +260,14 @@
 				4A44591F1B9F81230041A45C /* EventMainViewController.swift in Sources */,
 				4A44592D1BA4270B0041A45C /* LoggedOutViewController.swift in Sources */,
 				4ABA55BB1B979437003B6D48 /* LoginViewController.swift in Sources */,
+				4AB5CEA61BA8C3DF00B3ED6F /* DisplayEvent.swift in Sources */,
 				4A44592B1BA41B4E0041A45C /* SettingsViewController.swift in Sources */,
 				4A4459251BA0AD580041A45C /* DateSelectViewController.swift in Sources */,
 				4A2DD2AD1BA75DC300B27489 /* EventViewController.swift in Sources */,
 				4ABA55D31B9B43D8003B6D48 /* NetworkManager.swift in Sources */,
 				4A4459211B9F85280041A45C /* AppColours.swift in Sources */,
 				4ABA55B91B979437003B6D48 /* AppDelegate.swift in Sources */,
+				4AB5CEA81BA8C6B900B3ED6F /* EventCell.swift in Sources */,
 				4A4459271BA40F490041A45C /* Animations.swift in Sources */,
 				4AB5CEA41BA8867E00B3ED6F /* TransitionOperator.swift in Sources */,
 				4AF3029D1B9DEB04003CAC77 /* AccessToken.swift in Sources */,

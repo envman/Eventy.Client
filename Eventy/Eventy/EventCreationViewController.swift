@@ -23,12 +23,6 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
-		
-//		navigationController!.navigationBar.barTintColor = AppColours.mainColour()
-//		navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-//		
-//		navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-//		
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
 		view.addGestureRecognizer(tap)
 	}
@@ -66,6 +60,8 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 			let networkManager = NetworkManager()
 			networkManager.createEvent(event)
 		}
+		
+		dismissViewControllerAnimated(true, completion: nil)
 	}
 	
 	@IBAction func startDateSetPressed(sender: AnyObject)

@@ -8,23 +8,45 @@
 
 import UIKit
 
-class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelegate, UITableViewDataSource, UITableViewDelegate
+class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelegate, EventDelegate, UITableViewDataSource, UITableViewDelegate
 {
 	var transitionOperator = TransitionOperator()
+	var events:Array<DisplayEvent> = []
+	var refreshControl:UIRefreshControl!
+	var networkManager: NetworkManager!
 	
 	@IBOutlet weak var eventTable: UITableView!
 	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
-		performTokenTest()
+		
+		self.refreshControl = UIRefreshControl()
+		self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+		self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+		self.eventTable.addSubview(refreshControl)
+		
+		initialiseNetworkManager()
+		networkManager.getEvents()
 	}
 	
-	func performTokenTest()
+	func refresh(sender:AnyObject)
 	{
-		let networkManager = NetworkManager()
+		networkManager.getEvents()
+	}
+	
+	func initialiseNetworkManager()
+	{
+		networkManager = NetworkManager()
 		networkManager.delegate = self
+		networkManager.eventDelegate = self
 		networkManager.tokenTest()
+	}
+	
+	func receievedEvents(events: Array<DisplayEvent>)
+	{
+		self.events = events
+		self.eventTable.reloadData()
 	}
 	
 	@IBAction func eventGetTest(sender: AnyObject)
@@ -72,17 +94,17 @@ class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelega
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-		return 2
+		return events.count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
-		var cell  = tableView.dequeueReusableCellWithIdentifier("EventCell")
-		if !(cell != nil)
-		{
-			cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "EventCell")
-		}
+		let cell  = tableView.dequeueReusableCellWithIdentifier("EventCell") as! EventCell
+		let event = events[indexPath.row]
 		
-		return cell!
+		cell.nameLabel.text = event.name
+		cell.descriptionLabel.text = event.description
+		
+		return cell
 	}
 }
