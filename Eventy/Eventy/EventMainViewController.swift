@@ -8,17 +8,16 @@
 
 import UIKit
 
-class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelegate, UICollectionViewDelegate, UICollectionViewDataSource
+class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelegate, UITableViewDataSource, UITableViewDelegate
 {
-	@IBOutlet weak var eventCollectionView: UICollectionView!
 	var transitionOperator = TransitionOperator()
+	
+	@IBOutlet weak var eventTable: UITableView!
 	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
-	
 		performTokenTest()
-		//setupNavBar()
 	}
 	
 	func performTokenTest()
@@ -26,14 +25,6 @@ class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelega
 		let networkManager = NetworkManager()
 		networkManager.delegate = self
 		networkManager.tokenTest()
-	}
-	
-	func setupNavBar()
-	{
-		navigationController!.navigationBar.barTintColor = AppColours.mainColour()
-		navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-		
-		navigationController?.navigationBar.tintColor = UIColor.whiteColor()
 	}
 	
 	@IBAction func eventGetTest(sender: AnyObject)
@@ -74,23 +65,24 @@ class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelega
 		self.presentViewController(loggedOutViewController!, animated: true, completion: nil)
 	}
 	
-	func numberOfSectionsInCollectionView(collectionView:
-		UICollectionView) -> Int
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int
 	{
-			return 1
+		return 1
 	}
 	
-	func collectionView(collectionView: UICollectionView,
-		numberOfItemsInSection section: Int) -> Int
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-			return 14
+		return 2
 	}
 	
-	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
-		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("EventCell",
-			forIndexPath: indexPath)
+		var cell  = tableView.dequeueReusableCellWithIdentifier("EventCell")
+		if !(cell != nil)
+		{
+			cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "EventCell")
+		}
 		
-		return cell
+		return cell!
 	}
 }
