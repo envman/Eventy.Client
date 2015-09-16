@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventViewController: UIViewController
+class EventSummaryViewController: UIViewController
 {
 
 }

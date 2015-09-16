@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelegate, EventDelegate, UITableViewDataSource, UITableViewDelegate
+class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelegate, EventDelegate, UITableViewDataSource, UITableViewDelegate, UIPageViewControllerDataSource
 {
 	var transitionOperator = TransitionOperator()
 	var events:Array<DisplayEvent> = []
@@ -20,6 +20,10 @@ class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelega
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
+		
+		let  eventSummaryViewController = storyboard?.instantiateViewControllerWithIdentifier("EventSummaryPage")
+		let eventChatViewController = storyboard?.instantiateViewControllerWithIdentifier("EventChatPage")
+		viewControllers = [eventSummaryViewController!, eventChatViewController!]
 		
 		self.refreshControl = UIRefreshControl()
 		self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
@@ -106,5 +110,31 @@ class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelega
 		cell.descriptionLabel.text = event.description
 		
 		return cell
+	}
+	
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+	{
+		let pageViewController = storyboard?.instantiateViewControllerWithIdentifier("EventPageController") as! UIPageViewController
+		pageViewController.dataSource = self
+		pageViewController.setViewControllers([viewControllers[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+		presentViewController(pageViewController, animated: true, completion: nil)
+	}
+	
+	var viewControllers = Array(count: 2, repeatedValue: UIViewController())
+	
+	func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+		let currentIndex =  viewControllers.indexOf(viewController)! + 1
+		if currentIndex >= viewControllers.count {
+			return nil
+		}
+		return viewControllers[currentIndex]
+	}
+	
+	func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+		let currentIndex =  viewControllers.indexOf(viewController)! - 1
+		if currentIndex < 0 {
+			return nil
+		}
+		return viewControllers[currentIndex]
 	}
 }

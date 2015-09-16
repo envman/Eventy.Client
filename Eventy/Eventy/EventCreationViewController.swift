@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ActionSheetPicker_3_0
 
 class EventCreationViewController: UIViewController, DateSelectDelegate, UITextFieldDelegate
 {
@@ -94,23 +93,6 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 		
 		self.startDate = startDate
 		self.endDate = endDate
-	}
-	
-	@IBAction func DatePickerClicked(sender: UIButton)
-	{
-		let datePicker = ActionSheetDatePicker(title: "Date:", datePickerMode: UIDatePickerMode.Date, selectedDate: NSDate(), doneBlock: {
-			picker, value, index in
-			
-			print("value = \(value)")
-			print("index = \(index)")
-			print("picker = \(picker)")
-			return
-			}, cancelBlock: { ActionStringCancelBlock in return }, origin: sender.superview!.superview)
-		let secondsInWeek: NSTimeInterval = 7 * 24 * 60 * 60;
-		datePicker.minimumDate = NSDate(timeInterval: -secondsInWeek, sinceDate: NSDate())
-		datePicker.maximumDate = NSDate(timeInterval: secondsInWeek, sinceDate: NSDate())
-		
-		datePicker.showActionSheetPicker()
 	}
 	
 	@IBAction func backButtonPressed(Sender: UIButton)
