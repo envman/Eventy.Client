@@ -40,12 +40,15 @@ class LoggedOutViewController: UIViewController, LoginDelegate, NetworkDelegate,
 
 	func tokenTestSuccessful()
 	{
-		let eventMainController = self.storyboard?.instantiateViewControllerWithIdentifier("EventMainView") as! EventMainViewController
-		eventMainController.delegate = self
-		self.presentViewController(eventMainController, animated: true, completion: nil)
+		showEvents()
 	}
 	
 	func loginSuccessful()
+	{
+		showEvents()
+	}
+	
+	func showEvents()
 	{
 		loginButton.hidden = true
 		registerButton.hidden = true
