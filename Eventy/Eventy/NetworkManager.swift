@@ -14,6 +14,7 @@ import SwiftyJSON
 {
 	optional func loginSuccessful()
 	optional func loginDenied()
+	optional func tokenTestSuccessful()
 }
 
 protocol EventDelegate
@@ -103,6 +104,10 @@ class NetworkManager
 				if (responseMessage.containsString("denied"))
 				{
 					self.delegate?.loginDenied!()
+				}
+				else
+				{
+					self.delegate?.tokenTestSuccessful!()
 				}
 			}
 		}

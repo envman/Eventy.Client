@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XuK-oH-vPQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dva-sU-jsB">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
@@ -156,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1501" y="1591"/>
+            <point key="canvasLocation" x="699" y="947"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="bOH-SH-ndq">
@@ -321,7 +321,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iHX-0M-j8m" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="865" y="1591"/>
+            <point key="canvasLocation" x="63" y="947"/>
         </scene>
         <!--Settings-->
         <scene sceneID="aEs-ic-gwV">
@@ -497,7 +497,7 @@
         <!--Events-->
         <scene sceneID="jod-Dk-bQo">
             <objects>
-                <viewController id="XuK-oH-vPQ" customClass="EventMainViewController" customModule="JoinIn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventMainView" id="XuK-oH-vPQ" customClass="EventMainViewController" customModule="JoinIn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ySV-sw-Wm3"/>
                         <viewControllerLayoutGuide type="bottom" id="TPS-Ax-Wz1"/>
@@ -716,11 +716,13 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImage" destination="qbA-QG-K3n" id="yHL-DH-97u"/>
+                        <outlet property="loginButton" destination="83C-Bc-UY5" id="rU0-Fc-Mug"/>
+                        <outlet property="registerButton" destination="2NY-oh-m5H" id="R20-JE-TvW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCg-H5-9xr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1183" y="927"/>
+            <point key="canvasLocation" x="401" y="267"/>
         </scene>
         <!--Create Event-->
         <scene sceneID="QQQ-0V-dEU">

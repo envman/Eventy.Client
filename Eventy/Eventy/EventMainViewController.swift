@@ -8,8 +8,14 @@
 
 import UIKit
 
-class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelegate, EventDelegate, UITableViewDataSource, UITableViewDelegate, UIPageViewControllerDataSource
+protocol EventMainDelegate
 {
+	func userLoggedOut()
+}
+
+class EventMainViewController: UIViewController, SettingsDelegate, EventDelegate, UITableViewDataSource, UITableViewDelegate, UIPageViewControllerDataSource
+{
+	var delegate: EventMainDelegate?
 	var transitionOperator = TransitionOperator()
 	var events:Array<DisplayEvent> = []
 	var refreshControl:UIRefreshControl!
@@ -25,26 +31,14 @@ class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelega
 		let eventChatViewController = storyboard?.instantiateViewControllerWithIdentifier("EventChatPage")
 		viewControllers = [eventSummaryViewController!, eventChatViewController!]
 		
-		self.refreshControl = UIRefreshControl()
-		self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-		self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-		self.eventTable.addSubview(refreshControl)
-		
 		initialiseNetworkManager()
-		networkManager.getEvents()
-	}
-	
-	func refresh(sender:AnyObject)
-	{
-		networkManager.getEvents()
 	}
 	
 	func initialiseNetworkManager()
 	{
 		networkManager = NetworkManager()
-		networkManager.delegate = self
 		networkManager.eventDelegate = self
-		networkManager.tokenTest()
+		networkManager.getEvents()
 	}
 	
 	func receievedEvents(events: Array<DisplayEvent>)
@@ -53,20 +47,10 @@ class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelega
 		self.eventTable.reloadData()
 	}
 	
-	@IBAction func eventGetTest(sender: AnyObject)
-	{
-		let networkManager = NetworkManager()
-		networkManager.getEvents()
-	}
-	
 	func userLoggedOut()
 	{
-		presentLoggedOutView()
-	}
-	
-	@IBAction func presentNavigation(sender: AnyObject?)
-	{
-		performSegueWithIdentifier("presentSettings", sender: self)
+		dismissViewControllerAnimated(true, completion: nil)
+		self.delegate?.userLoggedOut()
 	}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
@@ -78,17 +62,6 @@ class EventMainViewController: UIViewController, SettingsDelegate, NetworkDelega
 			self.modalPresentationStyle = UIModalPresentationStyle.Custom
 			settingsViewController.transitioningDelegate = self.transitionOperator
 		}
-	}
-	
-	func loginDenied()
-	{
-		presentLoggedOutView()
-	}
-	
-	func presentLoggedOutView()
-	{
-		let loggedOutViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LoggedOutView")
-		self.presentViewController(loggedOutViewController!, animated: true, completion: nil)
 	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int

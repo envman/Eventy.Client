@@ -8,18 +8,51 @@
 
 import UIKit
 
-class LoggedOutViewController: UIViewController, LoginDelegate
+class LoggedOutViewController: UIViewController, LoginDelegate, NetworkDelegate, EventMainDelegate
 {
 	@IBOutlet weak var backgroundImage: UIImageView!
+	@IBOutlet weak var loginButton: UIButton!
+	@IBOutlet weak var registerButton: UIButton!
 	
-	override func viewDidAppear(animated: Bool)
+	var networkManager: NetworkManager?
+	
+	override func viewDidLoad()
 	{
-		Animations.moveImageAnimation(backgroundImage)
+		loginButton.hidden = true
+		registerButton.hidden = true
+		
+		networkManager = NetworkManager()
+		networkManager?.delegate = self
+		networkManager?.tokenTest()
+	}
+	
+	func userLoggedOut()
+	{
+		loginButton.hidden = false
+		registerButton.hidden = false
+	}
+	
+	func loginDenied()
+	{
+		loginButton.hidden = false
+		registerButton.hidden = false
+	}
+
+	func tokenTestSuccessful()
+	{
+		let eventMainController = self.storyboard?.instantiateViewControllerWithIdentifier("EventMainView") as! EventMainViewController
+		eventMainController.delegate = self
+		self.presentViewController(eventMainController, animated: true, completion: nil)
 	}
 	
 	func loginSuccessful()
 	{
-		self.dismissViewControllerAnimated(true, completion: nil)
+		loginButton.hidden = true
+		registerButton.hidden = true
+		
+		let eventMainController = self.storyboard?.instantiateViewControllerWithIdentifier("EventMainView") as! EventMainViewController
+		eventMainController.delegate = self
+		self.presentViewController(eventMainController, animated: true, completion: nil)
 	}
 	
 	@IBAction func showRegisterView(sender: AnyObject)
