@@ -19,6 +19,7 @@
 		4A44592F1BA42C350041A45C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44592E1BA42C350041A45C /* RegisterViewController.swift */; };
 		4A4459311BA431C90041A45C /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4459301BA431C90041A45C /* QuickAlert.swift */; };
 		4AAECD741BA9F580007B7427 /* EventChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAECD731BA9F580007B7427 /* EventChatViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		4AAECD781BAA18A0007B7427 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAECD771BAA18A0007B7427 /* ChatMessage.swift */; settings = {ASSET_TAGS = (); }; };
 		4AB5CEA41BA8867E00B3ED6F /* TransitionOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5CEA31BA8867E00B3ED6F /* TransitionOperator.swift */; };
 		4AB5CEA61BA8C3DF00B3ED6F /* DisplayEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5CEA51BA8C3DF00B3ED6F /* DisplayEvent.swift */; };
 		4AB5CEA81BA8C6B900B3ED6F /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5CEA71BA8C6B900B3ED6F /* EventCell.swift */; };
@@ -45,10 +46,11 @@
 		4A44592E1BA42C350041A45C /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4A4459301BA431C90041A45C /* QuickAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
 		4AAECD731BA9F580007B7427 /* EventChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventChatViewController.swift; sourceTree = "<group>"; };
+		4AAECD771BAA18A0007B7427 /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		4AB5CEA31BA8867E00B3ED6F /* TransitionOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionOperator.swift; sourceTree = "<group>"; };
 		4AB5CEA51BA8C3DF00B3ED6F /* DisplayEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayEvent.swift; sourceTree = "<group>"; };
 		4AB5CEA71BA8C6B900B3ED6F /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
-		4ABA55B51B979437003B6D48 /* Eventy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4ABA55B51B979437003B6D48 /* JoinIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JoinIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ABA55B81B979437003B6D48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4ABA55BA1B979437003B6D48 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4ABA55BD1B979437003B6D48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -95,7 +97,7 @@
 		4ABA55B61B979437003B6D48 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4ABA55B51B979437003B6D48 /* Eventy.app */,
+				4ABA55B51B979437003B6D48 /* JoinIn.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,6 +128,7 @@
 				4ABA55C11B979437003B6D48 /* LaunchScreen.storyboard */,
 				4ABA55C41B979437003B6D48 /* Info.plist */,
 				4AAECD731BA9F580007B7427 /* EventChatViewController.swift */,
+				4AAECD771BAA18A0007B7427 /* ChatMessage.swift */,
 			);
 			path = Eventy;
 			sourceTree = "<group>";
@@ -159,7 +162,7 @@
 			);
 			name = Eventy;
 			productName = Eventy;
-			productReference = 4ABA55B51B979437003B6D48 /* Eventy.app */;
+			productReference = 4ABA55B51B979437003B6D48 /* JoinIn.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -274,6 +277,7 @@
 				4ABA55B91B979437003B6D48 /* AppDelegate.swift in Sources */,
 				4AB5CEA81BA8C6B900B3ED6F /* EventCell.swift in Sources */,
 				4A4459271BA40F490041A45C /* Animations.swift in Sources */,
+				4AAECD781BAA18A0007B7427 /* ChatMessage.swift in Sources */,
 				4AB5CEA41BA8867E00B3ED6F /* TransitionOperator.swift in Sources */,
 				4AF3029D1B9DEB04003CAC77 /* AccessToken.swift in Sources */,
 				4A44592F1BA42C350041A45C /* RegisterViewController.swift in Sources */,
@@ -396,8 +400,8 @@
 				INFOPLIST_FILE = Eventy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.GG.Eventy;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gg.joinin;
+				PRODUCT_NAME = JoinIn;
 			};
 			name = Debug;
 		};
@@ -409,8 +413,8 @@
 				INFOPLIST_FILE = Eventy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.GG.Eventy;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gg.joinin;
+				PRODUCT_NAME = JoinIn;
 			};
 			name = Release;
 		};

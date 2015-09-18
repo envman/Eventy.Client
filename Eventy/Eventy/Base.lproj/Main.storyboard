@@ -17,7 +17,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="Eventy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="JoinIn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -161,7 +161,7 @@
         <!--Register View Controller-->
         <scene sceneID="bOH-SH-ndq">
             <objects>
-                <viewController storyboardIdentifier="RegisterViewController" id="iQb-NI-1Mq" customClass="RegisterViewController" customModule="Eventy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewController" id="iQb-NI-1Mq" customClass="RegisterViewController" customModule="JoinIn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fD8-bv-xy8"/>
                         <viewControllerLayoutGuide type="bottom" id="HGU-Sm-ooe"/>
@@ -326,7 +326,7 @@
         <!--Settings-->
         <scene sceneID="aEs-ic-gwV">
             <objects>
-                <viewController storyboardIdentifier="SettingsView" id="y4N-N8-0on" customClass="SettingsViewController" customModule="Eventy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsView" id="y4N-N8-0on" customClass="SettingsViewController" customModule="JoinIn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oNm-f8-pnQ"/>
                         <viewControllerLayoutGuide type="bottom" id="0Pf-Ee-hV8"/>
@@ -466,7 +466,7 @@
         <!--Event View-->
         <scene sceneID="DT1-Lt-tlO">
             <objects>
-                <viewController storyboardIdentifier="EventSummaryPage" id="4sP-gq-Qeo" customClass="EventSummaryViewController" customModule="Eventy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventSummaryPage" id="4sP-gq-Qeo" customClass="EventSummaryViewController" customModule="JoinIn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ckm-fP-2mB"/>
                         <viewControllerLayoutGuide type="bottom" id="ZPn-GP-a0r"/>
@@ -497,7 +497,7 @@
         <!--Events-->
         <scene sceneID="jod-Dk-bQo">
             <objects>
-                <viewController id="XuK-oH-vPQ" customClass="EventMainViewController" customModule="Eventy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XuK-oH-vPQ" customClass="EventMainViewController" customModule="JoinIn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ySV-sw-Wm3"/>
                         <viewControllerLayoutGuide type="bottom" id="TPS-Ax-Wz1"/>
@@ -553,7 +553,7 @@
                                         <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="sectionIndexBackgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="180" id="aCE-L3-H73" userLabel="EventCell" customClass="EventCell" customModule="Eventy" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="180" id="aCE-L3-H73" userLabel="EventCell" customClass="EventCell" customModule="JoinIn" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="584" height="180"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aCE-L3-H73" id="Ab3-UW-QPo">
@@ -653,7 +653,7 @@
         <!--Logged Out View Controller-->
         <scene sceneID="2eJ-gP-9Kw">
             <objects>
-                <viewController storyboardIdentifier="LoggedOutView" id="dva-sU-jsB" customClass="LoggedOutViewController" customModule="Eventy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoggedOutView" id="dva-sU-jsB" customClass="LoggedOutViewController" customModule="JoinIn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TNZ-J9-Hop"/>
                         <viewControllerLayoutGuide type="bottom" id="dCL-aK-T4c"/>
@@ -725,7 +725,7 @@
         <!--Create Event-->
         <scene sceneID="QQQ-0V-dEU">
             <objects>
-                <viewController id="Ej8-MM-JK3" customClass="EventCreationViewController" customModule="Eventy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ej8-MM-JK3" customClass="EventCreationViewController" customModule="JoinIn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1PT-Rh-kO6"/>
                         <viewControllerLayoutGuide type="bottom" id="M8b-6q-nIm"/>
@@ -966,7 +966,7 @@
         <!--Event Chat View Controller-->
         <scene sceneID="W1j-Yq-c0S">
             <objects>
-                <viewController storyboardIdentifier="EventChatPage" id="JQc-EL-ihE" customClass="EventChatViewController" customModule="Eventy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventChatPage" id="JQc-EL-ihE" customClass="EventChatViewController" customModule="JoinIn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yv6-s7-Dch"/>
                         <viewControllerLayoutGuide type="bottom" id="Ri0-7y-F6s"/>
@@ -1118,7 +1118,7 @@
         <!--Select Date-->
         <scene sceneID="xOS-64-ryR">
             <objects>
-                <viewController storyboardIdentifier="DateSelectViewController" id="fBl-Rz-z56" customClass="DateSelectViewController" customModule="Eventy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DateSelectViewController" id="fBl-Rz-z56" customClass="DateSelectViewController" customModule="JoinIn" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dK2-6n-hPY"/>
                         <viewControllerLayoutGuide type="bottom" id="f15-N0-uY9"/>

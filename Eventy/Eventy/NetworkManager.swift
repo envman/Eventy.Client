@@ -118,6 +118,7 @@ class NetworkManager
 			_, _, json in
 			if (json.value != nil)
 			{
+				
 				let responseJson = JSON(json.value!)
 				let responseMessage = responseJson["Message"].stringValue
 					
@@ -161,5 +162,42 @@ class NetworkManager
 				}
 			}
 		}
+	}
+	
+	func getChatMessages(eventId: String)
+	{
+		Alamofire.request(.GET, url+"/api/Chat?eventId={\(eventId)}", headers: authenticationHeaders).responseJSON{
+			_, _, json in
+			if (json.value != nil)
+			{
+				let responseJson = JSON(json.value!)
+				let responseMessage = responseJson["Message"].stringValue
+				print(responseMessage)
+				
+				if (responseMessage.containsString("denied"))
+				{
+					self.delegate?.loginDenied!()
+				}
+			}
+		}
+	}
+	
+	func postChatMessage(eventId: String, message: String)
+	{
+		let chatParameters = ["EventId": eventId, "Message": message]
+		Alamofire.request(.POST, url+"/api/Chat", parameters: chatParameters, headers: authenticationHeaders).responseJSON{
+			_, _, json in
+			if (json.value != nil)
+			{
+				let responseJson = JSON(json.value!)
+				let responseMessage = responseJson["Message"].stringValue
+				
+				if (responseMessage != "")
+				{
+					QuickAlert.showAlert("Failure", message: "Response: \(responseMessage)")
+				}
+			}
+		}
+
 	}
 }
