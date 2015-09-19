@@ -62,6 +62,13 @@ class EventMainViewController: UIViewController, SettingsDelegate, EventDelegate
 			self.modalPresentationStyle = UIModalPresentationStyle.Custom
 			settingsViewController.transitioningDelegate = self.transitionOperator
 		}
+		
+		if segue.identifier == "OpenEventSegue"
+		{
+			let pageViewController = segue.destinationViewController as! UIPageViewController
+			pageViewController.dataSource = self
+			pageViewController.setViewControllers([viewControllers[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+		}
 	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -87,10 +94,7 @@ class EventMainViewController: UIViewController, SettingsDelegate, EventDelegate
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
 	{
-		let pageViewController = storyboard?.instantiateViewControllerWithIdentifier("EventPageController") as! UIPageViewController
-		pageViewController.dataSource = self
-		pageViewController.setViewControllers([viewControllers[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
-		presentViewController(pageViewController, animated: true, completion: nil)
+		performSegueWithIdentifier("OpenEventSegue", sender: self)
 	}
 	
 	var viewControllers = Array(count: 2, repeatedValue: UIViewController())

@@ -10,7 +10,6 @@ import UIKit
 
 class EventSummaryViewController: UIViewController
 {
-
 	@IBAction func backButtonPressed(sender: AnyObject)
 	{
 		self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)

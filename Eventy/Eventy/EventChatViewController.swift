@@ -10,6 +10,11 @@ import UIKit
 
 class EventChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
+	@IBAction func backButtonPressed(sender: AnyObject)
+	{
+		self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
+	}
+	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
 		return 2

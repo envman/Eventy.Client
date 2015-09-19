@@ -667,6 +667,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="eventTable" destination="kaT-pV-KWs" id="2VA-mS-TPT"/>
+                        <segue destination="84q-Vg-YFP" kind="custom" identifier="OpenEventSegue" customClass="OpenEventSegue" customModule="JoinIn" customModuleProvider="target" id="ZnT-Gs-w9u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JVL-6O-I5Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1119,10 +1120,24 @@
                                     <outlet property="delegate" destination="JQc-EL-ihE" id="KT3-wS-bFP"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EbQ-ax-XzB">
+                                <rect key="frame" x="20" y="28" width="34" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="34" id="0x0-ok-rdc"/>
+                                    <constraint firstAttribute="height" constant="29" id="XFD-0G-kW0"/>
+                                </constraints>
+                                <state key="normal" image="Back-100"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="JQc-EL-ihE" eventType="touchUpInside" id="1Hp-8P-QHE"/>
+                                    <action selector="backButtonPressed:" destination="4sP-gq-Qeo" eventType="touchUpInside" id="E5J-Hk-VO8"/>
+                                    <action selector="backButtonPressed:" destination="Ej8-MM-JK3" eventType="touchUpInside" id="FU7-ry-8cw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="64x-F7-uDL" firstAttribute="centerX" secondItem="8kY-xz-G8S" secondAttribute="centerX" id="0LS-wH-J88"/>
+                            <constraint firstItem="EbQ-ax-XzB" firstAttribute="top" secondItem="yv6-s7-Dch" secondAttribute="bottom" constant="8" id="1X8-hF-9r5"/>
                             <constraint firstItem="Fwu-PF-V4T" firstAttribute="leading" secondItem="8kY-xz-G8S" secondAttribute="leading" constant="15" id="3u1-CV-teP"/>
                             <constraint firstItem="64x-F7-uDL" firstAttribute="top" secondItem="yv6-s7-Dch" secondAttribute="bottom" constant="8" id="7jj-Sq-HH0"/>
                             <constraint firstItem="Ri0-7y-F6s" firstAttribute="top" secondItem="5Ik-ge-8GC" secondAttribute="bottom" constant="8" id="AeL-vW-6cb"/>
@@ -1131,6 +1146,7 @@
                             <constraint firstItem="5Ik-ge-8GC" firstAttribute="leading" secondItem="Fwu-PF-V4T" secondAttribute="trailing" constant="8" id="QxG-DX-9wb"/>
                             <constraint firstItem="vBy-Oy-oyG" firstAttribute="top" secondItem="64x-F7-uDL" secondAttribute="bottom" constant="13" id="Xkc-dA-VSN"/>
                             <constraint firstItem="Ri0-7y-F6s" firstAttribute="top" secondItem="Fwu-PF-V4T" secondAttribute="bottom" constant="8" id="bHH-vk-SHf"/>
+                            <constraint firstItem="EbQ-ax-XzB" firstAttribute="leading" secondItem="8kY-xz-G8S" secondAttribute="leadingMargin" id="gDo-2E-SIG"/>
                             <constraint firstAttribute="trailing" secondItem="vBy-Oy-oyG" secondAttribute="trailing" constant="15" id="ka9-9N-Hlb"/>
                             <constraint firstAttribute="trailing" secondItem="5Ik-ge-8GC" secondAttribute="trailing" constant="15" id="u1A-H7-2aK"/>
                         </constraints>

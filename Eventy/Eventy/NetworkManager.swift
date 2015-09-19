@@ -171,7 +171,7 @@ class NetworkManager
 	
 	func getChatMessages(eventId: String)
 	{
-		Alamofire.request(.GET, url+"/api/Chat?eventId={\(eventId)}", headers: authenticationHeaders).responseJSON{
+		Alamofire.request(.GET, url+"/api/Chat?eventId=\(eventId)", headers: authenticationHeaders).responseJSON{
 			_, _, json in
 			if (json.value != nil)
 			{
