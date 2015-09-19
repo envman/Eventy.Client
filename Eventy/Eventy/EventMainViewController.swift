@@ -55,7 +55,7 @@ class EventMainViewController: UIViewController, SettingsDelegate, EventDelegate
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
 	{
-		if segue.identifier == "presentSettings"
+		if segue.identifier == "OpenSettingsSegue"
 		{
 			let settingsViewController = segue.destinationViewController as! SettingsViewController
 			settingsViewController.delegate = self

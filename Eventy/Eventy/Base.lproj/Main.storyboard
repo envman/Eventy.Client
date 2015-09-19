@@ -568,7 +568,7 @@
                                         </constraints>
                                         <state key="normal" image="Menu-50"/>
                                         <connections>
-                                            <segue destination="y4N-N8-0on" kind="custom" identifier="presentSettings" id="RvV-Du-GQV"/>
+                                            <segue destination="y4N-N8-0on" kind="presentation" identifier="OpenSettingsSegue" id="RvV-Du-GQV"/>
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="180" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kaT-pV-KWs">
