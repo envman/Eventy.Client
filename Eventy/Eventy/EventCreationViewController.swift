@@ -12,6 +12,7 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 {
 	var startDate: NSDate?
 	var endDate: NSDate?
+	var currentImageURL: NSURL?
 	
 	let networkManager =  NetworkManager()
 	let imagePicker = UIImagePickerController()
@@ -23,13 +24,6 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 	@IBOutlet weak var endDateLabel: UILabel!
 	@IBOutlet weak var eventImage: UIImageView!
 	
-	override func viewDidLoad()
-	{
-		super.viewDidLoad()
-		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
-		view.addGestureRecognizer(tap)
-	}
-	
 	@IBAction func selectImagePressed(sender: AnyObject)
 	{
 		let alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -38,7 +32,7 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 				UIAlertAction in
 				self.openCamera()
 		}
-		let gallaryAction = UIAlertAction(title: "Gallary", style: UIAlertActionStyle.Default)
+		let gallaryAction = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.Default)
 			{
 				UIAlertAction in
 				self.openGallary()
@@ -86,8 +80,7 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 			
 		if let imageURL = info[UIImagePickerControllerReferenceURL]
 		{
-			print(imageURL)
-			networkManager.uploadImage(imageURL as! NSURL)
+			currentImageURL = imageURL as? NSURL
 		}
 			
 		dismissViewControllerAnimated(true, completion: nil)
@@ -128,6 +121,7 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 		{
 			
 			let event = Event(name: eventNameTextField.text!, description: eventDescriptionTextField.text!, startTime: startDate!, endTime: endDate!)
+			networkManager.uploadImage(currentImageURL!, imageId: event.imageId)
 			networkManager.createEvent(event)
 		}
 		

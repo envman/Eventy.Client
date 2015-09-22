@@ -207,9 +207,8 @@ class NetworkManager
 
 	}
 
-	func uploadImage(imageURL: NSURL)
+	func uploadImage(imageURL: NSURL, imageId: String)
 	{
-		let imageId = NSUUID().UUIDString
 		Alamofire.upload(.PUT, url + "/api/Image/" + imageId, file: imageURL).responseString {
 			_, _, result in
 			print("Success: \(result.isSuccess)")
@@ -219,9 +218,13 @@ class NetworkManager
 	
 	func downloadImage(imageId: String)
 	{
-		Alamofire.request(.GET, url + "/api/Image/" + imageId, headers: authenticationHeaders)
-			.responseData{request, response, result in
-				var response = response
+		Alamofire.request(.GET, url + "/api/Image/" + imageId, headers: authenticationHeaders).response() {
+			(_, _, data, _) in
+			
+			if let image = UIImage(data: data!)
+			{
+				print("Success!")
+			}
 		}
 	}
 }

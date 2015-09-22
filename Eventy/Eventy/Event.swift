@@ -11,6 +11,7 @@ import Foundation
 class Event
 {
 	var id: String
+	var imageId: String
 	var name: String
 	var description: String
 	var startTime: NSDate
@@ -18,7 +19,8 @@ class Event
 	
 	init(name: String, description: String, startTime: NSDate, endTime: NSDate)
 	{
-		id = NSUUID().UUIDString
+		self.id = NSUUID().UUIDString
+		self.imageId = NSUUID().UUIDString
 		self.name = name
 		self.description = description
 		self.startTime = startTime
