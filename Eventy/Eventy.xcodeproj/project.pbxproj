@@ -19,6 +19,7 @@
 		4A44592D1BA4270B0041A45C /* LoggedOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44592C1BA4270B0041A45C /* LoggedOutViewController.swift */; };
 		4A44592F1BA42C350041A45C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44592E1BA42C350041A45C /* RegisterViewController.swift */; };
 		4A4459311BA431C90041A45C /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4459301BA431C90041A45C /* QuickAlert.swift */; };
+		4A77339E1BB08D6C006BC9D7 /* Uploadtest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A77339D1BB08D6C006BC9D7 /* Uploadtest.jpg */; };
 		4AAECD741BA9F580007B7427 /* EventChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAECD731BA9F580007B7427 /* EventChatViewController.swift */; };
 		4AAECD781BAA18A0007B7427 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAECD771BAA18A0007B7427 /* ChatMessage.swift */; };
 		4AB5CEA41BA8867E00B3ED6F /* TransitionOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5CEA31BA8867E00B3ED6F /* TransitionOperator.swift */; };
@@ -47,6 +48,7 @@
 		4A44592C1BA4270B0041A45C /* LoggedOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedOutViewController.swift; sourceTree = "<group>"; };
 		4A44592E1BA42C350041A45C /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4A4459301BA431C90041A45C /* QuickAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
+		4A77339D1BB08D6C006BC9D7 /* Uploadtest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Uploadtest.jpg; sourceTree = "<group>"; };
 		4AAECD731BA9F580007B7427 /* EventChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventChatViewController.swift; sourceTree = "<group>"; };
 		4AAECD771BAA18A0007B7427 /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		4AB5CEA31BA8867E00B3ED6F /* TransitionOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionOperator.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				4ABA55BC1B979437003B6D48 /* Main.storyboard */,
 				4ABA55BF1B979437003B6D48 /* Assets.xcassets */,
 				4ABA55C11B979437003B6D48 /* LaunchScreen.storyboard */,
+				4A77339D1BB08D6C006BC9D7 /* Uploadtest.jpg */,
 				4ABA55C41B979437003B6D48 /* Info.plist */,
 				4AAECD731BA9F580007B7427 /* EventChatViewController.swift */,
 				4AAECD771BAA18A0007B7427 /* ChatMessage.swift */,
@@ -208,6 +211,7 @@
 			files = (
 				4ABA55C31B979437003B6D48 /* LaunchScreen.storyboard in Resources */,
 				4ABA55C01B979437003B6D48 /* Assets.xcassets in Resources */,
+				4A77339E1BB08D6C006BC9D7 /* Uploadtest.jpg in Resources */,
 				4ABA55BE1B979437003B6D48 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

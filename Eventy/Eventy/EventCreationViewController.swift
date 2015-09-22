@@ -8,22 +8,94 @@
 
 import UIKit
 
-class EventCreationViewController: UIViewController, DateSelectDelegate, UITextFieldDelegate
+class EventCreationViewController: UIViewController, DateSelectDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
 	var startDate: NSDate?
 	var endDate: NSDate?
+	
+	let networkManager =  NetworkManager()
+	let imagePicker = UIImagePickerController()
 	
 	@IBOutlet weak var startDateButton: UIButton!
 	@IBOutlet weak var eventNameTextField: UITextField!
 	@IBOutlet weak var eventDescriptionTextField: UITextField!
 	@IBOutlet weak var startDateLabel: UILabel!
 	@IBOutlet weak var endDateLabel: UILabel!
+	@IBOutlet weak var eventImage: UIImageView!
 	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
 		view.addGestureRecognizer(tap)
+	}
+	
+	@IBAction func selectImagePressed(sender: AnyObject)
+	{
+		let alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+		let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default)
+			{
+				UIAlertAction in
+				self.openCamera()
+		}
+		let gallaryAction = UIAlertAction(title: "Gallary", style: UIAlertActionStyle.Default)
+			{
+				UIAlertAction in
+				self.openGallary()
+		}
+		let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel)
+			{
+				UIAlertAction in
+		}
+		
+		imagePicker.delegate = self
+		alert.addAction(cameraAction)
+		alert.addAction(gallaryAction)
+		alert.addAction(cancelAction)
+		
+		self.presentViewController(alert, animated: true, completion: nil)
+	}
+	
+	func openCamera()
+	{
+		if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera))
+		{
+			imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+			self .presentViewController(imagePicker, animated: true, completion: nil)
+		}
+		else
+		{
+			let alertWarning = UIAlertView(title:"Warning", message: "You don't have camera", delegate:nil, cancelButtonTitle:"OK", otherButtonTitles:"")
+			alertWarning.show()
+		}
+	}
+	
+	func openGallary()
+	{
+		imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+		self.presentViewController(imagePicker, animated: true, completion: nil)
+	}
+	
+	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
+	{
+		if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+		{
+			eventImage.contentMode = .ScaleAspectFit
+			eventImage.image = pickedImage
+		}
+			
+		if let imageURL = info[UIImagePickerControllerReferenceURL]
+		{
+			print(imageURL)
+			networkManager.uploadImage(imageURL as! NSURL)
+		}
+			
+		dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	func imagePickerControllerDidCancel(picker: UIImagePickerController)
+	{
+		dismissViewControllerAnimated(true, completion: nil)
 	}
 	
 	func DismissKeyboard()
@@ -56,7 +128,6 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 		{
 			
 			let event = Event(name: eventNameTextField.text!, description: eventDescriptionTextField.text!, startTime: startDate!, endTime: endDate!)
-			let networkManager = NetworkManager()
 			networkManager.createEvent(event)
 		}
 		
@@ -64,11 +135,6 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 	}
 	
 	@IBAction func startDateSetPressed(sender: AnyObject)
-	{
-		presentDateSelectView()
-	}
-	
-	@IBAction func endDateSetPressed(sender: AnyObject)
 	{
 		presentDateSelectView()
 	}
