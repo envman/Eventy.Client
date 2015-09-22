@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
 import SwiftyJSON
 
 @objc protocol NetworkDelegate
@@ -213,16 +214,14 @@ class NetworkManager
 			_, _, result in
 			print("Success: \(result.isSuccess)")
 			print("Response String: \(result.value)")
-			
-			self.downloadImage(imageId)
 		}
 	}
 	
 	func downloadImage(imageId: String)
 	{
-		Alamofire.request(.GET, url + "/api/Image/" + imageId).response() {
-			(_, _, data, _) in
-			let image = UIImage(data: data! )
+		Alamofire.request(.GET, url + "/api/Image/" + imageId, headers: authenticationHeaders)
+			.responseData{request, response, result in
+				var response = response
 		}
 	}
 }

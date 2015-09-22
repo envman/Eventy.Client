@@ -897,10 +897,18 @@
                                             <action selector="selectImagePressed:" destination="Ej8-MM-JK3" eventType="touchUpInside" id="XDE-ho-uhj"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qkc-EF-YQ0">
+                                        <rect key="frame" x="266" y="270" width="69" height="30"/>
+                                        <state key="normal" title="Download"/>
+                                        <connections>
+                                            <action selector="downloadTest:" destination="Ej8-MM-JK3" eventType="touchUpInside" id="MgD-Yu-9am"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Zh0-UY-Q7U" firstAttribute="top" secondItem="uy0-9r-oxE" secondAttribute="bottom" constant="46" id="0PD-pq-aKe"/>
+                                    <constraint firstItem="cmz-Cu-AQG" firstAttribute="top" secondItem="Qkc-EF-YQ0" secondAttribute="bottom" constant="35" id="1BI-W1-wWW"/>
                                     <constraint firstItem="4GY-7G-rTH" firstAttribute="centerX" secondItem="YxA-Zi-hmh" secondAttribute="centerX" constant="19" id="1wI-c4-dqP"/>
                                     <constraint firstItem="9hJ-XN-5qn" firstAttribute="top" secondItem="33n-np-Hnb" secondAttribute="bottom" constant="26" id="35U-4I-Js1"/>
                                     <constraint firstItem="eqQ-fF-tAU" firstAttribute="leading" secondItem="YxA-Zi-hmh" secondAttribute="leading" constant="20" id="4ro-do-aKw"/>
@@ -915,6 +923,7 @@
                                     <constraint firstItem="cmz-Cu-AQG" firstAttribute="leading" secondItem="YxA-Zi-hmh" secondAttribute="leading" constant="82" id="Flw-NG-XlZ"/>
                                     <constraint firstAttribute="trailing" secondItem="Zh0-UY-Q7U" secondAttribute="trailing" constant="20" id="HDW-vd-M1h"/>
                                     <constraint firstItem="4GY-7G-rTH" firstAttribute="top" secondItem="8I1-Mh-oPI" secondAttribute="bottom" constant="31" id="ILM-sf-ERU"/>
+                                    <constraint firstItem="Qkc-EF-YQ0" firstAttribute="centerX" secondItem="YxA-Zi-hmh" secondAttribute="centerX" id="Jlg-yj-8xM"/>
                                     <constraint firstAttribute="trailing" secondItem="tqg-KS-Yxz" secondAttribute="trailing" constant="20" id="N4f-p2-x0N"/>
                                     <constraint firstItem="8I1-Mh-oPI" firstAttribute="top" secondItem="33n-np-Hnb" secondAttribute="bottom" constant="46" id="ORF-MP-6cN"/>
                                     <constraint firstItem="8I1-Mh-oPI" firstAttribute="leading" secondItem="YxA-Zi-hmh" secondAttribute="leading" constant="25" id="Qkp-XJ-YpY"/>

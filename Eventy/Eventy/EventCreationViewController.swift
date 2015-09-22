@@ -161,6 +161,12 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 		self.endDate = endDate
 	}
 	
+	@IBAction func downloadTest(sender: AnyObject)
+	{
+		let testID = "EC72F93F-8B3C-4CF2-A9F1-4ACC15C1D463"
+		networkManager.downloadImage(testID)
+	}
+	
 	@IBAction func backButtonPressed(Sender: UIButton)
 	{
 		dismissViewControllerAnimated(true, completion: nil)

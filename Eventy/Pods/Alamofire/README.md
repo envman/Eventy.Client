@@ -25,7 +25,11 @@ Alamofire is an HTTP networking library written in Swift.
 ## Requirements
 
 - iOS 8.0+ / Mac OS X 10.9+ / watchOS 2
-- Xcode 7.0 beta 6+
+- Xcode 7.0+
+
+## Migration Guides
+
+- [Alamofire 2.0 Migration Guide](https://github.com/Alamofire/Alamofire/blob/master/Documentation/Alamofire%202.0%20Migration%20Guide.md)
 
 ## Communication
 
@@ -58,7 +62,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'swift-2.0'
+pod 'Alamofire', '~> 2.0'
 ```
 
 Then, run the following command:
@@ -81,7 +85,7 @@ $ brew install carthage
 To integrate Alamofire into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "Alamofire/Alamofire" "swift-2.0"
+github "Alamofire/Alamofire" ~> 2.0
 ```
 
 ### Manually
@@ -90,7 +94,13 @@ If you prefer not to use either of the aforementioned dependency managers, you c
 
 #### Embedded Framework
 
-- Add Alamofire as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the following command:
+- Open up Terminal, `cd` into your top-level project directory, and run the following command "if" your project is not initialized as a git repository:
+
+```bash
+$ git init
+```
+
+- Add Alamofire as a git [submodule](http://git-scm.com/docs/git-submodule) by running the following command:
 
 ```bash
 $ git submodule add https://github.com/Alamofire/Alamofire.git
@@ -114,7 +124,7 @@ $ git submodule add https://github.com/Alamofire/Alamofire.git
 
 - And that's it!
 
-> The `Alamofire.framework` is automagically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.> > 
+> The `Alamofire.framework` is automagically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
 
 ---
 
@@ -239,6 +249,7 @@ Parameters can also be encoded as JSON, Property List, or any custom format, usi
 ```swift
 enum ParameterEncoding {
     case URL
+    case URLEncodedInURL
     case JSON
     case PropertyList(format: NSPropertyListFormat, options: NSPropertyListWriteOptions)
     case Custom((URLRequestConvertible, [String: AnyObject]?) -> (NSMutableURLRequest, NSError?))
@@ -249,6 +260,7 @@ enum ParameterEncoding {
 ```
 
 - `URL`: A query string to be set as or appended to any existing URL query for `GET`, `HEAD`, and `DELETE` requests, or set as the body for requests with any other HTTP method. The `Content-Type` HTTP header field of an encoded request with HTTP body is set to `application/x-www-form-urlencoded`. _Since there is no published specification for how to encode collection types, Alamofire follows the convention of appending `[]` to the key for array values (`foo[]=1&foo[]=2`), and appending the key surrounded by square brackets for nested dictionary values (`foo[bar]=baz`)._
+- `URLEncodedInURL`: Creates query string to be set as or appended to any existing URL query. Uses the same implementation as the `.URL` case, but always applies the encoded result to the URL.
 - `JSON`: Uses `NSJSONSerialization` to create a JSON representation of the parameters object, which is set as the body of the request. The `Content-Type` HTTP header field of an encoded request is set to `application/json`.
 - `PropertyList`: Uses `NSPropertyListSerialization` to create a plist representation of the parameters object, according to the associated format and write options values, which is set as the body of the request. The `Content-Type` HTTP header field of an encoded request is set to `application/x-plist`.
 - `Custom`: Uses the associated closure value to construct a new request given an existing request and parameters.
@@ -322,6 +334,12 @@ Alamofire.upload(.POST, "http://httpbin.org/post", file: fileURL)
 Alamofire.upload(.POST, "http://httpbin.org/post", file: fileURL)
          .progress { bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
              print(totalBytesWritten)
+
+             // This closure is NOT called on the main queue for performance
+             // reasons. To update your ui, dispatch to the main queue.
+             dispatch_async(dispatch_get_main_queue) {
+                 print("Total bytes written on main queue: \(totalBytesWritten)")
+             }
          }
          .responseJSON { request, response, result in
              debugPrint(result)
@@ -385,6 +403,12 @@ Alamofire.download(.GET, "http://httpbin.org/stream/100", destination: destinati
 Alamofire.download(.GET, "http://httpbin.org/stream/100", destination: destination)
          .progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
              print(totalBytesRead)
+
+             // This closure is NOT called on the main queue for performance
+             // reasons. To update your ui, dispatch to the main queue.
+             dispatch_async(dispatch_get_main_queue) {
+                 print("Total bytes read on main queue: \(totalBytesRead)")
+             }
          }
          .response { request, response, _, error in
              print(response)
@@ -581,7 +605,7 @@ let manager = Alamofire.Manager(configuration: configuration)
 #### Creating a Manager with Background Configuration
 
 ```swift
-let configuration = NSURLSessionConfiguration.backgroundSessionConfiguration("com.example.app.background")
+let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("com.example.app.background")
 let manager = Alamofire.Manager(configuration: configuration)
 ```
 
@@ -986,6 +1010,22 @@ These server trust policies will result in the following behavior:
   * Challenge host MUST match the host in the certificate chain's leaf certificate.
 * `insecure.expired-apis.com` will never evaluate the certificate chain and will always allow the TLS handshake to succeed.
 * All other hosts will use the default evaluation provided by Apple.
+
+##### Subclassing Server Trust Policy Manager
+
+If you find yourself needing more flexible server trust policy matching behavior (i.e. wildcarded domains), then subclass the `ServerTrustPolicyManager` and override the `serverTrustPolicyForHost` method with your own custom implementation.
+
+```swift
+class CustomServerTrustPolicyManager: ServerTrustPolicyManager {
+    override func serverTrustPolicyForHost(host: String) -> ServerTrustPolicy? {
+        var policy: ServerTrustPolicy?
+
+        // Implement your custom domain matching behavior...
+
+        return policy
+    }
+}
+```
 
 #### Validating the Host
 
