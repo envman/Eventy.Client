@@ -54,12 +54,14 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-Eventy/Alamofire.framework'
   install_framework 'Pods-Eventy/AlamofireImage.framework'
+  install_framework 'Pods-Eventy/Haneke.framework'
   install_framework 'Pods-Eventy/Locksmith.framework'
   install_framework 'Pods-Eventy/SwiftyJSON.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-Eventy/Alamofire.framework'
   install_framework 'Pods-Eventy/AlamofireImage.framework'
+  install_framework 'Pods-Eventy/Haneke.framework'
   install_framework 'Pods-Eventy/Locksmith.framework'
   install_framework 'Pods-Eventy/SwiftyJSON.framework'
 fi

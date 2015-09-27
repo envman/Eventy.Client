@@ -7,6 +7,7 @@ pod 'Alamofire', '~> 2.0'
 pod 'Locksmith', :git => 'https://github.com/matthewpalmer/Locksmith.git', :branch => '2.0'
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'xcode7'
 pod 'AlamofireImage', '~> 1.0'
+pod 'HanekeSwift'
 
 end
 

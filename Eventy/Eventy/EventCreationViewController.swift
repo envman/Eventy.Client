@@ -8,14 +8,22 @@
 
 import UIKit
 
-class EventCreationViewController: UIViewController, DateSelectDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+protocol EventCreateDelegate
 {
+	func eventCreated()
+}
+
+class EventCreationViewController: UIViewController, DateSelectDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageDelegate
+{
+	var delegate: EventCreateDelegate?
 	var startDate: NSDate?
 	var endDate: NSDate?
-	var currentImageURL: NSURL?
+	var currentImage: UIImage?
+	var newEvent: Event?
 	
 	let networkManager =  NetworkManager()
 	let imagePicker = UIImagePickerController()
+	let loadingOverlay = LoadingOverlay()
 	
 	@IBOutlet weak var startDateButton: UIButton!
 	@IBOutlet weak var eventNameTextField: UITextField!
@@ -76,13 +84,9 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 		{
 			eventImage.contentMode = .ScaleAspectFit
 			eventImage.image = pickedImage
+			currentImage = pickedImage
 		}
-			
-		if let imageURL = info[UIImagePickerControllerReferenceURL]
-		{
-			currentImageURL = imageURL as? NSURL
-		}
-			
+		
 		dismissViewControllerAnimated(true, completion: nil)
 	}
 	
@@ -120,12 +124,25 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 		else
 		{
 			
-			let event = Event(name: eventNameTextField.text!, description: eventDescriptionTextField.text!, startTime: startDate!, endTime: endDate!)
-			networkManager.uploadImage(currentImageURL!, imageId: event.imageId)
-			networkManager.createEvent(event)
+			newEvent = Event(name: eventNameTextField.text!, description: eventDescriptionTextField.text!, startTime: startDate!, endTime: endDate!)
+			let imageData: NSData = UIImageJPEGRepresentation(currentImage!, 0.7)!
+			
+			networkManager.imageDelegate = self
+			networkManager.uploadImage(imageData, imageId: newEvent!.imageId)
+			loadingOverlay.showOverlay(self.view, message: "Creating Event...")
 		}
-		
-		dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	func uploadedImage(uploaded: Bool)
+	{
+		if uploaded
+		{
+			networkManager.createEvent(newEvent!)
+			loadingOverlay.hideOverlayView()
+			
+			self.delegate?.eventCreated()
+			dismissViewControllerAnimated(true, completion: nil)
+		}
 	}
 	
 	@IBAction func startDateSetPressed(sender: AnyObject)
@@ -153,12 +170,6 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 		
 		self.startDate = startDate
 		self.endDate = endDate
-	}
-	
-	@IBAction func downloadTest(sender: AnyObject)
-	{
-		let testID = "EC72F93F-8B3C-4CF2-A9F1-4ACC15C1D463"
-		networkManager.downloadImage(testID)
 	}
 	
 	@IBAction func backButtonPressed(Sender: UIButton)

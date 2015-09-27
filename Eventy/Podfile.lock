@@ -2,12 +2,14 @@ PODS:
   - Alamofire (2.0.2)
   - AlamofireImage (1.1.0):
     - Alamofire (~> 2.0)
+  - HanekeSwift (0.10.0)
   - Locksmith (2.0)
   - SwiftyJSON (2.2.1)
 
 DEPENDENCIES:
   - Alamofire (~> 2.0)
   - AlamofireImage (~> 1.0)
+  - HanekeSwift
   - Locksmith (from `https://github.com/matthewpalmer/Locksmith.git`, branch `2.0`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
 
@@ -30,6 +32,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 8edbab00802a752bb5240cc2abe70e7e881488ad
   AlamofireImage: 832772876df13446ebe5e849b7a126eb29b02b8c
+  HanekeSwift: d6f5bdf9dbdbbc09d59623b2c1d533e46463dd4d
   Locksmith: fdcfcb7deb8336f0b6a05b61cbd81de3a586d501
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
 

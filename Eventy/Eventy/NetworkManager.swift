@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import AlamofireImage
 import SwiftyJSON
 
 @objc protocol NetworkDelegate
@@ -23,10 +22,16 @@ protocol EventDelegate
 	func receievedEvents(events: Array<DisplayEvent>)
 }
 
+protocol ImageDelegate
+{
+	func uploadedImage(uploaded: Bool)
+}
+
 class NetworkManager
 {
 	var delegate: NetworkDelegate?
 	var eventDelegate: EventDelegate?
+	var imageDelegate: ImageDelegate?
 	let url: String = "http://joinin.azurewebsites.net"
 	
 	let authenticationHeaders = [
@@ -117,7 +122,7 @@ class NetworkManager
 	func createEvent(event: Event)
 	{
 		let eventParameters = ["Id": event.id, "Name": event.name, "Description": event.description,
-								"StartDateTime":event.startTime, "EndDateTime":event.endTime]
+								"StartDateTime":event.startTime, "EndDateTime":event.endTime, "ImageId":event.imageId]
 
 		Alamofire.request(.PUT, url+"/api/Event/"+event.id, parameters: eventParameters, headers: authenticationHeaders)
 			.responseJSON{
@@ -155,8 +160,8 @@ class NetworkManager
 					let event: DisplayEvent = DisplayEvent()
 					event.description = subJson["Description"].string
 					event.name = subJson["Name"].string
-					event.imageId = subJson["ImageId"].string
 					event.id = subJson["Id"].string
+					event.imageId = subJson["ImageId"].string
 					
 					events.append(event)
 				}
@@ -170,6 +175,20 @@ class NetworkManager
 		}
 	}
 	
+	func getEventWithId(id: String)
+	{
+		Alamofire.request(.GET, url+"/api/Event/" + id, headers: authenticationHeaders).responseJSON{
+			_, _, json in
+			if (json.value != nil)
+			{
+				let responseJson = JSON(json.value!)
+				let responseMessage = responseJson["Message"].stringValue
+				print(responseMessage)
+			}
+		}
+
+	}
+	
 	func getChatMessages(eventId: String)
 	{
 		Alamofire.request(.GET, url+"/api/Chat?eventId=\(eventId)", headers: authenticationHeaders).responseJSON{
@@ -179,11 +198,6 @@ class NetworkManager
 				let responseJson = JSON(json.value!)
 				let responseMessage = responseJson["Message"].stringValue
 				print(responseMessage)
-				
-				if (responseMessage.containsString("denied"))
-				{
-					self.delegate?.loginDenied!()
-				}
 			}
 		}
 	}
@@ -207,12 +221,13 @@ class NetworkManager
 
 	}
 
-	func uploadImage(imageURL: NSURL, imageId: String)
+	func uploadImage(imageData: NSData, imageId: String)
 	{
-		Alamofire.upload(.PUT, url + "/api/Image/" + imageId, file: imageURL).responseString {
+		Alamofire.upload(.PUT, url + "/api/Image/" + imageId, data: imageData).responseString {
 			_, _, result in
-			print("Success: \(result.isSuccess)")
-			print("Response String: \(result.value)")
+			
+			let imageError:Bool = (result.value?.containsString("error"))!
+			self.imageDelegate?.uploadedImage(!imageError)
 		}
 	}
 	

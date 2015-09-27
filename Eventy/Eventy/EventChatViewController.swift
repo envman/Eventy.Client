@@ -10,9 +10,19 @@ import UIKit
 
 class EventChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
+	var selectedEvent: DisplayEvent?
+	
+	override func viewDidLoad()
+	{
+		super.viewDidLoad()
+		let networkManager = NetworkManager()
+		//networkManager.getEventWithId((selectedEvent?.id)!)
+		networkManager.getChatMessages((selectedEvent?.id)!)
+	}
+	
 	@IBAction func backButtonPressed(sender: AnyObject)
 	{
-		self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
+		dismissViewControllerAnimated(true, completion: nil)
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
