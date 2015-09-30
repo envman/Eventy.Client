@@ -101,6 +101,7 @@ class EventMainViewController: UIViewController, SettingsDelegate, EventDelegate
 		cell.nameLabel.text = event.name
 		cell.descriptionLabel.text = event.description
 		
+		
 		let urlString = "http://joinin.azurewebsites.net/api/Image/" + event.imageId!
 		let imageURL: NSURL = NSURL(string: urlString)!
 		cell.eventImage.hnk_setImageFromURL(imageURL)
@@ -111,13 +112,11 @@ class EventMainViewController: UIViewController, SettingsDelegate, EventDelegate
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
 	{
 		selectedEvent = events[indexPath.row]
-		presentEventView()
-	}
-	
-	func presentEventView()
-	{
+		let cell  = tableView.cellForRowAtIndexPath(indexPath) as! EventCell
+		
 		let eventSummaryViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EventSummaryPage") as? EventSummaryViewController
 		eventSummaryViewController?.selectedEvent = selectedEvent
+		eventSummaryViewController?.selectedEventImage = cell.eventImage.image
 		
 		presentViewController(eventSummaryViewController!, animated: true, completion: nil)
 	}

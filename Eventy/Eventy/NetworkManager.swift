@@ -76,6 +76,10 @@ class NetworkManager
 					QuickAlert.showAlert("Failure", message: "Response: \(errorMessage)")
 				}
 			}
+			else
+			{
+				QuickAlert.showAlert("Failure", message: "Login failure")
+			}
 		}
 	}
 	
@@ -153,6 +157,10 @@ class NetworkManager
 				let responseJson = JSON(json.value!)
 				let responseMessage = responseJson["Message"].stringValue
 				
+				if responseMessage.containsString("error")
+				{
+					return
+				}
 				
 				for (_, subJson) in responseJson
 				{

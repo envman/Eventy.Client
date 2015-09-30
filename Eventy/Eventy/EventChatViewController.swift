@@ -12,12 +12,21 @@ class EventChatViewController: UIViewController, UITableViewDelegate, UITableVie
 {
 	var selectedEvent: DisplayEvent?
 	
+	@IBOutlet weak var chatTableView: UITableView!
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
 		let networkManager = NetworkManager()
 		//networkManager.getEventWithId((selectedEvent?.id)!)
 		networkManager.getChatMessages((selectedEvent?.id)!)
+		
+		chatTableView.estimatedRowHeight = 44.0
+		chatTableView.rowHeight = UITableViewAutomaticDimension
+	}
+	
+	override func viewWillAppear(animated: Bool)
+	{
+		chatTableView.reloadData()
 	}
 	
 	@IBAction func backButtonPressed(sender: AnyObject)
@@ -27,19 +36,21 @@ class EventChatViewController: UIViewController, UITableViewDelegate, UITableVie
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-		return 2
+		return 4
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
-		let cell: UITableViewCell
+		let cell: ChatMessageCell
 		if indexPath.row % 2 == 0
 		{
-			cell  = tableView.dequeueReusableCellWithIdentifier("ReceivedChatCell")!
+			cell = tableView.dequeueReusableCellWithIdentifier("ReceivedChatCell")! as! ChatMessageCell
+			cell.message = "is a mid-1960s British science-fiction television series created by Gerry Anderson (pictured) and "
 		}
 		else
 		{
-			cell = tableView.dequeueReusableCellWithIdentifier("SentChatCell")!
+			cell = tableView.dequeueReusableCellWithIdentifier("SentChatCell")! as! ChatMessageCell
+			cell.message = "Really?"
 		}
 		
 		return cell
