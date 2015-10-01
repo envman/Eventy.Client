@@ -16,6 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
+		
+		BITHockeyManager.sharedHockeyManager().configureWithIdentifier("6e7a5a04c960f42abd36d4e511046a26")
+		// Do some additional configuration if needed here
+		BITHockeyManager.sharedHockeyManager().startManager()
+		BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
+
 		return true
 	}
 

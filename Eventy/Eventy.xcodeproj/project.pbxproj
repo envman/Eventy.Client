@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A20D03D1BBD7E4C00F6C648 /* ObjectiveCBridingHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20D03C1BBD7E4C00F6C648 /* ObjectiveCBridingHeader.m */; };
+		4A20D03F1BBD80ED00F6C648 /* EventSummaryCellCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A20D03E1BBD80ED00F6C648 /* EventSummaryCellCreator.swift */; };
 		4A2DD2AD1BA75DC300B27489 /* EventSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2DD2AC1BA75DC300B27489 /* EventSummaryViewController.swift */; };
 		4A44591B1B9F62740041A45C /* EventCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44591A1B9F62740041A45C /* EventCreationViewController.swift */; };
 		4A44591D1B9F62B10041A45C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44591C1B9F62B10041A45C /* Event.swift */; };
@@ -19,6 +21,7 @@
 		4A44592F1BA42C350041A45C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44592E1BA42C350041A45C /* RegisterViewController.swift */; };
 		4A4459311BA431C90041A45C /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4459301BA431C90041A45C /* QuickAlert.swift */; };
 		4A77339E1BB08D6C006BC9D7 /* Uploadtest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A77339D1BB08D6C006BC9D7 /* Uploadtest.jpg */; };
+		4AA11D7B1BBDDD4A004451D8 /* InviteButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA11D7A1BBDDD4A004451D8 /* InviteButtonCell.swift */; };
 		4AAECD741BA9F580007B7427 /* EventChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAECD731BA9F580007B7427 /* EventChatViewController.swift */; };
 		4AAECD781BAA18A0007B7427 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAECD771BAA18A0007B7427 /* ChatMessage.swift */; };
 		4AB5CEA41BA8867E00B3ED6F /* TransitionOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5CEA31BA8867E00B3ED6F /* TransitionOperator.swift */; };
@@ -39,6 +42,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A20D03B1BBD7E4B00F6C648 /* Eventy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Eventy-Bridging-Header.h"; sourceTree = "<group>"; };
+		4A20D03C1BBD7E4C00F6C648 /* ObjectiveCBridingHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCBridingHeader.m; sourceTree = "<group>"; };
+		4A20D03E1BBD80ED00F6C648 /* EventSummaryCellCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventSummaryCellCreator.swift; sourceTree = "<group>"; };
 		4A2DD2AC1BA75DC300B27489 /* EventSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventSummaryViewController.swift; sourceTree = "<group>"; };
 		4A44591A1B9F62740041A45C /* EventCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCreationViewController.swift; sourceTree = "<group>"; };
 		4A44591C1B9F62B10041A45C /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -51,6 +57,7 @@
 		4A44592E1BA42C350041A45C /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4A4459301BA431C90041A45C /* QuickAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
 		4A77339D1BB08D6C006BC9D7 /* Uploadtest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Uploadtest.jpg; sourceTree = "<group>"; };
+		4AA11D7A1BBDDD4A004451D8 /* InviteButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteButtonCell.swift; sourceTree = "<group>"; };
 		4AAECD731BA9F580007B7427 /* EventChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventChatViewController.swift; sourceTree = "<group>"; };
 		4AAECD771BAA18A0007B7427 /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		4AB5CEA31BA8867E00B3ED6F /* TransitionOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionOperator.swift; sourceTree = "<group>"; };
@@ -132,6 +139,8 @@
 				4A77339D1BB08D6C006BC9D7 /* Uploadtest.jpg */,
 				4ABA55C41B979437003B6D48 /* Info.plist */,
 				4AFAD5281BB85AEF00EC0D8C /* LoadingOverlay.swift */,
+				4A20D03C1BBD7E4C00F6C648 /* ObjectiveCBridingHeader.m */,
+				4A20D03B1BBD7E4B00F6C648 /* Eventy-Bridging-Header.h */,
 			);
 			path = Eventy;
 			sourceTree = "<group>";
@@ -158,6 +167,8 @@
 				4A2DD2AC1BA75DC300B27489 /* EventSummaryViewController.swift */,
 				4AFF83991BBC68080042FCA4 /* ImageTableCell.swift */,
 				4AFF839B1BBC6ADD0042FCA4 /* EventDateCell.swift */,
+				4A20D03E1BBD80ED00F6C648 /* EventSummaryCellCreator.swift */,
+				4AA11D7A1BBDDD4A004451D8 /* InviteButtonCell.swift */,
 			);
 			name = EventSummaryVCs;
 			sourceTree = "<group>";
@@ -194,6 +205,7 @@
 				4ABA55B31B979437003B6D48 /* Resources */,
 				4DF55790B01BA2BC8E2E6D6A /* Embed Pods Frameworks */,
 				F6AE6B04757AE459DC6B2329 /* Copy Pods Resources */,
+				4A1401651BBD776F0087438D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -252,6 +264,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4A1401651BBD776F0087438D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
+		};
 		4DF55790B01BA2BC8E2E6D6A /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -312,6 +337,8 @@
 				4AB5CEA61BA8C3DF00B3ED6F /* DisplayEvent.swift in Sources */,
 				4A44592B1BA41B4E0041A45C /* SettingsViewController.swift in Sources */,
 				4A4459251BA0AD580041A45C /* DateSelectViewController.swift in Sources */,
+				4A20D03F1BBD80ED00F6C648 /* EventSummaryCellCreator.swift in Sources */,
+				4AA11D7B1BBDDD4A004451D8 /* InviteButtonCell.swift in Sources */,
 				4A2DD2AD1BA75DC300B27489 /* EventSummaryViewController.swift in Sources */,
 				4ABA55D31B9B43D8003B6D48 /* NetworkManager.swift in Sources */,
 				4A4459211B9F85280041A45C /* AppColours.swift in Sources */,
@@ -328,6 +355,7 @@
 				4AFF839F1BBC8AF10042FCA4 /* ChatMessageCell.swift in Sources */,
 				4A44591B1B9F62740041A45C /* EventCreationViewController.swift in Sources */,
 				4A4459311BA431C90041A45C /* QuickAlert.swift in Sources */,
+				4A20D03D1BBD7E4C00F6C648 /* ObjectiveCBridingHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,12 +469,14 @@
 			baseConfigurationReference = AE41DD8C61E71D00091244FF /* Pods-Eventy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Eventy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gg.joinin;
 				PRODUCT_NAME = JoinIn;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Eventy/Eventy-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -455,12 +485,13 @@
 			baseConfigurationReference = CEAC0C00D45F0EDCDC365472 /* Pods-Eventy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Eventy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gg.joinin;
 				PRODUCT_NAME = JoinIn;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Eventy/Eventy-Bridging-Header.h";
 			};
 			name = Release;
 		};

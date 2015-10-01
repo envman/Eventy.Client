@@ -41,7 +41,7 @@ class NetworkManager
 	func register(userName: String, email: String, password: String)
 	{
 		let registerParameters = ["UserName": userName, "Email":email, "Password":password]
-		Alamofire.request(.POST, url+"/Api/Account/Register", parameters: registerParameters, encoding: .JSON).responseJSON{
+		Alamofire.request(.POST, url+"/Api/Account/Register", parameters: registerParameters, encoding: .JSON).validate().responseJSON{
 			_, _, json in
 			if (json.value != nil)
 			{
@@ -59,7 +59,8 @@ class NetworkManager
 	func login(username: String, password: String)
 	{
 		let loginParameters = ["grant_type": "password", "UserName": username, "Password":password]	
-		Alamofire.request(.POST, url+"/Token", parameters: loginParameters, encoding: .URL).responseJSON{
+		Alamofire.request(.POST, url+"/Token", parameters: loginParameters, encoding: .URL)
+			.validate().responseJSON{
 			_, _, json in
 			if (json.value != nil)
 			{
@@ -85,7 +86,8 @@ class NetworkManager
 	
 	func logout()
 	{
-		Alamofire.request(.POST, url+"/api/Account/Logout", headers: authenticationHeaders).responseJSON{
+		Alamofire.request(.POST, url+"/api/Account/Logout", headers: authenticationHeaders)
+			.validate().responseJSON{
 			_, _, json in
 			if (json.value != nil)
 			{
@@ -103,7 +105,7 @@ class NetworkManager
 	func tokenTest()
 	{
 		Alamofire.request(.GET, url+"/api/Values", headers: authenticationHeaders)
-		.responseJSON{
+		.validate().responseJSON{
 			_, _, json in
 			if (json.value != nil)
 			{
@@ -129,7 +131,7 @@ class NetworkManager
 								"StartDateTime":event.startTime, "EndDateTime":event.endTime, "ImageId":event.imageId]
 
 		Alamofire.request(.PUT, url+"/api/Event/"+event.id, parameters: eventParameters, headers: authenticationHeaders)
-			.responseJSON{
+			.validate().responseJSON{
 			_, _, json in
 			if (json.value != nil)
 			{
@@ -150,7 +152,7 @@ class NetworkManager
 		var events: Array<DisplayEvent> = []
 		
 		Alamofire.request(.GET, url+"/api/Event", headers: authenticationHeaders)
-			.responseJSON{
+			.validate().responseJSON{
 			_, _, json in
 			if (json.value != nil)
 			{
@@ -185,21 +187,35 @@ class NetworkManager
 	
 	func getEventWithId(id: String)
 	{
-		Alamofire.request(.GET, url+"/api/Event/" + id, headers: authenticationHeaders).responseJSON{
+		Alamofire.request(.GET, url+"/api/Event/" + id, headers: authenticationHeaders).validate()
+			.responseJSON{
 			_, _, json in
 			if (json.value != nil)
 			{
 				let responseJson = JSON(json.value!)
-				let responseMessage = responseJson["Message"].stringValue
-				print(responseMessage)
+				
+				let description = responseJson["Description"].string
+				let name = responseJson["Name"].string
+				let id = responseJson["Id"].string
+				let imageId = responseJson["ImageId"].string
+				let startDateTimeString = responseJson["StartDateTime"].string
+				let endDateTimeString = responseJson["EndDateTime"].string
+				
+				let dateFormatter = NSDateFormatter()
+				dateFormatter.dateFormat = "yyyy-MM-ddThh:mm:ss"
+				let startdate = dateFormatter.dateFromString(startDateTimeString!)
+				
+//				let event = Event(name: name!, description: description!, startTime: startdate!, endTime: endDate!)
 			}
 		}
 
 	}
 	
-	func getChatMessages(eventId: String)
+	func getAllChatMessages(eventId: String)
 	{
-		Alamofire.request(.GET, url+"/api/Chat?eventId=\(eventId)", headers: authenticationHeaders).responseJSON{
+		let chatUrl = url+"/api/Chat/\(eventId)"
+		Alamofire.request(.GET, chatUrl, headers: authenticationHeaders)
+			.validate().responseJSON{
 			_, _, json in
 			if (json.value != nil)
 			{
@@ -213,7 +229,7 @@ class NetworkManager
 	func postChatMessage(eventId: String, message: String)
 	{
 		let chatParameters = ["EventId": eventId, "Message": message]
-		Alamofire.request(.POST, url+"/api/Chat", parameters: chatParameters, headers: authenticationHeaders).responseJSON{
+		Alamofire.request(.POST, url+"/api/Chat", parameters: chatParameters, headers: authenticationHeaders).validate().responseJSON{
 			_, _, json in
 			if (json.value != nil)
 			{
@@ -231,7 +247,8 @@ class NetworkManager
 
 	func uploadImage(imageData: NSData, imageId: String)
 	{
-		Alamofire.upload(.PUT, url + "/api/Image/" + imageId, data: imageData).responseString {
+		Alamofire.upload(.PUT, url + "/api/Image/" + imageId, data: imageData)
+			.validate().responseString {
 			_, _, result in
 			
 			let imageError:Bool = (result.value?.containsString("error"))!
@@ -241,7 +258,8 @@ class NetworkManager
 	
 	func downloadImage(imageId: String)
 	{
-		Alamofire.request(.GET, url + "/api/Image/" + imageId, headers: authenticationHeaders).response() {
+		Alamofire.request(.GET, url + "/api/Image/" + imageId, headers: authenticationHeaders)
+			.validate().response() {
 			(_, _, data, _) in
 			
 			if let image = UIImage(data: data!)

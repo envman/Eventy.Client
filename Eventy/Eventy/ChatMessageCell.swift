@@ -15,6 +15,5 @@ class ChatMessageCell: UITableViewCell
 	
 	override func layoutSubviews()
 	{
-		messageLabel.text = message
 	}
 }

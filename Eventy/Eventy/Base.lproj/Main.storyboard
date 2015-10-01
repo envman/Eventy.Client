@@ -527,10 +527,10 @@
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Event Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDE-BM-OPG">
-                                                            <rect key="frame" x="8" y="44" width="584" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Event Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDE-BM-OPG">
+                                                            <rect key="frame" x="8" y="44" width="584" height="46"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="21" id="Czn-3F-Pk3"/>
+                                                                <constraint firstAttribute="height" constant="46" id="Czn-3F-Pk3"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -656,7 +656,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InviteButtonCell" rowHeight="44" id="zqx-gV-YnT">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InviteButtonCell" rowHeight="44" id="zqx-gV-YnT" customClass="InviteButtonCell" customModule="JoinIn" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="361" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zqx-gV-YnT" id="9Lu-wJ-MSd">
@@ -670,6 +670,9 @@
                                                     <state key="normal" title="Invite Friends">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="inviteButtonPressed:" destination="zqx-gV-YnT" eventType="touchUpInside" id="D9s-FT-l3J"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -739,7 +742,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDw-Lr-sd9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1048" y="-1146"/>
+            <point key="canvasLocation" x="1183" y="-1140"/>
         </scene>
         <!--Events-->
         <scene sceneID="jod-Dk-bQo">
@@ -1285,16 +1288,19 @@
                                         <state key="normal" title="Send">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sendButtonPressed:" destination="JQc-EL-ihE" eventType="touchUpInside" id="dTH-6n-I3l"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="VIL-Mt-j09" secondAttribute="bottom" constant="8" id="56Q-cc-YlA"/>
+                                    <constraint firstItem="VIL-Mt-j09" firstAttribute="top" secondItem="JLk-nV-XbO" secondAttribute="top" constant="9" id="F7v-5F-eDh"/>
+                                    <constraint firstItem="jHB-Lx-iRX" firstAttribute="top" secondItem="JLk-nV-XbO" secondAttribute="top" constant="9" id="NFB-K5-2Fn"/>
                                     <constraint firstItem="VIL-Mt-j09" firstAttribute="leading" secondItem="jHB-Lx-iRX" secondAttribute="trailing" constant="8" id="RkZ-U3-vaY"/>
                                     <constraint firstItem="jHB-Lx-iRX" firstAttribute="leading" secondItem="JLk-nV-XbO" secondAttribute="leading" constant="8" id="YCy-wK-PtO"/>
                                     <constraint firstAttribute="trailing" secondItem="VIL-Mt-j09" secondAttribute="trailing" constant="8" id="bkN-Eh-O9d"/>
                                     <constraint firstAttribute="height" constant="47" id="f7h-6C-7V7"/>
-                                    <constraint firstAttribute="bottom" secondItem="jHB-Lx-iRX" secondAttribute="bottom" constant="8" id="uHs-lB-3uW"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rVI-ee-4ub">
@@ -1302,7 +1308,7 @@
                                 <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReceivedChatCell" id="uWg-9n-kv1" customClass="ChatMessageCell" customModule="JoinIn" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReceivedChatCell" rowHeight="44" id="uWg-9n-kv1" customClass="ChatMessageCell" customModule="JoinIn" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uWg-9n-kv1" id="eJM-5B-uE3">
@@ -1312,7 +1318,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugu-bc-QlB">
                                                     <rect key="frame" x="8" y="8" width="538" height="27"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeL-44-nti">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeL-44-nti">
                                                             <rect key="frame" x="8" y="3" width="522" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1340,7 +1346,7 @@
                                             <outlet property="messageLabel" destination="BeL-44-nti" id="0yv-vT-zb1"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SentChatCell" id="dK7-0j-0AI" customClass="ChatMessageCell" customModule="JoinIn" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SentChatCell" rowHeight="44" id="dK7-0j-0AI" customClass="ChatMessageCell" customModule="JoinIn" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dK7-0j-0AI" id="pqA-ew-nAa">
@@ -1350,7 +1356,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vnz-qE-mNL">
                                                     <rect key="frame" x="56" y="8" width="536" height="28"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s42-mn-RMS">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s42-mn-RMS">
                                                             <rect key="frame" x="8" y="3" width="520" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1393,20 +1399,29 @@
                             <constraint firstAttribute="trailing" secondItem="rVI-ee-4ub" secondAttribute="trailing" id="8Ae-L7-gG8"/>
                             <constraint firstItem="rVI-ee-4ub" firstAttribute="top" secondItem="64x-F7-uDL" secondAttribute="bottom" constant="13" id="FWN-tP-Gt1"/>
                             <constraint firstItem="Ri0-7y-F6s" firstAttribute="top" secondItem="JLk-nV-XbO" secondAttribute="bottom" id="GND-yb-KoH"/>
-                            <constraint firstItem="Ri0-7y-F6s" firstAttribute="top" secondItem="rVI-ee-4ub" secondAttribute="bottom" constant="45" id="KSD-Rl-Aih"/>
                             <constraint firstItem="rVI-ee-4ub" firstAttribute="leading" secondItem="8kY-xz-G8S" secondAttribute="leading" id="THs-A8-7Y9"/>
                             <constraint firstAttribute="trailing" secondItem="JLk-nV-XbO" secondAttribute="trailing" id="Uhe-2g-tCi"/>
                             <constraint firstItem="JLk-nV-XbO" firstAttribute="leading" secondItem="8kY-xz-G8S" secondAttribute="leading" id="Vwb-fg-7Yo"/>
                             <constraint firstItem="EbQ-ax-XzB" firstAttribute="leading" secondItem="8kY-xz-G8S" secondAttribute="leadingMargin" id="gDo-2E-SIG"/>
+                            <constraint firstItem="JLk-nV-XbO" firstAttribute="top" secondItem="rVI-ee-4ub" secondAttribute="bottom" constant="-2" id="haQ-5g-TWs"/>
+                            <constraint firstItem="Ri0-7y-F6s" firstAttribute="top" secondItem="JLk-nV-XbO" secondAttribute="bottom" id="lT4-NZ-eRL"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="GND-yb-KoH"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="chatTableView" destination="rVI-ee-4ub" id="1Bh-6e-wkJ"/>
+                        <outlet property="messageTextField" destination="jHB-Lx-iRX" id="xni-kR-sbV"/>
+                        <outlet property="messageView" destination="JLk-nV-XbO" id="80C-ui-rGe"/>
+                        <outlet property="messageViewBottomConstraint" destination="lT4-NZ-eRL" id="vbx-hj-3cR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8vh-NE-Rdv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1903" y="-1146"/>
+            <point key="canvasLocation" x="1955" y="-1140"/>
         </scene>
         <!--Select Date-->
         <scene sceneID="xOS-64-ryR">

@@ -112,6 +112,8 @@ class EventMainViewController: UIViewController, SettingsDelegate, EventDelegate
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
 	{
 		selectedEvent = events[indexPath.row]
+		networkManager.getEventWithId(selectedEvent!.id!)
+		
 		let cell  = tableView.cellForRowAtIndexPath(indexPath) as! EventCell
 		
 		let eventSummaryViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EventSummaryPage") as? EventSummaryViewController

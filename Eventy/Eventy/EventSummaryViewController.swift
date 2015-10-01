@@ -8,11 +8,16 @@
 
 import UIKit
 
-class EventSummaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class EventSummaryViewController: UIViewController, UITextFieldDelegate, UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource, InviteCellDelegate
 {
+	@IBOutlet weak var tableView: UITableView!
+	
 	var selectedEvent: DisplayEvent?
 	var selectedEventImage: UIImage?
-	@IBOutlet weak var tableView: UITableView!
+
+	let cellHeights: [Int:CGFloat] = [0:200.0, 1:89.0]
+	
+	let testSchedule: Array = ["CS:GO", "Sonic The Hedgehog", "Splatoon", "THPS5"]
 	
 	override func viewWillAppear(animated: Bool)
 	{
@@ -44,91 +49,76 @@ class EventSummaryViewController: UIViewController, UITableViewDelegate, UITable
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-		return 8
+		return 5 + testSchedule.count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
-		if indexPath.row == 0
+		switch (indexPath.row)
 		{
+		case 0:
 			let cell  = tableView.dequeueReusableCellWithIdentifier("ImageCell") as! ImageTableCell
 			cell.eventImage.image = selectedEventImage
 			cell.eventTitleLabel.text = selectedEvent?.name
 			cell.eventDescriptionLabel.text = selectedEvent?.description
 			
 			return cell
-		}
-		else if indexPath.row == 1
-		{
+			
+		case 1:
 			let cell  = tableView.dequeueReusableCellWithIdentifier("DateCell") as! EventDateCell
 			cell.startDate.text = "08:00 Saturday 3rd August"
 			cell.endDate.text = "16:00 Saturday 3rd August"
 			
 			return cell
-		}
-		else if indexPath.row == 2
-		{
+			
+		case 2:
 			let cell  = tableView.dequeueReusableCellWithIdentifier("JoinInButtonCell")
 			return cell!
-		}
-		else if indexPath.row == 3
-		{
-			let cell  = tableView.dequeueReusableCellWithIdentifier("InviteButtonCell")
-			return cell!
-		}
-		else if indexPath.row == 4
-		{
+			
+		case 3:
+			let cell  = tableView.dequeueReusableCellWithIdentifier("InviteButtonCell") as! InviteButtonCell
+			cell.delegate = self
+			return cell
+			
+		case 4:
 			let cell  = tableView.dequeueReusableCellWithIdentifier("ScheduleCell")
 			return cell!
-		}
-		else if indexPath.row == 5
-		{
+
+		default:
 			let cell  = tableView.dequeueReusableCellWithIdentifier("ScheduleItemCell")
-			cell?.textLabel?.textColor = UIColor.whiteColor()
-			cell?.textLabel?.text = "08:00  Rocket League"
-			cell?.imageView?.image = UIImage(named: "RocketTest")
+			cell!.textLabel?.textColor = UIColor.whiteColor()
+			cell!.textLabel?.text = testSchedule[indexPath.row - 5]
 			return cell!
 		}
-		else if indexPath.row == 6
-		{
-			let cell  = tableView.dequeueReusableCellWithIdentifier("ScheduleItemCell")
-			cell?.textLabel?.textColor = UIColor.whiteColor()
-			cell?.textLabel?.text = "10:00  Metal Gear Solid FTW"
-			cell?.imageView?.image = UIImage(named: "MetalGearTest")
-			return cell!
-		}
-		else if indexPath.row == 7
-		{
-			let cell  = tableView.dequeueReusableCellWithIdentifier("ScheduleItemCell")
-			cell?.textLabel?.textColor = UIColor.whiteColor()
-			cell?.textLabel?.text = "12:00  CS:GO"
-			cell?.imageView?.image = UIImage(named: "CSGOTest")
-			return cell!
-		}
-		
-		let cell = UITableViewCell()
-		return cell
 	}
 	
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
 	{
-		if indexPath.row == 0
+		if let height = cellHeights[indexPath.row]
 		{
-			return 200
-		}
-		else if indexPath.row == 1
-		{
-			return 89
-		}
-		else if indexPath.row == 2
-		{
-			return 44
-		}
-		else if indexPath.row == 3
-		{
-			return 44
+			return height
 		}
 		
 		return 44
+	}
+	
+	func inviteButtonPressed()
+	{
+		let alert = UIAlertView()
+		alert.title = "Event Invitation"
+		alert.message = "Enter the email address of the person you wish to invite"
+		alert.addButtonWithTitle("Cancel")
+		alert.addButtonWithTitle("Invite")
+		alert.alertViewStyle = UIAlertViewStyle.PlainTextInput
+		alert.textFieldAtIndex(0)!.delegate = self
+		alert.show()
+	}
+	
+	func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int)
+	{
+		if(buttonIndex == 1)
+		{
+			//alertView.textFieldAtIndex(0)!.text
+		}
 	}
 }

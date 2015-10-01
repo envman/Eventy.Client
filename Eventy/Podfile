@@ -8,6 +8,7 @@ pod 'Locksmith', :git => 'https://github.com/matthewpalmer/Locksmith.git', :bran
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'xcode7'
 pod 'AlamofireImage', '~> 1.0'
 pod 'HanekeSwift'
+pod 'HockeySDK', '~> 3.8.2'
 
 end
 
