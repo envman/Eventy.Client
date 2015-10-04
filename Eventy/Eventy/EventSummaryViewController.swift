@@ -8,33 +8,29 @@
 
 import UIKit
 
-class EventSummaryViewController: UIViewController, UITextFieldDelegate, UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource, InviteCellDelegate
+class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource, InviteCellDelegate
 {
 	@IBOutlet weak var tableView: UITableView!
 	
-	var selectedEvent: DisplayEvent?
+	var selectedEvent: Event?
 	var selectedEventImage: UIImage?
 
 	let cellHeights: [Int:CGFloat] = [0:200.0, 1:89.0]
 	
 	let testSchedule: Array = ["CS:GO", "Sonic The Hedgehog", "Splatoon", "THPS5"]
 	
+	override func viewDidLoad()
+	{
+		super.viewDidLoad()
+		setupBaseEventViewController((selectedEvent?.name)!, backEnabled: true, rightButtonImageString: "Chat")
+	}
+	
 	override func viewWillAppear(animated: Bool)
 	{
 		tableView.reloadData()
 	}
 	
-	@IBAction func backButtonPressed(sender: AnyObject)
-	{
-		dismissViewControllerAnimated(true, completion: nil)
-	}
-	
-	@IBAction func chatButtonPressed(sender: AnyObject)
-	{
-		presentChatView()
-	}
-	
-	func presentChatView()
+	override func rightButtonPressed()
 	{
 		let eventChatViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EventChatPage") as? EventChatViewController
 		eventChatViewController?.selectedEvent = selectedEvent
@@ -61,13 +57,18 @@ class EventSummaryViewController: UIViewController, UITextFieldDelegate, UIAlert
 			cell.eventImage.image = selectedEventImage
 			cell.eventTitleLabel.text = selectedEvent?.name
 			cell.eventDescriptionLabel.text = selectedEvent?.description
+			cell.fieldEditable = true
 			
 			return cell
 			
 		case 1:
 			let cell  = tableView.dequeueReusableCellWithIdentifier("DateCell") as! EventDateCell
-			cell.startDate.text = "08:00 Saturday 3rd August"
-			cell.endDate.text = "16:00 Saturday 3rd August"
+			let dayTimePeriodFormatter = NSDateFormatter()
+			dayTimePeriodFormatter.dateFormat = "h:mm a EEE MMM yyyy"
+			
+			cell.startDate.text = dayTimePeriodFormatter.stringFromDate((selectedEvent?.startTime)!)
+			cell.endDate.text = dayTimePeriodFormatter.stringFromDate((selectedEvent?.endTime)!)
+			cell.fieldEditable = true
 			
 			return cell
 			
@@ -81,8 +82,9 @@ class EventSummaryViewController: UIViewController, UITextFieldDelegate, UIAlert
 			return cell
 			
 		case 4:
-			let cell  = tableView.dequeueReusableCellWithIdentifier("ScheduleCell")
-			return cell!
+			let cell  = tableView.dequeueReusableCellWithIdentifier("ScheduleCell") as! EventSummaryBaseTableViewCell
+			cell.fieldEditable = true
+			return cell
 
 		default:
 			let cell  = tableView.dequeueReusableCellWithIdentifier("ScheduleItemCell")
@@ -111,6 +113,7 @@ class EventSummaryViewController: UIViewController, UITextFieldDelegate, UIAlert
 		alert.addButtonWithTitle("Invite")
 		alert.alertViewStyle = UIAlertViewStyle.PlainTextInput
 		alert.textFieldAtIndex(0)!.delegate = self
+		alert.delegate = self
 		alert.show()
 	}
 	
@@ -118,7 +121,8 @@ class EventSummaryViewController: UIViewController, UITextFieldDelegate, UIAlert
 	{
 		if(buttonIndex == 1)
 		{
-			//alertView.textFieldAtIndex(0)!.text
+			let networkManager = NetworkManager()
+			networkManager.inviteUserToEvent(selectedEvent!, userEmail: alertView.textFieldAtIndex(0)!.text!)
 		}
 	}
 }

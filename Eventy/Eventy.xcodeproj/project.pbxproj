@@ -33,6 +33,8 @@
 		4ABA55C01B979437003B6D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ABA55BF1B979437003B6D48 /* Assets.xcassets */; };
 		4ABA55C31B979437003B6D48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ABA55C11B979437003B6D48 /* LaunchScreen.storyboard */; };
 		4ABA55D31B9B43D8003B6D48 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABA55D21B9B43D8003B6D48 /* NetworkManager.swift */; };
+		4ADC5D2D1BC0494400305985 /* EventViewControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC5D2C1BC0494400305985 /* EventViewControllerBase.swift */; };
+		4ADC5D2F1BC146DF00305985 /* EventSummaryBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC5D2E1BC146DF00305985 /* EventSummaryBaseTableViewCell.swift */; };
 		4AF3029D1B9DEB04003CAC77 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF3029C1B9DEB04003CAC77 /* AccessToken.swift */; };
 		4AFAD5291BB85AEF00EC0D8C /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD5281BB85AEF00EC0D8C /* LoadingOverlay.swift */; };
 		4AFF839A1BBC68080042FCA4 /* ImageTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFF83991BBC68080042FCA4 /* ImageTableCell.swift */; };
@@ -71,6 +73,8 @@
 		4ABA55C21B979437003B6D48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4ABA55C41B979437003B6D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ABA55D21B9B43D8003B6D48 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4ADC5D2C1BC0494400305985 /* EventViewControllerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewControllerBase.swift; sourceTree = "<group>"; };
+		4ADC5D2E1BC146DF00305985 /* EventSummaryBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventSummaryBaseTableViewCell.swift; sourceTree = "<group>"; };
 		4AF3029C1B9DEB04003CAC77 /* AccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		4AFAD5281BB85AEF00EC0D8C /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 		4AFF83991BBC68080042FCA4 /* ImageTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableCell.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 				4A4459241BA0AD580041A45C /* DateSelectViewController.swift */,
 				4A44592A1BA41B4E0041A45C /* SettingsViewController.swift */,
 				4A44592E1BA42C350041A45C /* RegisterViewController.swift */,
+				4ADC5D2C1BC0494400305985 /* EventViewControllerBase.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -169,6 +174,7 @@
 				4AFF839B1BBC6ADD0042FCA4 /* EventDateCell.swift */,
 				4A20D03E1BBD80ED00F6C648 /* EventSummaryCellCreator.swift */,
 				4AA11D7A1BBDDD4A004451D8 /* InviteButtonCell.swift */,
+				4ADC5D2E1BC146DF00305985 /* EventSummaryBaseTableViewCell.swift */,
 			);
 			name = EventSummaryVCs;
 			sourceTree = "<group>";
@@ -332,6 +338,7 @@
 				4A44591F1B9F81230041A45C /* EventMainViewController.swift in Sources */,
 				4A44592D1BA4270B0041A45C /* LoggedOutViewController.swift in Sources */,
 				4AAECD741BA9F580007B7427 /* EventChatViewController.swift in Sources */,
+				4ADC5D2F1BC146DF00305985 /* EventSummaryBaseTableViewCell.swift in Sources */,
 				4AFAD5291BB85AEF00EC0D8C /* LoadingOverlay.swift in Sources */,
 				4ABA55BB1B979437003B6D48 /* LoginViewController.swift in Sources */,
 				4AB5CEA61BA8C3DF00B3ED6F /* DisplayEvent.swift in Sources */,
@@ -349,6 +356,7 @@
 				4AAECD781BAA18A0007B7427 /* ChatMessage.swift in Sources */,
 				4AB5CEA41BA8867E00B3ED6F /* TransitionOperator.swift in Sources */,
 				4AFF839A1BBC68080042FCA4 /* ImageTableCell.swift in Sources */,
+				4ADC5D2D1BC0494400305985 /* EventViewControllerBase.swift in Sources */,
 				4AF3029D1B9DEB04003CAC77 /* AccessToken.swift in Sources */,
 				4A44592F1BA42C350041A45C /* RegisterViewController.swift in Sources */,
 				4A44591D1B9F62B10041A45C /* Event.swift in Sources */,

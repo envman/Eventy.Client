@@ -27,13 +27,19 @@ protocol ImageDelegate
 	func uploadedImage(uploaded: Bool)
 }
 
+protocol EventDetailDelegate
+{
+	func receivedEvent(event: Event)
+}
+
 class NetworkManager
 {
 	var delegate: NetworkDelegate?
 	var eventDelegate: EventDelegate?
+	var eventDetailDelegate: EventDetailDelegate?
 	var imageDelegate: ImageDelegate?
-	let url: String = "http://joinin.azurewebsites.net"
 	
+	let url: String = "http://joinin.azurewebsites.net"
 	let authenticationHeaders = [
 		"Authorization": "Bearer " + AccessToken.loadTokenData(),
 		"Content-Type": "application/x-www-form-urlencoded"]
@@ -41,7 +47,7 @@ class NetworkManager
 	func register(userName: String, email: String, password: String)
 	{
 		let registerParameters = ["UserName": userName, "Email":email, "Password":password]
-		Alamofire.request(.POST, url+"/Api/Account/Register", parameters: registerParameters, encoding: .JSON).validate().responseJSON{
+		Alamofire.request(.POST, url+"/Api/Account/Register", parameters: registerParameters, encoding: .JSON).responseJSON{
 			_, _, json in
 			if (json.value != nil)
 			{
@@ -202,13 +208,35 @@ class NetworkManager
 				let endDateTimeString = responseJson["EndDateTime"].string
 				
 				let dateFormatter = NSDateFormatter()
-				dateFormatter.dateFormat = "yyyy-MM-ddThh:mm:ss"
+				dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
 				let startdate = dateFormatter.dateFromString(startDateTimeString!)
+				let endDate = dateFormatter.dateFromString(endDateTimeString!)
 				
-//				let event = Event(name: name!, description: description!, startTime: startdate!, endTime: endDate!)
+				let event = Event(name: name!, description: description!, startTime: startdate!, endTime: endDate!)
+				
+				self.eventDetailDelegate?.receivedEvent(event)
+				
 			}
 		}
 
+	}
+	
+	func inviteUserToEvent(event: Event, userEmail: String)
+	{
+		let inviteParameters = ["EventId": event.id, "Email": userEmail, "Id":NSUUID().UUIDString]
+		Alamofire.request(.POST, url+"/api/Invite", parameters: inviteParameters, headers: authenticationHeaders).validate().responseJSON{
+			_, _, json in
+			if (json.value != nil)
+			{
+				let responseJson = JSON(json.value!)
+				let responseMessage = responseJson["Message"].stringValue
+				
+				if (responseMessage != "")
+				{
+					QuickAlert.showAlert("Failure", message: "Response: \(responseMessage)")
+				}
+			}
+		}
 	}
 	
 	func getAllChatMessages(eventId: String)
@@ -222,6 +250,17 @@ class NetworkManager
 				let responseJson = JSON(json.value!)
 				let responseMessage = responseJson["Message"].stringValue
 				print(responseMessage)
+				
+				for (_, subJson) in responseJson
+				{
+					
+//					let event: DisplayEvent = DisplayEvent()
+//					event.description = subJson["Description"].string
+//					event.name = subJson["Name"].string
+//					event.id = subJson["Id"].string
+//					event.imageId = subJson["ImageId"].string
+//				
+				}
 			}
 		}
 	}
@@ -242,7 +281,6 @@ class NetworkManager
 				}
 			}
 		}
-
 	}
 
 	func uploadImage(imageData: NSData, imageId: String)

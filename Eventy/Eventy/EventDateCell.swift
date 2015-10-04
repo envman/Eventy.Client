@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventDateCell: UITableViewCell
+class EventDateCell: EventSummaryBaseTableViewCell
 {
 	@IBOutlet weak var startDate: UILabel!
 	@IBOutlet weak var endDate: UILabel!

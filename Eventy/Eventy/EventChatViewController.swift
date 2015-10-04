@@ -8,9 +8,9 @@
 
 import UIKit
 
-class EventChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class EventChatViewController: EventViewControllerBase, UITableViewDelegate, UITableViewDataSource
 {
-	var selectedEvent: DisplayEvent?
+	var selectedEvent: Event?
 	var keyboardHeight: CGFloat?
 	let networkManager = NetworkManager()
 	
@@ -22,8 +22,8 @@ class EventChatViewController: UIViewController, UITableViewDelegate, UITableVie
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
-		
-		networkManager.getAllChatMessages(selectedEvent!.id!)
+		setupBaseEventViewController("Event Chat", backEnabled: true, rightButtonImageString:"")
+		networkManager.getAllChatMessages(selectedEvent!.id)
 		
 		chatTableView.estimatedRowHeight = 140
 		chatTableView.rowHeight = UITableViewAutomaticDimension

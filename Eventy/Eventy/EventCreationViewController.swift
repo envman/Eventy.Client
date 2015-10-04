@@ -13,7 +13,7 @@ protocol EventCreateDelegate
 	func eventCreated()
 }
 
-class EventCreationViewController: UIViewController, DateSelectDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageDelegate
+class EventCreationViewController: EventViewControllerBase, DateSelectDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageDelegate
 {
 	var delegate: EventCreateDelegate?
 	var startDate: NSDate?
@@ -31,6 +31,12 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 	@IBOutlet weak var startDateLabel: UILabel!
 	@IBOutlet weak var endDateLabel: UILabel!
 	@IBOutlet weak var eventImage: UIImageView!
+	
+	override func viewDidLoad()
+	{
+		super.viewDidLoad()
+		setupBaseEventViewController("Create Event", backEnabled: true, rightButtonImageString: "")
+	}
 	
 	@IBAction func selectImagePressed(sender: AnyObject)
 	{
@@ -123,7 +129,6 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 		}
 		else
 		{
-			
 			newEvent = Event(name: eventNameTextField.text!, description: eventDescriptionTextField.text!, startTime: startDate!, endTime: endDate!)
 			let imageData: NSData = UIImageJPEGRepresentation(currentImage!, 0.7)!
 			
@@ -160,7 +165,7 @@ class EventCreationViewController: UIViewController, DateSelectDelegate, UITextF
 	func datesSelected(startDate: NSDate, endDate: NSDate)
 	{
 		let dateFormatter = NSDateFormatter()
-		dateFormatter.dateFormat = "dd-MM-yyyy 'at' h:mm a"
+		dateFormatter.dateFormat = "h:mm a EEE MMM yyyy"
 		
 		let startDatestring = dateFormatter.stringFromDate(startDate)
 		startDateLabel.text = "\(startDatestring)"
