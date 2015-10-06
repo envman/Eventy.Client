@@ -16,6 +16,6 @@ class EventSummaryBaseTableViewCell: UITableViewCell
 	override func layoutSubviews()
 	{
 		editIcon.hidden = (fieldEditable == true) ? false : true
-		self.userInteractionEnabled = (fieldEditable == true) ? false : true
+		self.userInteractionEnabled = (fieldEditable == true) ? true : false
 	}
 }

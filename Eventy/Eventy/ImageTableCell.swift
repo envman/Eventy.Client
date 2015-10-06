@@ -8,9 +8,21 @@
 
 import UIKit
 
+protocol EventSummaryImageDelegate
+{
+	func detailEditPressed()
+}
+
 class ImageTableCell: EventSummaryBaseTableViewCell
 {
+	var delegate: EventSummaryImageDelegate?
+	
 	@IBOutlet weak var eventImage: UIImageView!
 	@IBOutlet weak var eventTitleLabel: UILabel!
 	@IBOutlet weak var eventDescriptionLabel: UILabel!
+	
+	@IBAction func editDetailsPressed(sender: AnyObject)
+	{
+		self.delegate?.detailEditPressed()
+	}
 }

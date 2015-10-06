@@ -8,12 +8,23 @@
 
 import UIKit
 
-class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource, InviteCellDelegate
+class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource, InviteCellDelegate, DateSelectDelegate, ImageDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, EventSummaryImageDelegate
 {
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var nameEditView: UIView!
+	@IBOutlet weak var nameEditTextField: UITextField!
+	@IBOutlet weak var descriptionEditTextfield: UITextField!
+	@IBOutlet weak var editDoneButton: UIButton!
 	
 	var selectedEvent: Event?
 	var selectedEventImage: UIImage?
+	
+	let imagePicker = UIImagePickerController()
+	let loadingOverlay = LoadingOverlay()
+	let networkManager = NetworkManager()
+	
+	var newImage: UIImage?
+	var newImageId: String?
 
 	let cellHeights: [Int:CGFloat] = [0:200.0, 1:89.0]
 	
@@ -58,6 +69,7 @@ class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, 
 			cell.eventTitleLabel.text = selectedEvent?.name
 			cell.eventDescriptionLabel.text = selectedEvent?.description
 			cell.fieldEditable = true
+			cell.delegate = self
 			
 			return cell
 			
@@ -104,6 +116,34 @@ class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, 
 		return 44
 	}
 	
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+	{
+		if (indexPath.row == 0)
+		{
+			selectImagePressed()
+		}
+		else if (indexPath.row == 1)
+		{
+			presentDateSelectView()
+		}
+	}
+		
+	func presentDateSelectView()
+	{
+		let dateSelectViewController = self.storyboard!.instantiateViewControllerWithIdentifier("DateSelectViewController") as! DateSelectViewController
+		dateSelectViewController.delegate = self
+		presentViewController(dateSelectViewController, animated: true, completion: nil)
+	}
+	
+	func datesSelected(startDate: NSDate, endDate: NSDate)
+	{
+		selectedEvent?.startTime = startDate
+		selectedEvent?.endTime = endDate
+		tableView.reloadData()
+		
+		saveEditedEvent()
+	}
+	
 	func inviteButtonPressed()
 	{
 		let alert = UIAlertView()
@@ -124,5 +164,115 @@ class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, 
 			let networkManager = NetworkManager()
 			networkManager.inviteUserToEvent(selectedEvent!, userEmail: alertView.textFieldAtIndex(0)!.text!)
 		}
+	}
+	
+	func selectImagePressed()
+	{
+		let alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+		let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default)
+			{
+				UIAlertAction in
+				self.openCamera()
+		}
+		let gallaryAction = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.Default)
+			{
+				UIAlertAction in
+				self.openGallary()
+		}
+		let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel)
+			{
+				UIAlertAction in
+		}
+		
+		imagePicker.delegate = self
+		alert.addAction(cameraAction)
+		alert.addAction(gallaryAction)
+		alert.addAction(cancelAction)
+		
+		self.presentViewController(alert, animated: true, completion: nil)
+	}
+	
+	func openCamera()
+	{
+		if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera))
+		{
+			imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+			self .presentViewController(imagePicker, animated: true, completion: nil)
+		}
+		else
+		{
+			let alertWarning = UIAlertView(title:"Warning", message: "You don't have camera", delegate:nil, cancelButtonTitle:"OK", otherButtonTitles:"")
+			alertWarning.show()
+		}
+	}
+	
+	func openGallary()
+	{
+		imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+		self.presentViewController(imagePicker, animated: true, completion: nil)
+	}
+	
+	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
+	{
+		if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+		{
+			newImage = pickedImage
+			let imageData: NSData = UIImageJPEGRepresentation(pickedImage, 0.4)!
+			
+			networkManager.imageDelegate = self
+			newImageId = NSUUID().UUIDString
+			networkManager.uploadImage(imageData, imageId: newImageId!)
+			loadingOverlay.showOverlay(self.view, message: "Updating Event Image")
+		}
+		
+		dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	func uploadedImage(uploaded: Bool)
+	{
+		loadingOverlay.hideOverlayView()
+		
+		if (uploaded)
+		{
+			selectedEvent?.imageId = newImageId!
+			saveEditedEvent()
+			selectedEventImage = newImage
+			tableView.reloadData()
+		}
+	}
+	
+	func imagePickerControllerDidCancel(picker: UIImagePickerController)
+	{
+		dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	@IBAction func editDonePressed(sender: AnyObject)
+	{
+		nameEditView.hidden = true
+		
+		if ((nameEditTextField.text != selectedEvent?.name) || (descriptionEditTextfield.text != selectedEvent?.description))
+		{
+			selectedEvent?.name = nameEditTextField.text!
+			selectedEvent?.description = descriptionEditTextfield.text!
+			saveEditedEvent()
+		}
+	}
+	
+	func detailEditPressed()
+	{
+		nameEditView.hidden = false
+		nameEditView.alpha = 0.0
+		
+		UIView.animateWithDuration(0.5, animations: {
+			self.nameEditView.alpha = 1
+		})
+		
+		nameEditTextField.text = selectedEvent?.name
+		descriptionEditTextfield.text = selectedEvent?.description
+	}
+	
+	func saveEditedEvent()
+	{
+		networkManager.createEvent(selectedEvent!)
 	}
 }

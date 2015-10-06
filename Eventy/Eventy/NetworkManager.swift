@@ -136,8 +136,7 @@ class NetworkManager
 		let eventParameters = ["Id": event.id, "Name": event.name, "Description": event.description,
 								"StartDateTime":event.startTime, "EndDateTime":event.endTime, "ImageId":event.imageId]
 
-		Alamofire.request(.PUT, url+"/api/Event/"+event.id, parameters: eventParameters, headers: authenticationHeaders)
-			.validate().responseJSON{
+		Alamofire.request(.PUT, url+"/api/Event/"+event.id, parameters: eventParameters, headers: authenticationHeaders).responseJSON{
 			_, _, json in
 			if (json.value != nil)
 			{
@@ -147,7 +146,7 @@ class NetworkManager
 					
 				if (responseMessage.containsString("denied"))
 				{
-					QuickAlert.showAlert("Fail to create event:", message: "Respons: \(responseMessage)")
+					QuickAlert.showAlert("Fail to create event:", message: "Response: \(responseMessage)")
 				}
 			}
 		}
@@ -243,7 +242,7 @@ class NetworkManager
 	{
 		let chatUrl = url+"/api/Chat/\(eventId)"
 		Alamofire.request(.GET, chatUrl, headers: authenticationHeaders)
-			.validate().responseJSON{
+			.responseJSON{
 			_, _, json in
 			if (json.value != nil)
 			{

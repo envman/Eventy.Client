@@ -130,7 +130,7 @@ class EventCreationViewController: EventViewControllerBase, DateSelectDelegate, 
 		else
 		{
 			newEvent = Event(name: eventNameTextField.text!, description: eventDescriptionTextField.text!, startTime: startDate!, endTime: endDate!)
-			let imageData: NSData = UIImageJPEGRepresentation(currentImage!, 0.7)!
+			let imageData: NSData = UIImageJPEGRepresentation(currentImage!, 0.4)!
 			
 			networkManager.imageDelegate = self
 			networkManager.uploadImage(imageData, imageId: newEvent!.imageId)
