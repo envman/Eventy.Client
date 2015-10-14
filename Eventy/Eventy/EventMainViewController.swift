@@ -14,7 +14,7 @@ protocol EventMainDelegate
 	func userLoggedOut()
 }
 
-class EventMainViewController: EventViewControllerBase, SettingsDelegate, EventDelegate, UITableViewDataSource, UITableViewDelegate, EventCreateDelegate, EventDetailDelegate
+class EventMainViewController: EventViewControllerBase, SettingsDelegate, EventDelegate, UITableViewDataSource, UITableViewDelegate, EventDetailDelegate
 {
 	var delegate: EventMainDelegate?
 	var transitionOperator = TransitionOperator()
@@ -26,7 +26,6 @@ class EventMainViewController: EventViewControllerBase, SettingsDelegate, EventD
 	var selectedIndexPath: NSIndexPath?
 	let loadingOverlay = LoadingOverlay()
 	
-	
 	@IBOutlet weak var eventTable: UITableView!
 	@IBOutlet weak var segmentedControl: UISegmentedControl!
 	
@@ -35,6 +34,12 @@ class EventMainViewController: EventViewControllerBase, SettingsDelegate, EventD
 		super.viewDidLoad()
 		initialiseNetworkManager()
 		segmentedControl.selectedSegmentIndex = 0
+		
+		NSNotificationCenter.defaultCenter().addObserver(
+			self,
+			selector: "refreshEventTables:",
+			name: "refreshEventTable",
+			object: nil)
 	}
 	
 	func initialiseNetworkManager()
@@ -45,7 +50,7 @@ class EventMainViewController: EventViewControllerBase, SettingsDelegate, EventD
 		loadingOverlay.showOverlay(self.eventTable, message: "Updating Events...")
 	}
 	
-	func eventCreated()
+@objc	func refreshEventTables(notification: NSNotification)
 	{
 		networkManager.getEvents()
 		loadingOverlay.showOverlay(self.eventTable, message: "Updating Events...")
@@ -78,12 +83,6 @@ class EventMainViewController: EventViewControllerBase, SettingsDelegate, EventD
 			settingsViewController.delegate = self
 			self.modalPresentationStyle = UIModalPresentationStyle.Custom
 			settingsViewController.transitioningDelegate = self.transitionOperator
-		}
-		
-		if segue.identifier == "CreateEventSegue"
-		{
-			let eventCreationViewController = segue.destinationViewController as! EventCreationViewController
-			eventCreationViewController.delegate = self
 		}
 	}
 	

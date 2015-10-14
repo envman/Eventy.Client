@@ -8,14 +8,8 @@
 
 import UIKit
 
-protocol EventCreateDelegate
-{
-	func eventCreated()
-}
-
 class EventCreationViewController: EventViewControllerBase, DateSelectDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageDelegate
 {
-	var delegate: EventCreateDelegate?
 	var startDate: NSDate?
 	var endDate: NSDate?
 	var currentImage: UIImage?
@@ -144,8 +138,7 @@ class EventCreationViewController: EventViewControllerBase, DateSelectDelegate, 
 		{
 			networkManager.createEvent(newEvent!)
 			loadingOverlay.hideOverlayView()
-			
-			self.delegate?.eventCreated()
+
 			dismissViewControllerAnimated(true, completion: nil)
 		}
 	}

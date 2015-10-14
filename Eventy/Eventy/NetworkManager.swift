@@ -148,7 +148,10 @@ class NetworkManager
 				{
 					QuickAlert.showAlert("Fail to create event:", message: "Response: \(responseMessage)")
 				}
+				
 			}
+			
+			NSNotificationCenter.defaultCenter().postNotificationName("refreshEventTable", object: nil)
 		}
 	}
 	
@@ -212,6 +215,8 @@ class NetworkManager
 				let endDate = dateFormatter.dateFromString(endDateTimeString!)
 				
 				let event = Event(name: name!, description: description!, startTime: startdate!, endTime: endDate!)
+				event.id = id!
+				event.imageId = imageId!
 				
 				self.eventDetailDelegate?.receivedEvent(event)
 				
