@@ -225,6 +225,20 @@ class NetworkManager
 
 	}
 	
+	func deleteEventWithId(id: String)
+	{
+		Alamofire.request(.DELETE, url+"/api/Event/" + id, headers: authenticationHeaders).validate()
+			.responseJSON{
+				_, _, json in
+				if (json.value != nil)
+				{
+					
+				}
+		}
+		
+	}
+
+	
 	func inviteUserToEvent(event: Event, userEmail: String)
 	{
 		let inviteParameters = ["EventId": event.id, "Email": userEmail, "Id":NSUUID().UUIDString]

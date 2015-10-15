@@ -11,9 +11,6 @@ import UIKit
 class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource, InviteCellDelegate, DateSelectDelegate, ImageDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, EventSummaryImageDelegate
 {
 	@IBOutlet weak var tableView: UITableView!
-	@IBOutlet weak var nameEditView: UIView!
-	@IBOutlet weak var nameEditTextField: UITextField!
-	@IBOutlet weak var descriptionEditTextfield: UITextField!
 	@IBOutlet weak var editDoneButton: UIButton!
 	
 	var selectedEvent: Event?
@@ -34,6 +31,17 @@ class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, 
 	{
 		super.viewDidLoad()
 		setupBaseEventViewController((selectedEvent?.name)!, backEnabled: true, rightButtonImageString: "Chat")
+		
+		NSNotificationCenter.defaultCenter().addObserver(
+			self,
+			selector: "refreshEventTables:",
+			name: "refreshEventTable",
+			object: nil)
+	}
+	
+@objc	func refreshEventTables(notification: NSNotification)
+	{
+		tableView.reloadData()
 	}
 	
 	override func viewWillAppear(animated: Bool)
@@ -118,11 +126,7 @@ class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, 
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
 	{
-		if (indexPath.row == 0)
-		{
-			selectImagePressed()
-		}
-		else if (indexPath.row == 1)
+		if (indexPath.row == 1)
 		{
 			presentDateSelectView()
 		}
@@ -166,7 +170,7 @@ class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, 
 		}
 	}
 	
-	func selectImagePressed()
+	func imageEditPressed()
 	{
 		let alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
 		let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default)
@@ -246,29 +250,12 @@ class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, 
 		dismissViewControllerAnimated(true, completion: nil)
 	}
 	
-	@IBAction func editDonePressed(sender: AnyObject)
+	func detailEditFinished(eventTitle: String, eventDetail: String)
 	{
-		nameEditView.hidden = true
+		selectedEvent?.description = eventDetail
+		selectedEvent?.name = eventTitle
 		
-		if ((nameEditTextField.text != selectedEvent?.name) || (descriptionEditTextfield.text != selectedEvent?.description))
-		{
-			selectedEvent?.name = nameEditTextField.text!
-			selectedEvent?.description = descriptionEditTextfield.text!
-			saveEditedEvent()
-		}
-	}
-	
-	func detailEditPressed()
-	{
-		nameEditView.hidden = false
-		nameEditView.alpha = 0.0
-		
-		UIView.animateWithDuration(0.5, animations: {
-			self.nameEditView.alpha = 1
-		})
-		
-		nameEditTextField.text = selectedEvent?.name
-		descriptionEditTextfield.text = selectedEvent?.description
+		saveEditedEvent()
 	}
 	
 	func saveEditedEvent()
