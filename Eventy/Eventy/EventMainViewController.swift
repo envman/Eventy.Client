@@ -27,13 +27,11 @@ class EventMainViewController: EventViewControllerBase, SettingsDelegate, EventD
 	let loadingOverlay = LoadingOverlay()
 	
 	@IBOutlet weak var eventTable: UITableView!
-	@IBOutlet weak var segmentedControl: UISegmentedControl!
 	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
 		initialiseNetworkManager()
-		segmentedControl.selectedSegmentIndex = 0
 		
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
@@ -130,6 +128,10 @@ class EventMainViewController: EventViewControllerBase, SettingsDelegate, EventD
 			selectedEvent = events[indexPath.row]
 			networkManager.getEventWithId(selectedEvent!.id!)
 			networkManager.eventDetailDelegate = self
+		}
+		else
+		{
+			self.performSegueWithIdentifier("CreateEventSegue", sender: self)
 		}
 	}
 	

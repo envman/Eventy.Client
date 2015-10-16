@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource, InviteCellDelegate, DateSelectDelegate, ImageDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, EventSummaryImageDelegate
+class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource, InviteCellDelegate, DateSelectDelegate, ImageDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, EventSummaryImageDelegate, DeleteEventDelegate
 {
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var editDoneButton: UIButton!
@@ -64,7 +64,7 @@ class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, 
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-		return 5 + testSchedule.count
+		return 6 + testSchedule.count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -104,6 +104,11 @@ class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, 
 		case 4:
 			let cell  = tableView.dequeueReusableCellWithIdentifier("ScheduleCell") as! EventSummaryBaseTableViewCell
 			cell.fieldEditable = true
+			return cell
+			
+		case 5 + testSchedule.count:
+			let cell  = tableView.dequeueReusableCellWithIdentifier("DeleteButtonCell") as! DeleteEventTableViewCell
+			cell.delegate = self
 			return cell
 
 		default:
@@ -158,16 +163,31 @@ class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, 
 		alert.alertViewStyle = UIAlertViewStyle.PlainTextInput
 		alert.textFieldAtIndex(0)!.delegate = self
 		alert.delegate = self
+		alert.tag = 0
 		alert.show()
 	}
 	
 	func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int)
 	{
-		if(buttonIndex == 1)
+		if (alertView.tag == 0)
 		{
-			let networkManager = NetworkManager()
-			networkManager.inviteUserToEvent(selectedEvent!, userEmail: alertView.textFieldAtIndex(0)!.text!)
+			if (buttonIndex == 1)
+			{
+				let networkManager = NetworkManager()
+				networkManager.inviteUserToEvent(selectedEvent!, userEmail: alertView.textFieldAtIndex(0)!.text!)
+			}
 		}
+		else if (alertView.tag == 1)
+		{
+			if (buttonIndex == 1)
+			{
+				let networkManager = NetworkManager()
+				networkManager.deleteEventWithId((selectedEvent?.id)!)
+				
+				self.dismissViewControllerAnimated(true, completion: nil)
+			}
+		}
+		
 	}
 	
 	func imageEditPressed()
@@ -261,5 +281,17 @@ class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, 
 	func saveEditedEvent()
 	{
 		networkManager.createEvent(selectedEvent!)
+	}
+	
+	func deleteEventPressed()
+	{
+		let alert = UIAlertView()
+		alert.title = "Warning"
+		alert.message = "Are you sure you want to delete this event?"
+		alert.addButtonWithTitle("Cancel")
+		alert.addButtonWithTitle("Yes")
+		alert.delegate = self
+		alert.tag = 1
+		alert.show()
 	}
 }

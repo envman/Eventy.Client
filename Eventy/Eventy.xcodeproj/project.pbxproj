@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A071DAA1BD18C0B006B9C1C /* DeleteEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A071DA91BD18C0B006B9C1C /* DeleteEventTableViewCell.swift */; };
 		4A20D03D1BBD7E4C00F6C648 /* ObjectiveCBridingHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20D03C1BBD7E4C00F6C648 /* ObjectiveCBridingHeader.m */; };
 		4A20D03F1BBD80ED00F6C648 /* EventSummaryCellCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A20D03E1BBD80ED00F6C648 /* EventSummaryCellCreator.swift */; };
 		4A2DD2AD1BA75DC300B27489 /* EventSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2DD2AC1BA75DC300B27489 /* EventSummaryViewController.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A071DA91BD18C0B006B9C1C /* DeleteEventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteEventTableViewCell.swift; sourceTree = "<group>"; };
 		4A20D03B1BBD7E4B00F6C648 /* Eventy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Eventy-Bridging-Header.h"; sourceTree = "<group>"; };
 		4A20D03C1BBD7E4C00F6C648 /* ObjectiveCBridingHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCBridingHeader.m; sourceTree = "<group>"; };
 		4A20D03E1BBD80ED00F6C648 /* EventSummaryCellCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventSummaryCellCreator.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				4A20D03E1BBD80ED00F6C648 /* EventSummaryCellCreator.swift */,
 				4AA11D7A1BBDDD4A004451D8 /* InviteButtonCell.swift */,
 				4ADC5D2E1BC146DF00305985 /* EventSummaryBaseTableViewCell.swift */,
+				4A071DA91BD18C0B006B9C1C /* DeleteEventTableViewCell.swift */,
 			);
 			name = EventSummaryVCs;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				4A44591D1B9F62B10041A45C /* Event.swift in Sources */,
 				4AFF839F1BBC8AF10042FCA4 /* ChatMessageCell.swift in Sources */,
 				4A44591B1B9F62740041A45C /* EventCreationViewController.swift in Sources */,
+				4A071DAA1BD18C0B006B9C1C /* DeleteEventTableViewCell.swift in Sources */,
 				4A4459311BA431C90041A45C /* QuickAlert.swift in Sources */,
 				4A20D03D1BBD7E4C00F6C648 /* ObjectiveCBridingHeader.m in Sources */,
 			);
