@@ -17,4 +17,11 @@ class ChatMessage: NSObject
 	{
 		return (AccessToken.loadUserName() == userName)
 	}
+	
+	func postTimeAsString() -> String
+	{
+		let dayTimePeriodFormatter = NSDateFormatter()
+		dayTimePeriodFormatter.dateFormat = "h:mm a EEE MMM yyyy"
+		return dayTimePeriodFormatter.stringFromDate(postTime!)
+	}
 }

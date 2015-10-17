@@ -12,6 +12,7 @@ class EventChatViewController: EventViewControllerBase, UITableViewDelegate, UIT
 {
 	var selectedEvent: Event?
 	var keyboardHeight: CGFloat?
+	var keyboardDisplayed = false
 	
 	let networkManager = NetworkManager()
 	let chatHandler = ChatHandler()
@@ -34,17 +35,35 @@ class EventChatViewController: EventViewControllerBase, UITableViewDelegate, UIT
 		chatTableView.rowHeight = UITableViewAutomaticDimension
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillChangeFrameNotification, object: nil)
+		
+		var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+		view.addGestureRecognizer(tap)
+	}
+	
+	func DismissKeyboard()
+	{
+		view.endEditing(true)
 	}
 	
 	func keyboardWillShow(notification: NSNotification)
 	{
 		keyboardHeight = notification.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size.height
-		self.animateTextView(true)
+		
+		if keyboardDisplayed
+		{
+			self.animateTextView(false)
+		}
+		else
+		{
+			self.animateTextView(true)
+		}
+		
 	}
 	
 	func chatMessagesReceived()
 	{
 		chatTableView.reloadData()
+		tableViewScrollToBottom(true)
 	}
 
 	@IBAction func backButtonPressed(sender: AnyObject)
@@ -62,18 +81,39 @@ class EventChatViewController: EventViewControllerBase, UITableViewDelegate, UIT
 		let chatMessage = chatHandler.chatMessages[indexPath.row]
 		let cellIdentifier = (chatMessage.isUserMessage()) ? "SentChatCell" : "ReceivedChatCell"
 		let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)! as! ChatMessageCell
+		
 		cell.messageLabel.text  = chatMessage.message
+		cell.timeDateLabel.text = chatMessage.postTimeAsString()
+		
+		if !chatMessage.isUserMessage()
+		{
+			cell.userLabel.text = chatMessage.userName
+		}
 		
 		return cell
 	}
 	
 	func animateTextView(up: Bool)
 	{
-		messageViewBottomConstraint.constant = keyboardHeight!
+		if up
+		{
+			keyboardDisplayed = true
+			messageViewBottomConstraint.constant = keyboardHeight!
+		}
+		else
+		{
+			if keyboardDisplayed
+			{
+				messageViewBottomConstraint.constant -= keyboardHeight!
+				keyboardDisplayed = false
+			}
+		}
+		
 		tableViewScrollToBottom(true)
 	}
 	
-	func tableViewScrollToBottom(animated: Bool) {
+	func tableViewScrollToBottom(animated: Bool)
+	{
 		
 		let delay = 0.1 * Double(NSEC_PER_SEC)
 		let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
@@ -92,9 +132,13 @@ class EventChatViewController: EventViewControllerBase, UITableViewDelegate, UIT
 	
 	@IBAction func sendButtonPressed(sender: AnyObject)
 	{
-		chatHandler.postChatMessage(messageTextField.text!)
-		messageTextField.text = ""
-		messageTextField.resignFirstResponder()
-		messageViewBottomConstraint.constant = 0
+		if messageTextField.text!.characters.count > 0
+		{
+			chatHandler.postChatMessage(messageTextField.text!)
+			messageTextField.text = ""
+			messageTextField.resignFirstResponder()
+			messageViewBottomConstraint.constant = 0
+		}
+		
 	}
 }

@@ -11,9 +11,8 @@ import UIKit
 class ChatMessageCell: UITableViewCell
 {
 	var message = ""
-	@IBOutlet weak var messageLabel: UILabel!
 	
-	override func layoutSubviews()
-	{
-	}
+	@IBOutlet weak var messageLabel: UILabel!
+	@IBOutlet weak var timeDateLabel: UILabel!
+	@IBOutlet weak var userLabel: UILabel!
 }

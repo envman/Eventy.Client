@@ -599,7 +599,7 @@
                                             <outlet property="saveDetailsButton" destination="gGY-fv-NjT" id="Knr-nP-AXB"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateCell" rowHeight="89" id="13N-P4-1gB" customClass="EventDateCell" customModule="JoinIn" customModuleProvider="target">
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DateCell" rowHeight="89" id="13N-P4-1gB" customClass="EventDateCell" customModule="JoinIn" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="228" width="600" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="13N-P4-1gB" id="6jf-vH-0aV">
@@ -665,7 +665,7 @@
                                             <outlet property="startDate" destination="WGi-8C-ezC" id="15a-Rv-VF1"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="JoinInButtonCell" rowHeight="44" id="qny-na-pOS">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="JoinInButtonCell" rowHeight="44" id="qny-na-pOS">
                                         <rect key="frame" x="0.0" y="317" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qny-na-pOS" id="8Lh-K7-ay5">
@@ -690,7 +690,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InviteButtonCell" rowHeight="44" id="zqx-gV-YnT" customClass="InviteButtonCell" customModule="JoinIn" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="InviteButtonCell" rowHeight="44" id="zqx-gV-YnT" customClass="InviteButtonCell" customModule="JoinIn" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="361" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zqx-gV-YnT" id="9Lu-wJ-MSd">
@@ -718,7 +718,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScheduleCell" id="Wak-lL-vDd" customClass="EventSummaryBaseTableViewCell" customModule="JoinIn" customModuleProvider="target">
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ScheduleCell" id="Wak-lL-vDd" customClass="EventSummaryBaseTableViewCell" customModule="JoinIn" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="405" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wak-lL-vDd" id="0mm-xQ-P08">
@@ -751,7 +751,7 @@
                                             <outlet property="editIcon" destination="Vmy-Go-mI5" id="jAm-gE-FOH"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScheduleItemCell" id="tSD-e3-QrI">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ScheduleItemCell" id="tSD-e3-QrI">
                                         <rect key="frame" x="0.0" y="449" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tSD-e3-QrI" id="bJG-yJ-VLm">
@@ -760,7 +760,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeleteButtonCell" rowHeight="44" id="j6C-8f-41L" customClass="DeleteEventTableViewCell" customModule="JoinIn" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DeleteButtonCell" rowHeight="44" id="j6C-8f-41L" customClass="DeleteEventTableViewCell" customModule="JoinIn" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="493" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j6C-8f-41L" id="hod-DZ-QVt">
@@ -1286,7 +1286,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jHB-Lx-iRX">
                                         <rect key="frame" x="8" y="9" width="509" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" keyboardAppearance="alert"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIL-Mt-j09">
                                         <rect key="frame" x="525" y="9" width="67" height="30"/>
@@ -1318,18 +1318,45 @@
                                 <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReceivedChatCell" rowHeight="44" id="uWg-9n-kv1" customClass="ChatMessageCell" customModule="JoinIn" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReceivedChatCell" rowHeight="76" id="uWg-9n-kv1" customClass="ChatMessageCell" customModule="JoinIn" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uWg-9n-kv1" id="eJM-5B-uE3">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="76"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugu-bc-QlB">
-                                                    <rect key="frame" x="8" y="8" width="538" height="27"/>
+                                                    <rect key="frame" x="8" y="8" width="538" height="59"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeL-44-nti">
-                                                            <rect key="frame" x="8" y="3" width="522" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" misplaced="YES" text="12:33 2nd Jan 15" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWp-Ez-2AG">
+                                                            <rect key="frame" x="5" y="41" width="193" height="17"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="106" id="1h0-eK-YFH"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="10"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="1h0-eK-YFH"/>
+                                                                </mask>
+                                                            </variation>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="User name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGc-xa-gWw">
+                                                            <rect key="frame" x="3" y="1" width="241" height="17"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="106" id="W2z-fp-bBr"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <color key="textColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="W2z-fp-bBr"/>
+                                                                </mask>
+                                                            </variation>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Message Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeL-44-nti">
+                                                            <rect key="frame" x="5" y="19" width="522" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -1337,10 +1364,14 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="BeL-44-nti" secondAttribute="trailing" constant="8" id="OA6-p5-fI7"/>
-                                                        <constraint firstItem="BeL-44-nti" firstAttribute="top" secondItem="Ugu-bc-QlB" secondAttribute="top" constant="3" id="OyE-BW-W0G"/>
-                                                        <constraint firstItem="BeL-44-nti" firstAttribute="leading" secondItem="Ugu-bc-QlB" secondAttribute="leading" constant="8" id="Uo8-IG-xua"/>
-                                                        <constraint firstAttribute="bottom" secondItem="BeL-44-nti" secondAttribute="bottom" constant="3" id="bsZ-4I-a7O"/>
+                                                        <constraint firstItem="BeL-44-nti" firstAttribute="leading" secondItem="Ugu-bc-QlB" secondAttribute="leading" constant="5" id="6Ur-AB-Ib5"/>
+                                                        <constraint firstItem="KGc-xa-gWw" firstAttribute="top" secondItem="Ugu-bc-QlB" secondAttribute="top" constant="1" id="HQm-B7-07u"/>
+                                                        <constraint firstAttribute="trailing" secondItem="BeL-44-nti" secondAttribute="trailing" constant="11" id="S4h-qs-scD"/>
+                                                        <constraint firstAttribute="bottom" secondItem="AWp-Ez-2AG" secondAttribute="bottom" constant="1" id="Uip-iZ-DAV"/>
+                                                        <constraint firstItem="BeL-44-nti" firstAttribute="top" secondItem="KGc-xa-gWw" secondAttribute="bottom" constant="1" id="ajs-H9-emf"/>
+                                                        <constraint firstItem="AWp-Ez-2AG" firstAttribute="top" secondItem="BeL-44-nti" secondAttribute="bottom" constant="1" id="b3e-ME-fqq"/>
+                                                        <constraint firstItem="AWp-Ez-2AG" firstAttribute="leading" secondItem="Ugu-bc-QlB" secondAttribute="leading" constant="5" id="fSc-Tr-mEZ"/>
+                                                        <constraint firstItem="KGc-xa-gWw" firstAttribute="leading" secondItem="Ugu-bc-QlB" secondAttribute="leading" constant="3" id="yvj-NI-BTr"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -1354,31 +1385,40 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="messageLabel" destination="BeL-44-nti" id="0yv-vT-zb1"/>
+                                            <outlet property="timeDateLabel" destination="AWp-Ez-2AG" id="89x-kq-7nq"/>
+                                            <outlet property="userLabel" destination="KGc-xa-gWw" id="s8d-7W-WST"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SentChatCell" rowHeight="44" id="dK7-0j-0AI" customClass="ChatMessageCell" customModule="JoinIn" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SentChatCell" rowHeight="63" id="dK7-0j-0AI" customClass="ChatMessageCell" customModule="JoinIn" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="104" width="600" height="63"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dK7-0j-0AI" id="pqA-ew-nAa">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vnz-qE-mNL">
-                                                    <rect key="frame" x="56" y="8" width="536" height="28"/>
+                                                    <rect key="frame" x="56" y="8" width="536" height="47"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s42-mn-RMS">
-                                                            <rect key="frame" x="8" y="3" width="520" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Message Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s42-mn-RMS">
+                                                            <rect key="frame" x="8" y="9" width="520" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="12:33 2nd Jan 15" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nC7-m0-wfI">
+                                                            <rect key="frame" x="422" y="30" width="106" height="17"/>
+                                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="10"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="s42-mn-RMS" firstAttribute="top" secondItem="vnz-qE-mNL" secondAttribute="top" constant="3" id="0N0-q9-rtP"/>
-                                                        <constraint firstAttribute="bottom" secondItem="s42-mn-RMS" secondAttribute="bottom" constant="4" id="AXk-7F-dcV"/>
+                                                        <constraint firstAttribute="trailing" secondItem="nC7-m0-wfI" secondAttribute="trailing" constant="8" id="7bf-hf-WKu"/>
+                                                        <constraint firstItem="nC7-m0-wfI" firstAttribute="top" secondItem="s42-mn-RMS" secondAttribute="bottom" id="Hd5-T5-KQw"/>
                                                         <constraint firstItem="s42-mn-RMS" firstAttribute="leading" secondItem="vnz-qE-mNL" secondAttribute="leading" constant="8" id="kD8-Cv-XS1"/>
                                                         <constraint firstAttribute="trailing" secondItem="s42-mn-RMS" secondAttribute="trailing" constant="8" id="q7a-at-hcp"/>
+                                                        <constraint firstAttribute="bottom" secondItem="nC7-m0-wfI" secondAttribute="bottom" id="vVd-CB-Ynr"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -1392,6 +1432,7 @@
                                         <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="messageLabel" destination="s42-mn-RMS" id="qZ2-VV-dZ1"/>
+                                            <outlet property="timeDateLabel" destination="nC7-m0-wfI" id="cXY-Kj-YVH"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
