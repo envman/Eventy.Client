@@ -51,6 +51,17 @@ class AccessToken
 		return ""
 	}
 	
+	class func loadUserName() ->String
+	{
+		if let tokenDictionary = Locksmith.loadDataForUserAccount("JoinInUserAccount")
+		{
+			let responseJson = JSON(tokenDictionary)
+			return responseJson["userName"].stringValue
+		}
+		
+		return ""
+	}
+	
 	class func deleteToken()
 	{
 		do

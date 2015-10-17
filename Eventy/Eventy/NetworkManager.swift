@@ -32,12 +32,18 @@ protocol EventDetailDelegate
 	func receivedEvent(event: Event)
 }
 
+protocol ChatMessageDelegate
+{
+	func receivedChatMessages(messages: Array<ChatMessage>)
+}
+
 class NetworkManager
 {
 	var delegate: NetworkDelegate?
 	var eventDelegate: EventDelegate?
 	var eventDetailDelegate: EventDetailDelegate?
 	var imageDelegate: ImageDelegate?
+	var chatMessageDelegate: ChatMessageDelegate?
 	
 	let url: String = "http://joinin.azurewebsites.net"
 	let authenticationHeaders = [
@@ -268,23 +274,28 @@ class NetworkManager
 		let chatUrl = url+"/api/Chat/\(eventId)"
 		Alamofire.request(.GET, chatUrl, headers: authenticationHeaders)
 			.responseJSON{
-			_, _, json in
-			if (json.value != nil)
-			{
-				let responseJson = JSON(json.value!)
-				let responseMessage = responseJson["Message"].stringValue
-				print(responseMessage)
-				
-				for (_, subJson) in responseJson
+				_, _, json in
+				if (json.value != nil)
 				{
+					let responseJson = JSON(json.value!)
+				
+					var chatMessageArray = Array<ChatMessage>()
+					for (_, subJson) in responseJson
+					{
+						let chatMessage = ChatMessage()
+						chatMessage.message = subJson["Message"].string
+						chatMessage.userName = subJson["UserName"].string
+						chatMessage.messageId = subJson["Id"].string
 					
-//					let event: DisplayEvent = DisplayEvent()
-//					event.description = subJson["Description"].string
-//					event.name = subJson["Name"].string
-//					event.id = subJson["Id"].string
-//					event.imageId = subJson["ImageId"].string
-//				
-				}
+						let dateFormatter = NSDateFormatter()
+						dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+						let dateString = subJson["PostTime"].string
+						chatMessage.postTime = dateFormatter.dateFromString(dateString!)
+						
+						chatMessageArray.append(chatMessage)
+					}
+					
+					self.chatMessageDelegate?.receivedChatMessages(chatMessageArray)
 			}
 		}
 	}
@@ -304,7 +315,28 @@ class NetworkManager
 					QuickAlert.showAlert("Failure", message: "Response: \(responseMessage)")
 				}
 			}
+			
+			self.getAllChatMessages(eventId)
 		}
+	}
+	
+	func checkForUpdatedChatMessages(eventId: String, lastChatMessageId:String)
+	{
+		let chatParameters = ["EventId": eventId, "lastChatId": lastChatMessageId]
+		Alamofire.request(.GET, url+"/api/Chat", parameters: chatParameters, headers: authenticationHeaders).validate().responseJSON{
+			_, _, json in
+			if (json.value != nil)
+			{
+				let responseJson = JSON(json.value!)
+				let responseMessage = responseJson["Message"].stringValue
+				
+				if (responseMessage != "")
+				{
+					QuickAlert.showAlert("Failure", message: "Response: \(responseMessage)")
+				}
+			}
+		}
+
 	}
 
 	func uploadImage(imageData: NSData, imageId: String)
@@ -318,16 +350,16 @@ class NetworkManager
 		}
 	}
 	
-	func downloadImage(imageId: String)
+	
+	func getScheduleForEventId(eventId: String)
 	{
-		Alamofire.request(.GET, url + "/api/Image/" + imageId, headers: authenticationHeaders)
-			.validate().response() {
-			(_, _, data, _) in
-			
-			if let image = UIImage(data: data!)
-			{
-				print("Success!")
-			}
+		Alamofire.request(.GET,  url + "/api/Schedule/\(eventId)", headers: authenticationHeaders)
+			.responseJSON{
+				_, _, json in
+				if (json.value != nil)
+				{
+					let responseJson = JSON(json.value!)
+				}
 		}
 	}
 }

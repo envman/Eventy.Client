@@ -8,11 +8,14 @@
 
 import UIKit
 
-class EventChatViewController: EventViewControllerBase, UITableViewDelegate, UITableViewDataSource
+class EventChatViewController: EventViewControllerBase, UITableViewDelegate, UITableViewDataSource, ChatMessageDelegate
 {
 	var selectedEvent: Event?
 	var keyboardHeight: CGFloat?
 	let networkManager = NetworkManager()
+	var receivedChatMessages = Array<ChatMessage>()
+	var userName = ""
+	var lastChatMessageId = ""
 	
 	@IBOutlet weak var chatTableView: UITableView!
 	@IBOutlet weak var messageTextField: UITextField!
@@ -23,11 +26,23 @@ class EventChatViewController: EventViewControllerBase, UITableViewDelegate, UIT
 	{
 		super.viewDidLoad()
 		setupBaseEventViewController("Event Chat", backEnabled: true, rightButtonImageString:"")
+		
+		userName = AccessToken.loadUserName()
 		networkManager.getAllChatMessages(selectedEvent!.id)
+		networkManager.chatMessageDelegate = self
 		
 		chatTableView.estimatedRowHeight = 140
 		chatTableView.rowHeight = UITableViewAutomaticDimension
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillChangeFrameNotification, object: nil)
+		
+		let timer = NSTimer.scheduledTimerWithTimeInterval(7.0, target: self, selector: "update", userInfo: nil, repeats: true)
+
+	}
+	
+	func update()
+	{
+		print("Checking chat status")
+		networkManager.checkForUpdatedChatMessages((selectedEvent?.id)!, lastChatMessageId: lastChatMessageId)
 	}
 	
 	func keyboardWillShow(notification: NSNotification)
@@ -35,34 +50,39 @@ class EventChatViewController: EventViewControllerBase, UITableViewDelegate, UIT
 		keyboardHeight = notification.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size.height
 		self.animateTextView(true)
 	}
-	override func viewWillAppear(animated: Bool)
-	{
-		chatTableView.reloadData()
-	}
-	
+
 	@IBAction func backButtonPressed(sender: AnyObject)
 	{
 		dismissViewControllerAnimated(true, completion: nil)
 	}
 	
+	func receivedChatMessages(messages: Array<ChatMessage>)
+	{
+		receivedChatMessages = messages
+		lastChatMessageId = (receivedChatMessages.last?.messageId)!
+		chatTableView.reloadData()
+	}
+	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-		return 10
+		return receivedChatMessages.count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
-		let cell: ChatMessageCell
-		if indexPath.row % 2 == 0
+		let chatMessage = receivedChatMessages[indexPath.row]
+		var cell: ChatMessageCell
+		
+		if chatMessage.userName != userName
 		{
 			cell = tableView.dequeueReusableCellWithIdentifier("ReceivedChatCell")! as! ChatMessageCell
-				cell.messageLabel.text  = "is a mid-1960s British science-fiction television series created by Gerry Anderson (pictured) and "
 		}
 		else
 		{
 			cell = tableView.dequeueReusableCellWithIdentifier("SentChatCell")! as! ChatMessageCell
-				cell.messageLabel.text = "Really?"
 		}
+		
+		cell.messageLabel.text  = chatMessage.message
 		
 		return cell
 	}
@@ -93,6 +113,7 @@ class EventChatViewController: EventViewControllerBase, UITableViewDelegate, UIT
 	@IBAction func sendButtonPressed(sender: AnyObject)
 	{
 		networkManager.postChatMessage((selectedEvent?.id)!, message: messageTextField.text!)
+		messageTextField.text = ""
 		messageTextField.resignFirstResponder()
 		messageViewBottomConstraint.constant = 0
 	}

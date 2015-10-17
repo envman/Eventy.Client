@@ -6,8 +6,10 @@
 //  Copyright © 2015 GG. All rights reserved.
 //
 
-
-class ChatMessage
+class ChatMessage: NSObject
 {
-
+	var postTime: NSDate?
+	var messageId: String?
+	var userName: String?
+	var message: String?
 }

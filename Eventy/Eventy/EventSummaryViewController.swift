@@ -37,6 +37,13 @@ class EventSummaryViewController: EventViewControllerBase, UITextFieldDelegate, 
 			selector: "refreshEventTables:",
 			name: "refreshEventTable",
 			object: nil)
+		
+		getSchedule()
+	}
+	
+	func getSchedule()
+	{
+		networkManager.getScheduleForEventId((selectedEvent?.id)!)
 	}
 	
 @objc	func refreshEventTables(notification: NSNotification)
