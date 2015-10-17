@@ -12,4 +12,9 @@ class ChatMessage: NSObject
 	var messageId: String?
 	var userName: String?
 	var message: String?
+	
+	func isUserMessage() -> Bool
+	{
+		return (AccessToken.loadUserName() == userName)
+	}
 }

@@ -8,14 +8,13 @@
 
 import UIKit
 
-class EventChatViewController: EventViewControllerBase, UITableViewDelegate, UITableViewDataSource, ChatMessageDelegate
+class EventChatViewController: EventViewControllerBase, UITableViewDelegate, UITableViewDataSource, ChatHandlerDelegate
 {
 	var selectedEvent: Event?
 	var keyboardHeight: CGFloat?
+	
 	let networkManager = NetworkManager()
-	var receivedChatMessages = Array<ChatMessage>()
-	var userName = ""
-	var lastChatMessageId = ""
+	let chatHandler = ChatHandler()
 	
 	@IBOutlet weak var chatTableView: UITableView!
 	@IBOutlet weak var messageTextField: UITextField!
@@ -26,23 +25,15 @@ class EventChatViewController: EventViewControllerBase, UITableViewDelegate, UIT
 	{
 		super.viewDidLoad()
 		setupBaseEventViewController("Event Chat", backEnabled: true, rightButtonImageString:"")
-		
-		userName = AccessToken.loadUserName()
-		networkManager.getAllChatMessages(selectedEvent!.id)
-		networkManager.chatMessageDelegate = self
+	
+		chatHandler.eventId = (selectedEvent?.id)!
+		chatHandler.delegate = self
+		chatHandler.getChatMessages()
 		
 		chatTableView.estimatedRowHeight = 140
 		chatTableView.rowHeight = UITableViewAutomaticDimension
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillChangeFrameNotification, object: nil)
 		
-		let timer = NSTimer.scheduledTimerWithTimeInterval(7.0, target: self, selector: "update", userInfo: nil, repeats: true)
-
-	}
-	
-	func update()
-	{
-		print("Checking chat status")
-		networkManager.checkForUpdatedChatMessages((selectedEvent?.id)!, lastChatMessageId: lastChatMessageId)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillChangeFrameNotification, object: nil)
 	}
 	
 	func keyboardWillShow(notification: NSNotification)
@@ -50,38 +41,27 @@ class EventChatViewController: EventViewControllerBase, UITableViewDelegate, UIT
 		keyboardHeight = notification.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size.height
 		self.animateTextView(true)
 	}
+	
+	func chatMessagesReceived()
+	{
+		chatTableView.reloadData()
+	}
 
 	@IBAction func backButtonPressed(sender: AnyObject)
 	{
 		dismissViewControllerAnimated(true, completion: nil)
 	}
 	
-	func receivedChatMessages(messages: Array<ChatMessage>)
-	{
-		receivedChatMessages = messages
-		lastChatMessageId = (receivedChatMessages.last?.messageId)!
-		chatTableView.reloadData()
-	}
-	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-		return receivedChatMessages.count
+		return chatHandler.chatMessages.count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
-		let chatMessage = receivedChatMessages[indexPath.row]
-		var cell: ChatMessageCell
-		
-		if chatMessage.userName != userName
-		{
-			cell = tableView.dequeueReusableCellWithIdentifier("ReceivedChatCell")! as! ChatMessageCell
-		}
-		else
-		{
-			cell = tableView.dequeueReusableCellWithIdentifier("SentChatCell")! as! ChatMessageCell
-		}
-		
+		let chatMessage = chatHandler.chatMessages[indexPath.row]
+		let cellIdentifier = (chatMessage.isUserMessage()) ? "SentChatCell" : "ReceivedChatCell"
+		let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)! as! ChatMessageCell
 		cell.messageLabel.text  = chatMessage.message
 		
 		return cell
@@ -112,7 +92,7 @@ class EventChatViewController: EventViewControllerBase, UITableViewDelegate, UIT
 	
 	@IBAction func sendButtonPressed(sender: AnyObject)
 	{
-		networkManager.postChatMessage((selectedEvent?.id)!, message: messageTextField.text!)
+		chatHandler.postChatMessage(messageTextField.text!)
 		messageTextField.text = ""
 		messageTextField.resignFirstResponder()
 		messageViewBottomConstraint.constant = 0
